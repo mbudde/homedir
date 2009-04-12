@@ -14,14 +14,21 @@ set nocompatible
 let mapleader = ','
 
 "nmap <F9> :make
-nmap <F10> :cd %:h<cr>
+nmap <F10> :cd %:h<CR>
 nmap <F11> :!asy %
-nmap <F12> :!./waf<cr>
+nmap <F12> :!./waf<CR>
 nmap <S-F12> :!./waf 
 
-nmap <Leader>w :set wrap!<cr>
-nmap <Leader>h :set hlsearch!<cr>
-nmap <Leader>l :set list!<cr>
+" maps for options
+nmap <Leader>ow :set wrap!<CR>
+nmap <Leader>oh :set hlsearch!<CR>
+nmap <Leader>oi :set list!<CR>
+
+" maps for buffers
+nmap <Leader>l :ls<CR>
+nmap <Leader>f :bn<CR>
+nmap <Leader>d :bp<CR>
+nmap <Leader>g :b#<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -34,7 +41,6 @@ if &t_Co > 2 || has("gui_running")
     let python_highlight_space_errors = 1
     syntax on
 endif
-
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -54,6 +60,18 @@ if has("autocmd")
     highlight link TrailingWhitespace Error
     autocmd Syntax * syn match TrailingWhitespace /\(\zs\%#\|\s\)\+$/ display
     autocmd Syntax * syn match TrailingWhitespace / \+\ze\t/ display
+
+    " Highlight long lines
+    nnoremap <silent> <Leader>ol
+        \ :if exists('w:long_line_match') <Bar>
+        \   silent! call matchdelete(w:long_line_match) <Bar>
+        \   unlet w:long_line_match <Bar>
+        \ elseif &textwidth > 0 <Bar>
+        \   let w:long_line_match = matchadd('Error', '\%>'.&tw.'v.\+', -1) <Bar>
+        \ else <Bar>
+        \   let w:long_line_match = matchadd('Error', '\%>80v.\+', -1) <Bar>
+        \ endif<CR>
+
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -80,6 +98,9 @@ set history=50
 set ruler
 set showcmd
 set incsearch
+
+set laststatus=2
+set statusline=[%n]\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Tab settings
 set tabstop=4
