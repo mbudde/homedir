@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UFRaw Version='7'>
+<SaveConfiguration>0</SaveConfiguration>
+<RawExpander>0</RawExpander>
+<CurvePath>/home/michael/Photos/Curves</CurvePath>
+<ColorSmoothing>3</ColorSmoothing>
+<Temperature>4856</Temperature>
+<Green>0.965623</Green>
+<ChannelMultipliers>2.226562 1.000000 1.584961</ChannelMultipliers>
+<ExposureNorm>2280</ExposureNorm>
+<RestoreDetails>hsv</RestoreDetails>
+<ClipHighlights>film</ClipHighlights>
+<Shrink>2</Shrink>
+<OutputType>4</OutputType>
+<CreateID>1</CreateID>
+<Compression>98</Compression>
+<Overwrite>1</Overwrite>
+<BaseCurve Current='no'>fotogenetic_ev3_v42
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.201886 0.250505</AnchorXY>
+	<AnchorXY>0.301010 0.377778</AnchorXY>
+	<AnchorXY>0.404040 0.503030</AnchorXY>
+	<AnchorXY>1.000000 0.876768</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_provia_v40
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.183962 0.204541</AnchorXY>
+	<AnchorXY>0.624116 0.709266</AnchorXY>
+	<AnchorXY>0.749495 0.803597</AnchorXY>
+	<AnchorXY>1.000000 0.963636</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='yes'>ev_3_custom_d100_normal
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.205882 0.250000</AnchorXY>
+	<AnchorXY>0.500000 0.602941</AnchorXY>
+	<AnchorXY>0.750000 0.779412</AnchorXY>
+	<AnchorXY>0.964706 0.949020</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>ev_5_custom_d100_normal
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.345588</AnchorXY>
+	<AnchorXY>0.500000 0.654412</AnchorXY>
+	<AnchorXY>0.749020 0.796078</AnchorXY>
+	<AnchorXY>0.963235 0.948529</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_white_wedding_v35
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.175758 0.250505</AnchorXY>
+	<AnchorXY>0.353535 0.501010</AnchorXY>
+	<AnchorXY>0.501010 0.672727</AnchorXY>
+	<AnchorXY>0.747475 0.817914</AnchorXY>
+	<AnchorXY>0.880808 0.880942</AnchorXY>
+	<AnchorXY>0.957844 0.931716</AnchorXY>
+	<AnchorXY>0.989899 0.975758</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_point_and_shoot_v41
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.175758 0.250505</AnchorXY>
+	<AnchorXY>0.353535 0.501010</AnchorXY>
+	<AnchorXY>0.612658 0.749495</AnchorXY>
+	<AnchorXY>1.000000 0.876573</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>s_bright_4
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.250000</AnchorXY>
+	<AnchorXY>0.750000 0.906176</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>s_low_bright_4
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.214033</AnchorXY>
+	<AnchorXY>0.750000 0.906176</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>bright_2
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.281545</AnchorXY>
+	<AnchorXY>0.750000 0.826946</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>bright_3
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250811 0.313900</AnchorXY>
+	<AnchorXY>0.749189 0.864534</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>bright_4
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.253096 0.328567</AnchorXY>
+	<AnchorXY>0.750000 0.906176</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>s_dark_4
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.097435</AnchorXY>
+	<AnchorXY>0.746904 0.750000</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>s_low_dark_4
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.097435</AnchorXY>
+	<AnchorXY>0.750000 0.785967</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>s_med
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.173054</AnchorXY>
+	<AnchorXY>0.750000 0.824808</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_baseline_v3
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.500000 0.648685</AnchorXY>
+	<AnchorXY>0.750000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_baseline_conservative_v3
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.500000 0.559333</AnchorXY>
+	<AnchorXY>0.863208 1.000000</AnchorXY>
+</BaseCurve>
+<ManualCurve Current='yes'>
+</ManualCurve>
+<LinearCurve Current='no'>
+	<MinXY>1.000000 1.000000</MinXY>
+	<MaxXY>0.000000 1.000000</MaxXY>
+</LinearCurve>
+<sRGBInputProfile Current='yes'>
+</sRGBInputProfile>
+<sRGBOutputProfile Current='yes'>
+</sRGBOutputProfile>
+<SystemDisplayProfile Current='yes'>
+</SystemDisplayProfile>
+<Make>Canon</Make>
+<Model>EOS 400D DIGITAL</Model>
+</UFRaw>

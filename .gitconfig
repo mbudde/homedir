@@ -1,0 +1,28 @@
+[user]
+	name = Michael Budde
+	email = mbudde@gmail.com
+[alias]
+	st = status
+	di = diff -B
+	co = checkout
+	ci = commit
+	br = branch
+	h = help
+	rb = rebase
+	rt = remote
+	lg = log --stat --relative-date
+[color]
+	diff = auto
+	branch = auto
+	status = auto
+[color "diff"]
+	meta = yellow
+[core]
+	excludesfile = /home/michael/.gitignore
+[diff]
+	renames = copies
+[gui]
+	fontui = -family \"Bitstream Vera Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+
+# vim: ft=gitconfig
