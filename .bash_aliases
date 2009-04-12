@@ -1,3 +1,5 @@
+alias up='cd ..'
+
 # ls aliases
 alias ll='ls -lh'
 alias la='ls -A'
