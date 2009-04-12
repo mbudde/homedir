@@ -31,6 +31,7 @@ set mouse=a
 
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
+    let python_highlight_space_errors = 1
     syntax on
 endif
 
