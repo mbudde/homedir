@@ -1,38 +1,27 @@
-" An example for a vimrc file.
+" vimrc file for Michael Budde <mbudde@gmail.com>
 "
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2006 Nov 16
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
-  finish
+    finish
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Mappings
+let mapleader = ','
 
-"if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-"else
-"  set backup		" keep a backup file
-"endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+"nmap <F9> :make
+nmap <F10> :cd %:h<cr>
+nmap <F11> :!asy %
+nmap <F12> :!./waf<cr>
+nmap <S-F12> :!./waf 
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+nmap <Leader>w :set wrap!<cr>
+nmap <Leader>h :set hlsearch!<cr>
+nmap <Leader>l :set list!<cr>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -41,81 +30,88 @@ map Q gq
 set mouse=a
 
 " Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  "set hlsearch
+    syntax on
 endif
-if has("gui_running")
-    colorscheme wombat
-endif
+
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+    filetype plugin indent on
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+    au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
+    autocmd FileType python setlocal textwidth=78
+
+    " Show trailing whitespace and spaces before tabs
+    highlight link TrailingWhitespace Error
+    autocmd Syntax * syn match TrailingWhitespace /\(\zs\%#\|\s\)\+$/ display
+    autocmd Syntax * syn match TrailingWhitespace / \+\ze\t/ display
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 
-  "autocmd FileType tex setlocal makeprg=make\ pdf
+    augroup END
 
-  augroup END
+endif
 
-else
 
-"set autoindent		" always set autoindenting on
+if has("gui_running")
+    colorscheme wombat
+endif
 
-endif " has("autocmd")
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+set nobackup
+set history=50
+set ruler
+set showcmd
+set incsearch
 
 " Tab settings
+set tabstop=4
 set shiftwidth=4
 set expandtab
-set softtabstop=4
-
-set shiftround
+"set shiftround
 
 " Indent settings
 set noautoindent
 set smartindent
 
+" Don't break long lines when entering insert mode
 set formatoptions+=l
 
 set ignorecase smartcase
 
-set linebreak
+"set linebreak
 set showbreak=»\ 
+set nowrap
 
 set listchars=tab:→\ ,eol:¬,trail:·,extends:⇒
 
 set foldmethod=syntax
 set foldcolumn=0
 
-set tags+=,./src/tags
-
 set guifont=Monospace\ 9
 
-map j gj
-map k gk
-set scrolloff=3
+"map j gj
+"map k gk
+set scrolloff=5
 
 let NERDShutUp=1
+
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -134,10 +130,3 @@ let g:Tex_Com_binom = "\\binom{<++>}{<++>}<++>"
 let g:Tex_Com_nfrac = "\\nicefrac{<++>}{<++>}<++>"
 let g:Tex_HotKeyMappings = "align*,aligned,equation*"
 imap <S-F4> binom<F7>
-
-"nmap <F9> :make
-nmap <F10> :cd %:h<cr>
-nmap <F11> :!asy %
-nmap <F12> :!./waf<cr>
-nmap <S-F12> :!./waf
-
