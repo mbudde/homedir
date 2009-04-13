@@ -13,7 +13,7 @@ set nocompatible
 " Mappings
 let mapleader = ','
 
-"nmap <F9> :make
+nmap <F9> :e %:h<CR>
 nmap <F10> :cd %:h<CR>
 nmap <F11> :!asy %
 nmap <F12> :!./waf<CR>
