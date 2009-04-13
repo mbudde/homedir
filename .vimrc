@@ -87,6 +87,7 @@ endif
 
 if has("gui_running")
     colorscheme wombat
+    command! NoMenu set guioptions-=T | set guioptions-=m
 endif
 
 " allow backspacing over everything in insert mode
@@ -139,7 +140,6 @@ let NERDShutUp=1
 "command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 	 	"\ | wincmd p | diffthis
 
-command! NoMenu set guioptions-=T | set guioptions-=m
 
 " LaTeX-Suite settings:
 let g:Tex_ViewRule_pdf="evince"
