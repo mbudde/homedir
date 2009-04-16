@@ -55,6 +55,8 @@ if has("autocmd")
 
     autocmd FileType python setlocal textwidth=78
 
+    autocmd BufRead,BufNewFile wscript* set filetype=python
+
     " Show trailing whitespace and spaces before tabs
     highlight link TrailingWhitespace Error
     autocmd Syntax * syn match TrailingWhitespace /\(\zs\%#\|\s\)\+$/ display
