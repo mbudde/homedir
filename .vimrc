@@ -29,6 +29,7 @@ nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
 nmap <Leader>d :bp<CR>
 nmap <Leader>g :b#<CR>
+nmap <Leader>r :bd<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
