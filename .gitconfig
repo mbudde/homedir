@@ -11,6 +11,7 @@
 	rb = rebase
 	rt = remote
 	lg = log --stat --relative-date
+	graph = log --graph --pretty=oneline --abbrev-commit --all --decorate
 [color]
 	diff = auto
 	branch = auto
