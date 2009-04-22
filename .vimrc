@@ -16,7 +16,12 @@ let mapleader = ','
 nmap <F9> :e %:h<CR>
 nmap <F10> :cd %:h<CR>
 nmap <F11> :!asy %
-nmap <F12> :!./waf<CR>
+nmap <silent> <F12>
+    \ :if filereadable("./waf") <Bar>
+    \   !./waf<CR> <Bar>
+    \ else <Bar>
+    \   !waf<CR> <Bar>
+    \ endif<CR>
 nmap <S-F12> :!./waf 
 
 " maps for options
