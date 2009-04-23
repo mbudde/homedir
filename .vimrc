@@ -50,6 +50,10 @@ nmap <A-8> :tabn 8<CR>
 nmap <A-9> :tabn 9<CR>
 nmap <C-S-t> :tabnew<CR>
 
+" Easy saving
+nmap <C-s> :w<CR>
+imap <C-s> <ESC>:w<CR>
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
