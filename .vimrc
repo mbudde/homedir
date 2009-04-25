@@ -14,6 +14,7 @@ set nocompatible
 let mapleader = ','
 
 nmap <F9> :e %:h<CR>
+nmap <S-F9> :15split +:e\ %:h<CR>
 nmap <F10> :cd %:h<CR>
 nmap <F11> :!asy %
 nmap <silent> <F12>
