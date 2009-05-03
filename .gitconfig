@@ -25,5 +25,5 @@
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-
-# vim: ft=gitconfig
+[url "git://git.gnome.org/"]
+	insteadof = gnome:
