@@ -3,11 +3,12 @@ import XMonad.Config.Gnome
 
 
 myManageHook = composeAll
-    [ className =? "Pidgin"    --> doFloat
-    , className =? "Pidgin"    --> doShift "im"
-    , className =? "Rhythmbox" --> doShift "music"
-    , className =? "Evolution" --> doShift "im"
-    , className =? "Do"        --> doIgnore ]
+    [ className =? "Pidgin"           --> doFloat
+    , title     =? "VLC media player" --> doFloat
+    , className =? "Pidgin"           --> doShift "im"
+    , className =? "Rhythmbox"        --> doShift "music"
+    , className =? "Evolution"        --> doShift "im"
+    , className =? "Do"               --> doIgnore ]
 
 
 myWorkspaces = [ "code", "web", "im", "music" ] ++ map show [5..9]
