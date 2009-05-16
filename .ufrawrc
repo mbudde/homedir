@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UFRaw Version='7'>
 <SaveConfiguration>0</SaveConfiguration>
-<RawExpander>0</RawExpander>
+<WindowMaximized>1</WindowMaximized>
 <CurvePath>/home/michael/Photos/Curves</CurvePath>
-<ColorSmoothing>3</ColorSmoothing>
-<Temperature>4856</Temperature>
-<Green>0.965623</Green>
-<ChannelMultipliers>2.226562 1.000000 1.584961</ChannelMultipliers>
-<ExposureNorm>2280</ExposureNorm>
-<RestoreDetails>hsv</RestoreDetails>
-<ClipHighlights>film</ClipHighlights>
+<Temperature>4161</Temperature>
+<Green>1.002415</Green>
+<ChannelMultipliers>1.920304 1.000000 1.792220</ChannelMultipliers>
+<ExposureNorm>1841</ExposureNorm>
 <Shrink>2</Shrink>
 <OutputType>4</OutputType>
 <CreateID>1</CreateID>
 <Compression>98</Compression>
 <Overwrite>1</Overwrite>
-<BaseCurve Current='no'>fotogenetic_ev3_v42
-	<AnchorXY>0.000000 0.000000</AnchorXY>
-	<AnchorXY>0.201886 0.250505</AnchorXY>
-	<AnchorXY>0.301010 0.377778</AnchorXY>
-	<AnchorXY>0.404040 0.503030</AnchorXY>
-	<AnchorXY>1.000000 0.876768</AnchorXY>
-</BaseCurve>
-<BaseCurve Current='no'>fotogenetic_provia_v40
-	<AnchorXY>0.000000 0.000000</AnchorXY>
-	<AnchorXY>0.183962 0.204541</AnchorXY>
-	<AnchorXY>0.624116 0.709266</AnchorXY>
-	<AnchorXY>0.749495 0.803597</AnchorXY>
-	<AnchorXY>1.000000 0.963636</AnchorXY>
-</BaseCurve>
 <BaseCurve Current='yes'>ev_3_custom_d100_normal
 	<AnchorXY>0.000000 0.000000</AnchorXY>
 	<AnchorXY>0.205882 0.250000</AnchorXY>
@@ -44,6 +27,26 @@
 	<AnchorXY>0.749020 0.796078</AnchorXY>
 	<AnchorXY>0.963235 0.948529</AnchorXY>
 	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>s_bright_4
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.250000 0.250000</AnchorXY>
+	<AnchorXY>0.750000 0.906176</AnchorXY>
+	<AnchorXY>1.000000 1.000000</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_ev3_v42
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.201886 0.250505</AnchorXY>
+	<AnchorXY>0.301010 0.377778</AnchorXY>
+	<AnchorXY>0.404040 0.503030</AnchorXY>
+	<AnchorXY>1.000000 0.876768</AnchorXY>
+</BaseCurve>
+<BaseCurve Current='no'>fotogenetic_provia_v40
+	<AnchorXY>0.000000 0.000000</AnchorXY>
+	<AnchorXY>0.183962 0.204541</AnchorXY>
+	<AnchorXY>0.624116 0.709266</AnchorXY>
+	<AnchorXY>0.749495 0.803597</AnchorXY>
+	<AnchorXY>1.000000 0.963636</AnchorXY>
 </BaseCurve>
 <BaseCurve Current='no'>fotogenetic_white_wedding_v35
 	<AnchorXY>0.000000 0.000000</AnchorXY>
@@ -62,12 +65,6 @@
 	<AnchorXY>0.353535 0.501010</AnchorXY>
 	<AnchorXY>0.612658 0.749495</AnchorXY>
 	<AnchorXY>1.000000 0.876573</AnchorXY>
-</BaseCurve>
-<BaseCurve Current='no'>s_bright_4
-	<AnchorXY>0.000000 0.000000</AnchorXY>
-	<AnchorXY>0.250000 0.250000</AnchorXY>
-	<AnchorXY>0.750000 0.906176</AnchorXY>
-	<AnchorXY>1.000000 1.000000</AnchorXY>
 </BaseCurve>
 <BaseCurve Current='no'>s_low_bright_4
 	<AnchorXY>0.000000 0.000000</AnchorXY>
@@ -121,17 +118,13 @@
 	<AnchorXY>0.500000 0.559333</AnchorXY>
 	<AnchorXY>0.863208 1.000000</AnchorXY>
 </BaseCurve>
-<ManualCurve Current='yes'>
-</ManualCurve>
-<LinearCurve Current='no'>
-	<MinXY>1.000000 1.000000</MinXY>
-	<MaxXY>0.000000 1.000000</MaxXY>
+<LinearCurve Current='yes'>
 </LinearCurve>
-<sRGBInputProfile Current='yes'>
-</sRGBInputProfile>
-<sRGBOutputProfile Current='yes'>
+<MatrixInputProfile Current='yes'>Color matrix
+</MatrixInputProfile>
+<sRGBOutputProfile Current='yes'>sRGB
 </sRGBOutputProfile>
-<SystemDisplayProfile Current='yes'>
+<SystemDisplayProfile Current='yes'>System default
 </SystemDisplayProfile>
 <Make>Canon</Make>
 <Model>EOS 400D DIGITAL</Model>
