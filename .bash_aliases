@@ -7,6 +7,10 @@ alias l='ls -CF'
 
 alias hgit='git --git-dir=$HOME/.homegit --work-tree=$HOME'
 
+alias saved='pwd > ~/.savedir'
+alias showd='cat ~/.savedir'
+alias god='cd "`cat ~/.savedir`"'
+
 # aptitude aliases
 alias apu='sudo aptitude update'
 alias apug='sudo aptitude safe-upgrade'
