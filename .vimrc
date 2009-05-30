@@ -59,6 +59,7 @@ autocmd FileType python setlocal textwidth=78
 
 autocmd BufRead,BufNewFile wscript* set filetype=python
 autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
+autocmd BufRead,BufNewFile *.mac set filetype=maxima
 
 " Show trailing whitespace and spaces before tabs
 highlight link TrailingWhitespace Error
