@@ -143,6 +143,9 @@ map Q gq
 "map j gj
 "map k gk
 
+" Copy from mark a to current line and go back to current line
+nmap <C-y> "+y'a<C-o>
+
 " Highlight long lines
 nnoremap <silent> <Leader>ol
     \ :if exists('w:long_line_match') <Bar>
