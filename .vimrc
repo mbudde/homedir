@@ -159,6 +159,14 @@ nnoremap <silent> <Leader>ol
 
 " }}}1
 
+" Abbrivations {{{1
+
+iab py#! #!/usr/bin/env python
+iab sh#! #!/bin/sh
+iab bash#! #!/bin/bash
+
+" }}}1
+
 " Miscellaneous {{{1
 
 " Convenient command to see the difference between the current buffer and the
