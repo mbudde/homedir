@@ -28,3 +28,5 @@
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 [url "git://git.gnome.org/"]
 	insteadof = gnome:
+[push]
+	default = matching
