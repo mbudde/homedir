@@ -18,6 +18,9 @@ alias saved='pwd > ~/.savedir'
 alias showd='cat ~/.savedir'
 alias god='cd "`cat ~/.savedir`"'
 
+alias :q=exit
+alias :e=$EDITOR
+
 # aptitude aliases
 alias apu='sudo aptitude update'
 alias apug='sudo aptitude safe-upgrade'
