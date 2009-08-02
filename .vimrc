@@ -56,6 +56,7 @@ endif
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
 autocmd FileType python setlocal textwidth=78
+autocmd FileType python setlocal foldmethod=indent
 
 autocmd BufRead,BufNewFile wscript* set filetype=python
 autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
