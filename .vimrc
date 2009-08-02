@@ -14,6 +14,7 @@ let mapleader = ','
 set noautoindent
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set nobackup
+set diffopt+=vertical
 set expandtab
 set foldcolumn=0
 set foldmethod=syntax
@@ -35,6 +36,7 @@ set smartindent
 set statusline=[%n]\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set tabstop=4
 set nowrap
+" :sort /set \(no\)\?/
 
 let NERDShutUp=1     " Make NERDCommenter shut up.
 
