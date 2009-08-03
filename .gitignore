@@ -1,4 +1,5 @@
 *.swp
+*.pyc
 .waf*
 .lock-wscript
 _build_
