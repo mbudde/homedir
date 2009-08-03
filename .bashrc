@@ -67,6 +67,9 @@ fi
 export EDITOR=vim
 #export VISUAL="gvim -f"
 
-export DEBFULLNAME='Michael Budde'
-export DEBEMAIL='mbudde@gmail.com'
+export FULLNAME='Michael Budde'
+export EMAIL='mbudde@gmail.com'
+
+export DEBFULLNAME=$FULLNAME
+export DEBEMAIL=$EMAIL
 
