@@ -59,10 +59,10 @@ endif
 
 " File type specific settings {{{1
 
+" General settings {{{2
+
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
-autocmd FileType python setlocal textwidth=78
-autocmd FileType python setlocal foldmethod=indent
 
 autocmd BufRead,BufNewFile wscript* set filetype=python
 autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
@@ -82,8 +82,22 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
+" }}}2
 
-" LaTeX-Suite settings:
+" Python settings {{{2
+
+autocmd FileType python setlocal textwidth=79
+autocmd FileType python setlocal foldmethod=indent
+autocmd Syntax python syn keyword pythonSelf self
+
+let python_highlight_numbers = 1
+"let python_highlight_builtins = 1
+"let python_highlight_exceptions = 1
+
+" }}}2
+
+" LaTeX-Suite settings {{{2
+
 autocmd FileType tex call <SID>TexFileSettings()
 function! s:TexFileSettings()
     imap <S-F4> binom<F7>
@@ -98,6 +112,8 @@ let g:Tex_Com_num = "\\number{<++>}<++>"
 let g:Tex_Com_binom = "\\binom{<++>}{<++>}<++>"
 let g:Tex_Com_nfrac = "\\nicefrac{<++>}{<++>}<++>"
 let g:Tex_HotKeyMappings = "align*,aligned,equation*"
+
+" }}}2
 
 " }}}1
 
