@@ -40,6 +40,10 @@ set nowrap
 
 let NERDShutUp=1     " Make NERDCommenter shut up.
 
+let g:tags_dirs = '.'
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_WinWidth = 50
+
 if has("gui_running")
     colorscheme wombat
     set guioptions-=T
@@ -99,6 +103,8 @@ let g:Tex_HotKeyMappings = "align*,aligned,equation*"
 
 " Mappings {{{1
 
+map <expr> <F4> ':!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS ' . g:tags_dirs . '<CR>'
+map <silent> <F8> :TlistToggle<CR>
 nmap <F9> :e %:h<CR>
 nmap <S-F9> :15split +:e\ %:h<CR>
 nmap <F10> :cd %:h<CR>
