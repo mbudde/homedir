@@ -1,0 +1,11 @@
+Config { font = "xft:Monospace:pixelsize=12"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Bottom
+       , lowerOnStart = False
+       , commands = [ Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader%"
+       }
