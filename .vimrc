@@ -27,6 +27,7 @@ set nojoinspaces
 set laststatus=2
 set listchars=tab:→\ ,eol:¬,trail:·,extends:⇒
 set mouse=a          " In many terminal emulators the mouse works just fine, thus enable it.
+set number
 set ruler
 set scrolloff=5
 set shiftwidth=4
@@ -47,6 +48,7 @@ let Tlist_WinWidth = 50
 if has("gui_running")
     colorscheme wombat
     set guioptions-=T
+    set guioptions+=c
     command! NoMenu set guioptions-=m
 endif
 
