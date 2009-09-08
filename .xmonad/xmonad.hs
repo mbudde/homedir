@@ -10,6 +10,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.TwoPane
 import XMonad.Prompt
 import XMonad.Prompt.AppendFile
 import XMonad.Util.EZConfig
@@ -118,11 +119,12 @@ myLogHook xmobar = dynamicLogWithPP $ defaultPP
 myLayoutHook =
     ( avoidStruts $ smartBorders $
       onWorkspace "6:im" im
-      (tiled ||| (Mirror tiled) ||| Full)
+      (tiled ||| (Mirror tiled) ||| twopane ||| Full)
     ) ||| (noBorders Full)
     where
-        im      = withIM (1%7) (ClassName "Pidgin") Grid
+        im      = withIM (1%6) (ClassName "Pidgin") Grid
         tiled   = Tall nmaster delta ratio
+        twopane = TwoPane delta ratio
         nmaster = 1
         ratio   = 1/2
         delta   = 2/100
