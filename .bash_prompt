@@ -20,6 +20,8 @@ LBRACE="${PURPLE}[${NO_COLOR}"
 RBRACE="${PURPLE}]${NO_COLOR}"
 
 function prompt_command {
+    ret="$?"
+
     vcs_ps1 () {
         if which git > /dev/null; then
             local g="$(git rev-parse --git-dir 2>/dev/null)"
@@ -70,15 +72,17 @@ function prompt_command {
         printf ""
     }
 
+    # /foo/bar/baz => /f/bar/baz
+    # /f/bar/baz => /f/b/baz
     shorten_path () {
-        #printf $(echo $1 | sed "s|/\([^/]\)[^/]\{2,\}/|/\1⌁/|")
         printf "$(echo $1 | sed 's|/\([^/]\)[^/]\{1,\}/|/\1/|')"
     }
 
     vcs="$(vcs_ps1)"
     hostname=$(hostname)
     cwd=$(pwd | sed "s|$HOME|~|")
-    let maxlen=80-${#hostname}-${#vcs}-20
+    let maxlen=${COLUMNS}-${#hostname}-${#vcs}-20
+    [ $ret -ge 1 ] && let maxlen-=${#ret}-3
     while [ ${#cwd} -gt $maxlen ]; do
         newcwd=$(shorten_path "$cwd")
         if [ "${newcwd}" = "${cwd}" ]; then
@@ -91,7 +95,13 @@ function prompt_command {
         vcs="${LBRACE}${GREEN}${vcs}${RBRACE} "
     fi
 
-    infoline="${LBRACE}${BLUE}\#${RBRACE} ${LBRACE}${BLUE}\t${RBRACE} ${BLUE}\h${LIGHT_BLUE}:${BLUE}${cwd} ${vcs}"
+    if [ $ret -ge 1 ]; then
+        ret="${LBRACE}${RED}${ret}${RBRACE} "
+    else
+        ret=""
+    fi
+
+    infoline="${LBRACE}${BLUE}\#${RBRACE} ${LBRACE}${BLUE}\t${RBRACE} ${ret}${BLUE}\h${LIGHT_BLUE}:${BLUE}${cwd} ${vcs}"
 
     PS1="${infoline}\n${PURPLE}\$ ${NO_COLOR}"
     PS2="${PURPLE}>${NO_COLOR} "
