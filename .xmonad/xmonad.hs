@@ -25,9 +25,9 @@ import System.Exit
 import System.IO
 
 myModMask  = mod4Mask
-selected   = "'#fad184'"
-background = "'#efebe7'"
-foreground = "'#000000'"
+selected   = "'#595959'"
+background = "'#323232'"
+foreground = "'#dedec1'"
 barHeight  = "24"
 
 
