@@ -39,12 +39,6 @@ set tabstop=4
 set nowrap
 " :sort /set \(no\)\?/
 
-if has("gui_running")
-    colorscheme tango
-else
-    set t_Co=16
-    colorscheme wombat
-endif
 
 let NERDShutUp=1     " Make NERDCommenter shut up.
 
@@ -61,6 +55,13 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
     syntax on
+endif
+
+if has("gui_running")
+    colorscheme tango
+else
+    set t_Co=16
+    colorscheme wombat
 endif
 
 " }}}1
