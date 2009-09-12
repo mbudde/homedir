@@ -39,6 +39,13 @@ set tabstop=4
 set nowrap
 " :sort /set \(no\)\?/
 
+if has("gui_running")
+    colorscheme tango
+else
+    set t_Co=16
+    colorscheme wombat
+endif
+
 let NERDShutUp=1     " Make NERDCommenter shut up.
 
 let g:tags_dirs = '.'
@@ -46,7 +53,6 @@ let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_WinWidth = 50
 
 if has("gui_running")
-    colorscheme wombat
     set guioptions-=T
     set guioptions+=c
     command! NoMenu set guioptions-=m
@@ -71,7 +77,7 @@ autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
 autocmd BufRead,BufNewFile *.mac set filetype=maxima
 
 " Show trailing whitespace and spaces before tabs
-highlight link TrailingWhitespace Error
+"highlight link TrailingWhitespace Error
 autocmd Syntax * syn match TrailingWhitespace /\(\zs\%#\|\s\)\+$/ display
 autocmd Syntax * syn match TrailingWhitespace / \+\ze\t/ display
 
