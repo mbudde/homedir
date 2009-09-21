@@ -12,7 +12,7 @@ if [ -z "${DIST}" ]; then
 fi
 
 if [ -z "${ARCH}" ]; then
-    ARCH="i386"
+    ARCH="$(dpkg-architecture -qDEB_HOST_ARCH)"
 fi
 
 NAME="${DIST}-${ARCH}"
