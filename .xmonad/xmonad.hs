@@ -72,7 +72,7 @@ myKeys = (
     ++
     [ ((m .|. myModMask, k), windows $ f i)
         | (i, k) <- zip (myWorkspaces) ([xK_1 .. xK_9] ++ [xK_0])
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)] ]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)] ]
     )
 
 
