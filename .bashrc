@@ -44,6 +44,9 @@ fi
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi
+if [ -d ~/lib ]; then
+    export PYTHONPATH="${PYTHONPATH}:${HOME}/lib/python2.6/site-packages"
+fi
 
 export EDITOR=vim
 #export VISUAL="gvim -f"
