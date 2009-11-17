@@ -126,6 +126,14 @@ let g:Tex_HotKeyMappings = "align*,aligned,equation*"
 
 " }}}2
 
+" {{{2 Go
+
+autocmd BufRead,BufNewFile *.go set filetype=go
+autocmd FileType go setlocal noexpandtab
+let go_highlight_trailing_whitespace_error = 0
+
+" }}}2
+
 " }}}1
 
 " Mappings {{{1
