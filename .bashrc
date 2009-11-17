@@ -57,3 +57,9 @@ export EMAIL='mbudde@gmail.com'
 export DEBFULLNAME=$FULLNAME
 export DEBEMAIL=$EMAIL
 
+# Google Go compilation env variables
+export GOROOT=/home/devel/forked/go
+export GOOS=linux
+export GOARCH=amd64
+export GOBIN=$HOME/bin/go
+PATH="$HOME/bin/go:$PATH"
