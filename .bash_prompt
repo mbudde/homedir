@@ -105,6 +105,9 @@ function prompt_command {
 
     PS1="${infoline}\n${PURPLE}\$ ${NO_COLOR}"
     PS2="${PURPLE}>${NO_COLOR} "
+
+    # Set terminal title
+    echo -ne "]0;${cwd}"
 }
 
 PROMPT_COMMAND=prompt_command
