@@ -34,7 +34,7 @@ set scrolloff=5
 set shiftwidth=4
 set showbreak=»\ 
 set showcmd
-set smartindent
+set nosmartindent
 set statusline=[%n]\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set tabstop=4
 set nowrap
