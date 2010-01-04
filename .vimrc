@@ -47,6 +47,9 @@ let g:tags_dirs = '.'
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_WinWidth = 50
 
+let g:netrw_hide = 1
+let g:netrw_list_hide = "\.pyc$,\.swp$,^\\..*/$,\.a$,\.o$,\.so$"
+
 if has("gui_running")
     set guioptions-=T
     set guioptions+=c
