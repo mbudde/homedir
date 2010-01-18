@@ -6,5 +6,3 @@
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
-
-`echo $- | grep -qs i` && which byobu-launcher > /dev/null && byobu-launcher
