@@ -160,16 +160,21 @@ nmap <Leader>ow :set wrap!<CR>
 nmap <Leader>oh :set hlsearch!<CR>
 nmap <Leader>oi :set list!<CR>
 
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+
 " maps for buffers
 nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
 nmap <Leader>d :bp<CR>
-nmap <Leader>g :b#<CR>
-nmap <Leader>r :bd<CR>
+nmap <Leader>e :b#<CR>
+nmap <Leader>q :bd<CR>
 
 " maps for moving through tabs
-nmap <C-h> gT
-nmap <C-l> gt
+"nmap <C-S-h> gT
+"nmap <C-S-l> gt
 nmap <A-1> :tabn 1<CR>
 nmap <A-2> :tabn 2<CR>
 nmap <A-3> :tabn 3<CR>
