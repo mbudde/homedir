@@ -37,6 +37,7 @@ set showcmd
 set nosmartindent
 set statusline=[%n]\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set tabstop=4
+set tags+=~/.vim/tags
 set nowrap
 " :sort /set \(no\)\?/
 
