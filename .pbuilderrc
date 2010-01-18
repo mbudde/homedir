@@ -1,7 +1,7 @@
 # vi: set ft=sh:
 
 DEBIAN_MIRROR="ftp.dk.debian.org"
-UBUNTU_MIRROR="ftp.klid.dk/ftp"
+UBUNTU_MIRROR="se.archive.ubuntu.com"
 
 if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
     DIST="$(dpkg-parsechangelog | awk '/^Distribution: / {print $2}')"
@@ -24,7 +24,7 @@ BUILDRESULT="$(realpath ..)/result/${NAME}/"
 APTCACHE="/var/cache/pbuilder/${NAME}/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
 
-#MIRRORSITE="http://${UBUNTU_MIRROR}/ubuntu/"
+MIRRORSITE="http://${UBUNTU_MIRROR}/ubuntu/"
 COMPONENTS="main restricted universe multiverse"
 
 
