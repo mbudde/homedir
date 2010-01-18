@@ -21,6 +21,9 @@ alias god='cd "`cat ~/.savedir`"'
 alias :q=exit
 alias :e=$EDITOR
 
+export GVIMSERVER=GVIM
+alias gvimr='gvim --servername "${GVIMSERVER}" --remote'
+
 # aptitude aliases
 alias apu='sudo aptitude update'
 alias apug='sudo aptitude safe-upgrade'
