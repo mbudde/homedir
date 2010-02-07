@@ -41,6 +41,9 @@ if [ "$TERM" != "dumb" ]; then
     fi
 fi
 
+if [ -d ~/.gem/ruby/1.8/bin ]; then
+    PATH=~/.gem/ruby/1.8/bin:"${PATH}"
+fi
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi
