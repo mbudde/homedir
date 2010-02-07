@@ -24,9 +24,14 @@ alias :e=$EDITOR
 export GVIMSERVER=GVIM
 alias gvimr='gvim --servername "${GVIMSERVER}" --remote'
 
+alias ec='emacsclient -n'
 
 alias lfnid='fnid --separator=newline'
 alias llid='lid --separator=newline'
+
+alias gpgsig='gpg --armor --sign --detach-sig'
+
+alias pwgen='apg -a 0 -n 20 -m 8 -x 12 -M sNcl -t -s'
 
 # aptitude aliases
 alias apu='sudo aptitude update'
