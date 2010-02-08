@@ -30,5 +30,11 @@
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
+(require 'color-theme)
+(setq color-theme-is-global t)
+(color-theme-marquardt)
+
+(bar-cursor-mode)
+
 (add-to-list 'load-path "~/.emacs.d")
 (load "init.el")
