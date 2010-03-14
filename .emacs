@@ -1,3 +1,5 @@
+(show-paren-mode)
+
 (setq c-default-style
       '((c-mode . "k&r")))
 
