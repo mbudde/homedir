@@ -51,7 +51,7 @@ if [ -d ~/lib ]; then
     export PYTHONPATH="${PYTHONPATH}:${HOME}/lib/python2.6/site-packages"
 fi
 
-export EDITOR=vim
+export EDITOR="emacsclient"
 #export VISUAL="gvim -f"
 
 export FULLNAME='Michael Budde'
