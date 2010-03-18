@@ -44,10 +44,10 @@ fi
 if [ -d ~/.gem/ruby/1.8/bin ]; then
     PATH=~/.gem/ruby/1.8/bin:"${PATH}"
 fi
-if [ -d ~/bin ] ; then
+if [ -d ~/usr/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi
-if [ -d ~/lib ]; then
+if [ -d ~/usr/lib ]; then
     export PYTHONPATH="${PYTHONPATH}:${HOME}/lib/python2.6/site-packages"
 fi
 
@@ -64,5 +64,5 @@ export DEBEMAIL=$EMAIL
 export GOROOT=/home/devel/forked/go
 export GOOS=linux
 export GOARCH=amd64
-export GOBIN=$HOME/bin/go
-PATH="$HOME/bin/go:$PATH"
+export GOBIN=$HOME/usr/bin/go
+PATH="$HOME/usr/bin/go:$PATH"
