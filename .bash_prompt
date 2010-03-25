@@ -22,7 +22,7 @@ RBRACE="${PURPLE}]${NO_COLOR}"
 function prompt_command {
     ret="$?"
 
-    vcs_ps1 () {
+    git_prompt () {
         if which git > /dev/null; then
             local g="$(git rev-parse --git-dir 2>/dev/null)"
             if [ -n "$g" ]; then
@@ -63,13 +63,19 @@ function prompt_command {
                 fi
             fi
         fi
+    }
 
+    bzr_prompt () {
         if which bzr > /dev/null; then
-            if [ -d ".bzr" ]; then
-                printf "${CYAN}bzr"
-            fi
+            dir="$PWD"
+            while [ "$dir" != "/" ]; do
+                if [ -d "$dir/.bzr" ]; then
+                    printf "bzr"
+                    break
+                fi
+                dir=`dirname $dir`
+            done
         fi
-        printf ""
     }
 
     # /foo/bar/baz => /f/bar/baz
@@ -78,10 +84,11 @@ function prompt_command {
         printf "$(echo $1 | sed 's|/\([^/]\)[^/]\{1,\}/|/\1/|')"
     }
 
-    vcs="$(vcs_ps1)"
+    git="$(git_prompt)"
+    bzr="$(bzr_prompt)"
     hostname=$(hostname)
     cwd=$(pwd | sed "s|$HOME|~|")
-    let maxlen=${COLUMNS}-${#hostname}-${#vcs}-20
+    let maxlen=${COLUMNS}-${#hostname}-${#git}-${#bzr}-20
     [ $ret -ge 1 ] && let maxlen-=${#ret}-3
     while [ ${#cwd} -gt $maxlen ]; do
         newcwd=$(shorten_path "$cwd")
@@ -91,8 +98,16 @@ function prompt_command {
         cwd="${newcwd}"
     done
 
-    if [ -n "${vcs}" ];then
-        vcs="${LBRACE}${GREEN}${vcs}${RBRACE} "
+    if [ -n "${git}" ];then
+        if [ "$(git status --porcelain | grep '^ M')" ]; then
+            git="${LBRACE}${YELLOW}${git}${RBRACE} "
+        else
+            git="${LBRACE}${GREEN}${git}${RBRACE} "
+        fi
+    fi
+
+    if [ -n "${bzr}" ]; then
+        bzr="${LBRACE}${CYAN}${bzr}${RBRACE} "
     fi
 
     if [ $ret -ge 1 ]; then
@@ -101,7 +116,7 @@ function prompt_command {
         ret=""
     fi
 
-    infoline="${LBRACE}${BLUE}\#${RBRACE} ${LBRACE}${BLUE}\t${RBRACE} ${ret}${BLUE}\h${LIGHT_BLUE}:${BLUE}${cwd} ${vcs}"
+    infoline="${LBRACE}${BLUE}\#${RBRACE} ${LBRACE}${BLUE}\t${RBRACE} ${ret}${BLUE}\h${LIGHT_BLUE}:${BLUE}${cwd} ${git}${bzr}"
 
     PS1="${infoline}\n${PURPLE}\$ ${NO_COLOR}"
     PS2="${PURPLE}>${NO_COLOR} "
