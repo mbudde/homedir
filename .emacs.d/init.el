@@ -7,6 +7,7 @@
 
 (load "emacsd-tile.el")
 
+
 (add-to-list 'load-path "org-mode/lisp")
 ;;(add-to-list 'load-path "org-mode/contrib/lisp")
 (require 'org-install)
@@ -21,3 +22,9 @@
 (defun gtd ()
   (interactive)
   (find-file "/home/michael/gtd/gtd.org"))
+
+(require 'color-theme)
+(require 'blueish-theme)
+(setq color-theme-is-global t)
+;;(color-theme-marquardt)
+(blueish-theme)
