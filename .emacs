@@ -48,9 +48,6 @@
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
 (ergoemacs-mode t)
 
-(setq color-theme-is-global t)
-(blueish-theme)
-
 ;; ----------
 ;; Mode Hooks
 ;; ----------
@@ -77,6 +74,9 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+
+(setq color-theme-is-global t)
+(blueish-theme)
 
 ;; --------
 ;; Org mode
