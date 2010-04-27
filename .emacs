@@ -1,5 +1,7 @@
 ;;(server-start)
 
+(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
+
 ;; ----------
 ;; load-paths
 ;; ----------
@@ -77,9 +79,7 @@
 (tooltip-mode -1)
 (menu-bar-right-scroll-bar)
 (global-linum-mode t)
-
-(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
-(ergoemacs-mode t)
+(ergoemacs-mode 1)
 
 ;; ----------
 ;; Mode Hooks
