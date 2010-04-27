@@ -16,6 +16,11 @@
 (require 'blueish-theme)
 (require 'org-install)
 
+;; ---------
+;; Auto-mode
+;; ---------
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
 ;; ----------------
 ;; General settings
 ;; ----------------
@@ -29,6 +34,19 @@
       scroll-step 1 ;; keyboard scroll one line at a time
       
       c-default-style '((c-mode . "k&r")))
+
+;; http://trey-jackson.blogspot.com/2007/12/emacs-tip-5-hippie-expand.html
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
 
 (setq-default make-backup-files nil
               auto-save-default nil
@@ -44,6 +62,7 @@
 (bar-cursor-mode t)
 (tooltip-mode -1)
 (menu-bar-right-scroll-bar)
+(global-linum-mode t)
 
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
 (ergoemacs-mode t)
@@ -60,10 +79,8 @@
 ;; ------------------
 (global-set-key (kbd "<f7>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f8>") 'toggle-show-trailing-whitespace-show-ws)
-
-;; http://trey-jackson.blogspot.com/2007/12/emacs-tip-5-hippie-expand.html
 (global-set-key (kbd "M-/") 'hippie-expand)
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-line try-complete-lisp-symbol-partially try-complete-lisp-symbol))
+
 
 ;; -----
 ;; Faces
@@ -81,7 +98,6 @@
 ;; --------
 ;; Org mode
 ;; --------
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (setq org-log-done 'time)
 (setq org-todo-keywords
       '((sequence "TODO" "STARTED" "WAITING" "|" "DONE")))
@@ -110,3 +126,9 @@
   (interactive)
   (find-file "/home/michael/gtd/gtd.org"))
 
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
