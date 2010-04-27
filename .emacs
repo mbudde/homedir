@@ -13,12 +13,13 @@
 ;; ---------
 ;; Autoloads
 ;; ---------
-(require 'ergoemacs-mode)
-(require 'emacsd-tile)
 (require 'color-theme)
 (require 'blueish-theme)
-(require 'org-install)
 (require 'else-mode)
+(require 'emacsd-tile)
+(require 'ergoemacs-mode)
+(require 'org-install)
+(require 'redo)
 (require 'yasnippet)
 
 ;; -----
