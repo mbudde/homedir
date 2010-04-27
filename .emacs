@@ -15,6 +15,7 @@
 (require 'color-theme)
 (require 'blueish-theme)
 (require 'org-install)
+(require 'else-mode)
 
 ;; -----
 ;; Faces
@@ -94,7 +95,6 @@
 (global-set-key (kbd "<f8>") 'toggle-show-trailing-whitespace-show-ws)
 (global-set-key (kbd "M-/") 'hippie-expand)
 
-
 ;; --------
 ;; Org mode
 ;; --------
@@ -121,6 +121,22 @@
        (progn (goto-char max) (line-end-position))))))
 
 (global-set-key (kbd "C-,") 'comment-or-uncomment-current-line-or-region)
+
+(defun copy-line ()
+  "Copy current line to kill-ring"
+  (interactive)
+  (let (bol eol)
+    (save-excursion
+      (beginning-of-line-text)
+      (setq bol (point))
+      (end-of-line)
+      (setq eol (point))
+      (kill-ring-save bol eol))
+    )
+  )
+
+
+(global-set-key (kbd "C-d") 'copy-line)
 
 (defun gtd ()
   (interactive)
