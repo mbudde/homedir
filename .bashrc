@@ -45,7 +45,7 @@ if [ -d ~/.gem/ruby/1.8/bin ]; then
     PATH=~/.gem/ruby/1.8/bin:"${PATH}"
 fi
 if [ -d ~/usr/bin ] ; then
-    PATH=~/bin:"${PATH}"
+    PATH=~/usr/bin:"${PATH}"
 fi
 if [ -d ~/usr/lib ]; then
     export PYTHONPATH="${PYTHONPATH}:${HOME}/lib/python2.6/site-packages"
