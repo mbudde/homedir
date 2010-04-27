@@ -8,6 +8,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/ergoemacs")
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
 
 ;; ---------
 ;; Autoloads
@@ -18,6 +19,7 @@
 (require 'blueish-theme)
 (require 'org-install)
 (require 'else-mode)
+(require 'yasnippet)
 
 ;; -----
 ;; Faces
@@ -53,7 +55,8 @@
 
 ;; http://trey-jackson.blogspot.com/2007/12/emacs-tip-5-hippie-expand.html
 (setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev
+      '(yas/hippie-try-expand
+        try-expand-dabbrev
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill
         try-complete-file-name-partially
@@ -80,6 +83,10 @@
 (menu-bar-right-scroll-bar)
 (global-linum-mode t)
 (ergoemacs-mode 1)
+
+(yas/initialize)
+(setq yas/root-directory "~/.emacs.d/yasnippet/snippets")
+(yas/load-directory yas/root-directory)
 
 ;; ----------
 ;; Mode Hooks
