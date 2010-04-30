@@ -9,18 +9,22 @@
 (add-to-list 'load-path "~/.emacs.d/ergoemacs")
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/icicles")
 
 ;; ---------
 ;; Autoloads
 ;; ---------
-(require 'color-theme)
-(require 'blueish-theme)
+(require 'blueish)
+(require 'gentooish)
+(require 'color-theme-subdued)
 (require 'else-mode)
 (require 'emacsd-tile)
 (require 'ergoemacs-mode)
+(require 'icicles)
 (require 'org-install)
 (require 'redo)
 (require 'yasnippet)
+(require 'smooth-scrolling)
 
 ;; -----
 ;; Faces
@@ -33,7 +37,9 @@
  '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 (setq color-theme-is-global t)
-(blueish-theme)
+(color-theme-subdued)
+;; (color-theme-blueish)
+;; (color-theme-gentooish)
 
 ;; ---------
 ;; Auto-mode
@@ -78,12 +84,14 @@
 ;; -----
 ;; Modes
 ;; -----
-(show-paren-mode t)
-(bar-cursor-mode t)
+(show-paren-mode 1)
+(bar-cursor-mode 1)
 (tooltip-mode -1)
 (menu-bar-right-scroll-bar)
-(global-linum-mode t)
+(global-linum-mode 1)
 (ergoemacs-mode 1)
+;; (icy-mode t)
+(winner-mode 1)
 
 (yas/initialize)
 (setq yas/root-directory "~/.emacs.d/yasnippet/snippets")
@@ -95,13 +103,6 @@
 (add-hook 'css-mode
   (lambda ()
     (setq tab-width 2)))
-
-;; ------------------
-;; Custom keybindings
-;; ------------------
-(global-set-key (kbd "<f7>") 'toggle-truncate-lines)
-(global-set-key (kbd "<f8>") 'toggle-show-trailing-whitespace-show-ws)
-(global-set-key (kbd "M-/") 'hippie-expand)
 
 ;; --------
 ;; Org mode
@@ -128,10 +129,8 @@
        (progn (goto-char min) (line-beginning-position))
        (progn (goto-char max) (line-end-position))))))
 
-(global-set-key (kbd "C-,") 'comment-or-uncomment-current-line-or-region)
-
-(defun copy-line ()
-  "Copy current line to kill-ring"
+(defun copy-line-contents ()
+  "Copy contents of current line (not indentation) to kill-ring"
   (interactive)
   (let (bol eol)
     (save-excursion
@@ -139,13 +138,64 @@
       (setq bol (point))
       (end-of-line)
       (setq eol (point))
-      (kill-ring-save bol eol))
-    )
-  )
+      (kill-ring-save bol eol))))
 
+(defun new-indented-line ()
+  "Start a new line and indent it no matter where the point is in the current line."
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
 
-(global-set-key (kbd "C-d") 'copy-line)
+(defun my-backward-kill-word ()
+  "Kill word backward"
+  (interactive)
+  (if (bolp)
+      (backward-delete-char 1)
+    (if (string-match "\\w" (buffer-substring (point-at-bol) (point)))
+        (backward-kill-word 1)
+      (kill-region (point-at-bol) (point)))))
+
+(defun my-forward-kill-word ()
+  "Kill word forwards"
+  (interactive)
+  (if (eolp)
+      (backward-delete-char -1)
+    (if (string-match "\\w" (buffer-substring (point) (point-at-eol)))
+        (backward-kill-word -1)
+      (kill-region (point) (point-at-eol)))))
 
 (defun gtd ()
   (interactive)
   (find-file "/home/michael/gtd/gtd.org"))
+
+;; ------------------
+;; Custom keybindings
+;; ------------------
+(global-set-key (kbd "<f7>") 'toggle-truncate-lines)
+(global-set-key (kbd "<f8>") 'toggle-show-trailing-whitespace-show-ws)
+(global-set-key (kbd "C-h") 'beginning-of-line-text)
+(global-set-key (kbd "C-,") 'comment-or-uncomment-current-line-or-region)
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "M-m") 'transpose-chars)
+(global-set-key (kbd "C-c d") 'copy-line-contents)
+(global-set-key (kbd "C-c j") 'new-indented-line)
+(global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "C-c C-c") 'eval-buffer)
+
+;; ------------------------------------
+;; Minor mode for override key bindings
+;; ------------------------------------
+(defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
+
+(define-key my-keys-minor-mode-map (kbd "M-e") 'my-backward-kill-word)
+(define-key my-keys-minor-mode-map (kbd "M-r") 'my-forward-kill-word)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor -mode so that my key settings override annoying major modes."
+  t nil 'my-keys-minor-mode-map)
+
+(my-keys-minor-mode 1)
+
+;; (add-hook 'minibuffer-setup-hook
+;;           (lambda ()
+;;             (my-keys-minor-mode 0)))

@@ -1,12 +1,14 @@
-(defun blueish-theme ()
+(require 'color-theme)
+
+(defun color-theme-blueish ()
   (interactive)
   (color-theme-install
-   '(blueish-theme
-      ((background-color . "#000000") ;; #101e2e
+   '(color-theme-blueish
+     ((foreground-color . "#eeeeec")
+      (background-color . "black") ;; #101e2e
       (background-mode . dark)
       (border-color . "#1a1a1a")
       (cursor-color . "#ffffff")
-      (foreground-color . "#eeeeec")
       (mouse-color . "black"))
      (fringe ((t (:background "#1a1a1a"))))
      (mode-line ((t (:foreground "#eeeeec" :background "#555753"))))
@@ -19,6 +21,6 @@
      (font-lock-type-face ((t (:foreground"#8ae234"))))
      (font-lock-variable-name-face ((t (:foreground "#eeeeec"))))
      (minibuffer-prompt ((t (:foreground "#729fcf" :bold t))))
-     (font-lock-warning-face ((t (:foreground "Red" :bold t))))
-     )))
-(provide 'blueish-theme)
+     (font-lock-warning-face ((t (:foreground "Red" :bold t)))))))
+
+(provide 'blueish)
