@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -z "$3" ]; then
+    echo "usage: $0 output.pdf input1.pdf input2.pdf [...]"
+    exit 1
+fi
+
+OUTPUT="$1"
+shift
+INPUT="$*"
+
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="$OUTPUT" $INPUT
+

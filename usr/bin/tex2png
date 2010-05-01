@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+import os
+import sys
+import optparse
+import subprocess
+import shlex
+
+# Include your favourite LaTeX packages and commands here
+tex_preamble = r'''
+\documentclass{article}
+\usepackage{mbudde}
+\pagestyle{empty}
+\begin{document}
+'''
+
+
+def main():
+    usage = ('usage: %prog [options] equation\n'
+             '       %prog [options] -\n'
+             '       %prog [options] --edit')
+    opt = optparse.OptionParser(usage=usage)
+    opt.add_option('-e', '--edit', action='store_true', default=False,
+                   help='Edit equation with EDITOR')
+    opt.add_option('-d', '--dpi', type='int', default=600,
+                   help='DPI')
+    (options, args) = opt.parse_args()
+
+    imgpath = '' # path to generated equations. e.q 'img/'
+
+    # get source and dest filenames from command line
+    texfn = os.tempnam('/tmp','eq')
+
+    # find all elements with attribute class='eq'
+    if options.edit:
+        eqfn = os.tempnam()
+        os.system('{0} {1}'.format(os.getenv('EDITOR', 'vi'), eqfn))
+        with open(eqfn, 'r') as eqf:
+            eq = eqf.read()
+        os.remove(eqfn)
+    elif len(args) > 1 and args[0] != '-':
+        eq = ' '.join(args)
+    else:
+        eq = sys.stdin.read()
+    # create a LaTeX document and insert equations
+    f = open(texfn+'.tex','w')
+    f.write(tex_preamble)
+    f.write(eq)
+    # end LaTeX document
+    f.write('\n\end{document}')
+    f.close()
+
+    # compile LaTeX document. A DVI file is created
+    os.system('latex -halt-on-error -output-directory /tmp %s' % texfn+'.tex')
+
+    # Run dvipng on the generated DVI file. Use tight bounding box.
+    # Magnification is set to 1200
+    cmd = shlex.split(
+        'dvipng -T tight -D {2} -bg "rgb 1.0 1.0 1.0" -o "{0}" {1}'.format(
+            os.path.join(os.getcwd(), 'equation.png'), texfn+'.dvi', options.dpi))
+    subprocess.call(cmd)
+
+    # Remove temporary files
+    os.remove(texfn+'.tex')
+    os.remove(texfn+'.log')
+    os.remove(texfn+'.aux')
+    os.remove(texfn+'.dvi')
+
+    # Write processed source document to dest
+    print "Done."
+
+if __name__ == '__main__':
+    main()

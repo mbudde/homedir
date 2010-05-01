@@ -1,0 +1,4 @@
+#!/bin/sh
+
+nohup xmonad >/dev/null &
+nohup xcompmgr >/dev/null &

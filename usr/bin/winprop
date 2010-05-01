@@ -1,0 +1,19 @@
+#!/bin/sh
+
+xprop | awk '
+BEGIN {
+format="%-10s %s\n"
+}
+/^WM_CLASS/ {
+    printf format, "AppName:", substr($3, 2, length($3)-3);
+    printf format, "ClassName:", substr($4, 2, length($4)-2)
+}
+/^WM_NAME/ {
+    i = match($0, /\".*\"/)
+    printf format, "Titel:", substr($0, i+1, RLENGTH-2)
+}
+/^WM_WINDOW_ROLE/ {
+    printf format, "Role:", substr($3, 2, length($3)-2)
+}
+'
+

@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+
+import os.path
+import subprocess
+from optparse import OptionParser
+
+def main():
+    parser = OptionParser(usage='usage: %prog [options] file')
+    parser.add_option('-d', '--dpi', type='string', default='600',
+                      help='DPI of output [default: %default]', metavar='DPI')
+    parser.add_option('-r', '--resample', type='string', default='300',
+                      help='resample output to DPI [default: %default]', metavar='DPI')
+    parser.add_option('-o', '--output', type='string', default=None,
+                      help='output to FILE', metavar='FILE')
+
+    (options, args) = parser.parse_args()
+    if len(args) != 1:
+        parser.error('wrong number of arguments')
+
+    file = args[0]
+    cmd = 'convert'
+    args  = ['-density', options.dpi]
+    args += [file]
+    if options.resample:
+        args += ['-resample', options.resample]
+    if options.output:
+        args += [options.output]
+    else:
+        args += [os.path.splitext(file)[0] + '.png']
+    print('Converting...')
+    subprocess.call([cmd] + args)
+
+if __name__ == '__main__':
+    main()
