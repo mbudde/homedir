@@ -109,9 +109,9 @@ Based on the Tango color palette."
      (post-url-face ((t (:foreground "#729fcf" :bold t)))) ; light sky blue
 
      ;; ido-mode
-     (ido-first-match ((t (:foreground "#eeeeec" :weight bold))))
-     (ido-only-match ((t (:foreground "#73d216"))))
-     (ido-subdir ((t (:foreground "#729fcf" :weight bold))))
+     (ido-first-match-face ((t (:foreground "#eeeeec" :bold t))))
+     (ido-only-match-face ((t (:foreground "#73d216"))))
+     (ido-subdir-face ((t (:foreground "#729fcf" :bold t))))
      ))))
 
 (provide 'color-theme-subdued)

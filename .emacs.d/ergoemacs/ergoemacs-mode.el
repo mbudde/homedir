@@ -250,6 +250,14 @@ enviroment variable.  The possible values are:
   (define-key ergoemacs-minibuffer-keymap (kbd "S-<f11>") 'previous-matching-history-element)
   (define-key ergoemacs-minibuffer-keymap (kbd "S-<f12>") 'next-matching-history-element)
 
+  ;; Unbind key binding used by ido-mode
+  (define-key ergoemacs-minibuffer-keymap (kbd "C-a") nil)
+  (define-key ergoemacs-minibuffer-keymap (kbd "C-s") nil)
+  (define-key ergoemacs-minibuffer-keymap (kbd "C-p") nil)
+  (define-key ergoemacs-minibuffer-keymap (kbd "C-f") nil)
+  (define-key ergoemacs-minibuffer-keymap (kbd "C-o") nil)
+  (define-key ergoemacs-minibuffer-keymap (kbd "C-w") nil)
+
   (add-to-list 'minor-mode-overriding-map-alist (cons 'ergoemacs-mode ergoemacs-minibuffer-keymap))
   )
 
