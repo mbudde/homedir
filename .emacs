@@ -90,7 +90,6 @@
 (global-linum-mode 1)
 (ergoemacs-mode 1)
 ;; (icy-mode t)
-(ido-mode 1)
 (winner-mode 1)
 
 (yas/initialize)
@@ -103,6 +102,13 @@
 (add-hook 'css-mode
   (lambda ()
     (setq tab-width 2)))
+
+;; --------
+;; IDO mode
+;; --------
+(ido-mode 'both)
+(setq ido-work-directory-list '("~/" "/home/devel")
+      ido-max-work-file-list 30)
 
 ;; --------
 ;; Org mode
