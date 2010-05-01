@@ -57,7 +57,7 @@
       mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
       mouse-wheel-follow-mouse 't ;; scroll window under mouse
       scroll-step 1 ;; keyboard scroll one line at a time
-      
+
       c-default-style '((c-mode . "k&r")))
 
 ;; http://trey-jackson.blogspot.com/2007/12/emacs-tip-5-hippie-expand.html

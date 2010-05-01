@@ -112,6 +112,6 @@ Based on the Tango color palette."
      (ido-first-match ((t (:foreground "#eeeeec" :weight bold))))
      (ido-only-match ((t (:foreground "#73d216"))))
      (ido-subdir ((t (:foreground "#729fcf" :weight bold))))
-     )))
+     ))))
 
 (provide 'color-theme-subdued)
