@@ -73,7 +73,7 @@ function prompt_command {
                     printf "bzr"
                     break
                 fi
-                dir=`dirname $dir`
+                dir=`dirname "$dir"`
             done
         fi
     }
