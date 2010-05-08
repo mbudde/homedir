@@ -86,11 +86,13 @@
 (show-paren-mode 1)
 (bar-cursor-mode 1)
 (tooltip-mode -1)
-(menu-bar-right-scroll-bar)
 (global-linum-mode 1)
 (ergoemacs-mode 1)
 ;; (icy-mode t)
 (winner-mode 1)
+
+(tool-bar-mode -1)
+(menu-bar-right-scroll-bar)
 
 (yas/initialize)
 (setq yas/root-directory "~/.emacs.d/yasnippet/snippets")
