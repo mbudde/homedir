@@ -53,6 +53,7 @@ fi
 
 export EDITOR="emacsclient"
 #export VISUAL="gvim -f"
+export ALTERNATE_EDITOR=""
 
 export FULLNAME='Michael Budde'
 export EMAIL='mbudde@gmail.com'
