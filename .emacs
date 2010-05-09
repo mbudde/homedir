@@ -49,13 +49,13 @@
 ;; General settings
 ;; ----------------
 (setq inhibit-startup-message t
-      column-number-mode t
+      diff-switches "-u"
 
       ;; scroll one line at a time (less "jumpy" than defaults)
-      mouse-wheel-scroll-amount '(2 ((shift) . 10)) ;; one line at a time
-      mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
-      mouse-wheel-follow-mouse 't ;; scroll window under mouse
-      scroll-step 1 ;; keyboard scroll one line at a time
+      ;; mouse-wheel-scroll-amount '(2 ((shift) . 10)) ;; one line at a time
+      ;; mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
+      ;; mouse-wheel-follow-mouse 't ;; scroll window under mouse
+      ;; scroll-step 1 ;; keyboard scroll one line at a time
 
       c-default-style '((c-mode . "k&r")))
 
@@ -75,6 +75,7 @@
 
 (setq-default make-backup-files nil
               auto-save-default nil
+              truncate-lines 1
 
               indent-tabs-mode nil
               tab-width 4
@@ -85,6 +86,7 @@
 ;; -----
 (show-paren-mode 1)
 (bar-cursor-mode 1)
+(column-number-mode 1)
 (tooltip-mode -1)
 (global-linum-mode 1)
 (ergoemacs-mode 1)
@@ -104,6 +106,10 @@
 (add-hook 'css-mode
   (lambda ()
     (setq tab-width 2)))
+
+(add-hook 'doc-view-mode-hook
+  (lambda ()
+    (auto-revert-mode)))
 
 ;; --------
 ;; IDO mode
