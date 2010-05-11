@@ -1,5 +1,7 @@
 ;; emacsd-tile.el -- tiling windows for emacs
 
+(require 'windmove)
+
 (defun swap-with (dir)
   (interactive)
   (let ((other-window (windmove-find-other-window dir)))
@@ -24,9 +26,9 @@
 (global-set-key (kbd "M-s-j") (lambda () (interactive) (enlarge-window -1 t)))
 (global-set-key (kbd "M-s-l") (lambda () (interactive) (enlarge-window 1 t)))
 
-(global-set-key (kbd "s-k") 'windmove-down)
-(global-set-key (kbd "s-i") 'windmove-up)
-(global-set-key (kbd "s-j") 'windmove-left)
-(global-set-key (kbd "s-l") 'windmove-right)
+(global-set-key (kbd "C-s-k") 'windmove-down)
+(global-set-key (kbd "C-s-i") 'windmove-up)
+(global-set-key (kbd "C-s-j") 'windmove-left)
+(global-set-key (kbd "C-s-l") 'windmove-right)
 
 (provide 'emacsd-tile)
