@@ -11,6 +11,7 @@
 (add-to-list 'load-path "~/.emacs.d/ergoemacs")
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/ldg-mode")
 ;;(add-to-list 'load-path "~/.emacs.d/icicles")
 
 ;; ---------------------------------------------------------
@@ -131,6 +132,12 @@
   (setq org-todo-keyword-faces
         '(("STARTED"   . (:foreground "orange" :weight bold))
           ("WAITING"   . (:foreground "blue" :weight bold)))))
+
+(when (require 'ledger nil 'noerror)
+  (add-hook 'ledger-mode-hook
+    (progn (setq indent-line-function
+                 '(lambda () (indent-to 8))))))
+
 
 ;; ---------------------------------------------------------
 ;; Custom keybindings
