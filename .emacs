@@ -11,6 +11,7 @@
 (add-to-list 'load-path "~/.emacs.d/ergoemacs")
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ldg-mode")
 ;;(add-to-list 'load-path "~/.emacs.d/icicles")
 
@@ -87,6 +88,8 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
+(setq inferior-lisp-program "clisp")
+
 (ergoemacs-mode 1)
 
 ;; Auto-mode
@@ -104,6 +107,10 @@
 
 ;; ---------------------------------------------------------
 ;; Useful packages
+
+;; SLIME
+(when (require 'slime-autoloads nil 'noerror)
+  (slime-setup))
 
 ;; Winner mode (undo window changes)
 (when (fboundp 'winner-mode)
