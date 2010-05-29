@@ -75,6 +75,11 @@
       x-select-enable-primary nil
       x-select-enable-clipboard t)
 
+;; Scroll one line at a time with mouse (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(2 ((shift) . 10)) ; one line at a time
+      mouse-wheel-progressive-speed nil             ; don't accelerate scrolling
+      mouse-wheel-follow-mouse 't)                  ; scroll window under mouse
+
 ;; http://trey-jackson.blogspot.com/2007/12/emacs-tip-5-hippie-expand.html
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
