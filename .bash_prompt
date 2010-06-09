@@ -99,7 +99,7 @@ function prompt_command {
     done
 
     if [ -n "${git}" ];then
-        if [ "$(git status --porcelain | grep '^ M')" ]; then
+        if [ "$(git status --porcelain 2>/dev/null | grep '^ M')" ]; then
             git="${LBRACE}${YELLOW}${git}${RBRACE} "
         else
             git="${LBRACE}${GREEN}${git}${RBRACE} "
