@@ -13,6 +13,7 @@
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ldg-mode")
+(add-to-list 'load-path "~/.emacs.d/jd-el") ; git://git.naquadah.org/~jd/jd-el.git
 ;;(add-to-list 'load-path "~/.emacs.d/icicles")
 
 ;; ---------------------------------------------------------
@@ -152,6 +153,10 @@
           ("WAITING"   . (:foreground "blue" :weight bold)))))
 
 (require 'mbledger nil 'noerror)
+
+;; Rainbow mode and Google Maps from jd-el
+(require 'rainbow-mode nil 'noerror)
+(require 'google-maps nil 'noerror)
 
 ;; ---------------------------------------------------------
 ;; Custom keybindings
