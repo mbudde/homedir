@@ -31,23 +31,18 @@ foreground = "'#dedec1'"
 barHeight  = "24"
 
 
-myWorkspaces = ["1:web", "2:code", "3:code", "4:music", "5:nav", "6:im", "7:doc", "8", "9", "0:torrent"]
+myWorkspaces = map show [1..9] ++ ["0"] --["1:web", "2:code", "3:code", "4:music", "5:nav", "6:im", "7:doc", "8", "9", "0:torrent"]
 
 myManageHook = composeAll
-    [ float (c "Gimp")
-    , float (c "Gnome-system-monitor")
+    [ float (c "Gnome-system-monitor")
     , float (c "Gnome-calculator")
     , float (c "Gcalctool")
     , float (a "Download")                 -- Firefox download window
     , float (t "VLC media player")
-    , ignore (c "Do")
-    , moveTo (c "Pidgin") "6:im"
-    , moveTo (c "Transmission") "0:torrent"
-    , moveToAndShow (a "Navigator")             "1:web"
-    , moveToAndShow (a "Banshee")               "4:music"
-    , moveToAndShow (c "Nautilus")              "5:nav"
-    , moveToAndShow (c "OpenOffice.org 3.0")    "7:doc"
-    , moveToAndShow (c "Gimp")                  "9"
+    , moveToAndShow (a "Navigator")             "1"
+    , moveToAndShow (a "Banshee")               "4"
+    , moveToAndShow (c "Nautilus")              "5"
+    , moveToAndShow (c "OpenOffice.org 3.0")    "7"
     ]
     where
         float         t    =  t --> doFloat
@@ -95,30 +90,28 @@ myDmenuBar =
     "exec `dmenu_path | dmenu\
         \ -p 'Run:'\
         \ -i\
-        \ -bh " ++ barHeight  ++ "\
         \ -nb " ++ background ++ "\
         \ -nf " ++ foreground ++ "\
         \ -sb " ++ selected   ++ "\
-        \ -fn " ++ myAppFont  ++ "\
     \`"
+        -- \ -fn " ++ myAppFont  ++ "\
+        -- \ -bh " ++ barHeight  ++ "\
 
 
 myLogHook xmobar = dynamicLogWithPP $ defaultPP
         { ppOutput          = hPutStrLn     xmobar
-        , ppTitle           = xmobarColor "white"    "" . shorten 200
+        , ppTitle           = xmobarColor "white"    "" . shorten 100
         , ppCurrent         = xmobarColor "white"    "" . wrap "[" "]"
         , ppVisible         = wrap "<" ">"
         , ppUrgent          = xmobarColor "yellow"   ""
         , ppHidden          = xmobarColor "#aaa"     "" . pad
-        , ppHiddenNoWindows = xmobarColor "#555"     "" . pad
         , ppSep             = xmobarColor "#555"     "" " / "
-        , ppWsSep           = " "
+        , ppWsSep           = ""
         }
 
 
 myLayoutHook =
     ( avoidStruts $ smartBorders $
-      onWorkspace "6:im" im
       (tiled ||| (Mirror tiled) ||| twopane ||| Full)
     ) ||| (noBorders Full)
     where
@@ -133,13 +126,14 @@ myLayoutHook =
 main = do
     xmobar <- spawnPipe "xmobar"
 
-    xmonad $ gnomeConfig
+    xmonad $ defaultConfig
         { modMask           = myModMask
+        , terminal          = "urxvt"
         , workspaces        = myWorkspaces
         , focusFollowsMouse = myFocusFollowsMouse
         , layoutHook        = myLayoutHook
         , logHook           = myLogHook xmobar
-        , manageHook        = manageHook gnomeConfig <+> myManageHook
+        , manageHook        = myManageHook <+> manageDocks <+> manageHook defaultConfig
         }
         `additionalKeysP` myKeysP
         `additionalKeys` myKeys
