@@ -151,11 +151,7 @@
         '(("STARTED"   . (:foreground "orange" :weight bold))
           ("WAITING"   . (:foreground "blue" :weight bold)))))
 
-(when (require 'ledger nil 'noerror)
-  (add-hook 'ledger-mode-hook
-    (progn (setq indent-line-function
-                 '(lambda () (indent-to 8))))))
-
+(require 'mbledger nil 'noerror)
 
 ;; ---------------------------------------------------------
 ;; Custom keybindings
