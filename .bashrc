@@ -67,3 +67,7 @@ export GOOS=linux
 export GOARCH=amd64
 export GOBIN=$HOME/usr/bin/go
 PATH="$HOME/usr/bin/go:$PATH"
+
+if [ -f "$HOME/Documents/Regnskab/ledger.dat" ]; then
+    export LEDGER="$HOME/Documents/Regnskab/ledger.dat"
+fi
