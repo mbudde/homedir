@@ -1,6 +1,10 @@
 # -*- shell-script -*-
 # vi: set ft=sh:
 
+AUTO_DEBSIGN=no
+PKGNAME_LOGFILE=yes
+DEBBUILDOPTS="-i\.git -I.git"
+
 DEBIAN_MIRROR="ftp.dk.debian.org"
 UBUNTU_MIRROR="se.archive.ubuntu.com"
 
