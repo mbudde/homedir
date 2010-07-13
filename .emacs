@@ -173,6 +173,8 @@
 (global-set-key (kbd "C-c j") 'new-indented-line)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c C-c") 'eval-buffer)
+(global-set-key (kbd "C-M-æ") 'isearch-forward-regexp)
+(global-set-key (kbd "C-M-Æ") 'isearch-backward-regexp)
 
 ;; ------------------------------------
 ;; Minor mode for override key bindings
