@@ -40,7 +40,7 @@ Based on the Tango color palette."
      (font-lock-doc-string-face ((t (:foreground "#888a85"))))
      (font-lock-string-face ((t (:foreground "#ad7fa8"))))
      (font-lock-keyword-face ((t (:foreground "#729fcf"))))
-     (font-lock-builtin-face ((t (:foreground "#855c1b"))))
+     (font-lock-builtin-face ((t (:foreground "#fcaf3e"))))
      (font-lock-function-name-face ((t (:foreground "#edd400"))))
      (font-lock-variable-name-face ((t (nil))))
      (font-lock-preprocessor-face ((t (:foreground "#888a85"))))
