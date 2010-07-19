@@ -9,7 +9,7 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/ergoemacs")
-(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp") ; git clone git://repo.or.cz/org-mode.git
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ldg-mode")
@@ -105,7 +105,6 @@
 (ergoemacs-mode 1)
 
 ;; Auto-mode
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 
 ;; Mode Hooks
@@ -145,12 +144,33 @@
 
 ;; Org mode
 (when (require 'org-install nil 'noerror)
-  (setq org-log-done 'time)
-  (setq org-todo-keywords
-        '((sequence "TODO" "STARTED" "WAITING" "|" "DONE")))
-  (setq org-todo-keyword-faces
-        '(("STARTED"   . (:foreground "orange" :weight bold))
-          ("WAITING"   . (:foreground "blue" :weight bold)))))
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  (global-set-key (kbd "C-r") 'org-remember)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (eval-after-load "org"
+    '(progn
+       (require 'remember)
+       (add-hook 'remember-mode-hook 'org-remember-apply-template)
+       (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)"
+                                           "WAITING(w@)" "APPT(a)" "|"
+                                           "DONE(d!)" "DEFERRED(f@)" "CANCELLED(x@)"))
+             org-todo-keyword-faces '(("STARTED" . (:foreground "orange" :weight bold))
+                                      ("WAITING" . (:foreground "blue" :weight bold)))
+             org-agenda-files '("~/Documents/Org/todo.org")
+             org-default-notes-file "~/Documents/Org/notes.org"
+             org-agenda-ndays 7
+             org-deadline-warning-days 14
+             org-agenda-show-all-dates t
+             org-agenda-skip-deadline-if-done t
+             org-agenda-skip-scheduled-if-done t
+             org-agenda-start-on-weekday nil
+             org-reverse-note-order t
+             org-fast-tag-selection-single-key 'expert
+             org-remember-store-without-prompt t
+             org-remember-templates '((?t "* TODO %?\n  %u" "~/Documents/Org/todo.org" "Tasks")
+                                      (?n "* %u %?" "~/Documents/Org/notes.org" "Notes"))
+             remember-annotation-functions '(org-remember-annotation)
+             remember-handler-functions '(org-remember-handler)))))
 
 (require 'mbledger nil 'noerror)
 
