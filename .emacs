@@ -181,6 +181,7 @@
 ;; ---------------------------------------------------------
 ;; Custom keybindings
 
+(global-set-key (kbd "<f5>") (lambda () (interactive) (revert-buffer nil t)))
 (global-set-key (kbd "<f6>") 'linum-mode)
 (global-set-key (kbd "<f7>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f8>") 'toggle-show-trailing-whitespace-show-ws)
