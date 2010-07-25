@@ -1,6 +1,12 @@
 ;; Package Dependencies:
-;; emacs-goodies-el (color-theme)
-;; haskell-mode
+;; Required:
+;;   linum:     http://stud4.tuwien.ac.at/~e0225855/linum/linum.html
+;; Optional:
+;;   emacs-goodies-el (color-theme)
+;;   slime:     http://common-lisp.net/project/slime/
+;;   yasnippet: http://code.google.com/p/yasnippet/
+;;   org-mode:  git://repo.or.cz/org-mode.git
+;;   jd-el:     git://git.naquadah.org/~jd/jd-el.git
 
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
 
@@ -9,12 +15,11 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/ergoemacs")
-(add-to-list 'load-path "~/.emacs.d/org-mode/lisp") ; git clone git://repo.or.cz/org-mode.git
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ldg-mode")
-(add-to-list 'load-path "~/.emacs.d/jd-el") ; git://git.naquadah.org/~jd/jd-el.git
-;;(add-to-list 'load-path "~/.emacs.d/icicles")
+(add-to-list 'load-path "~/.emacs.d/jd-el")
 
 ;; ---------------------------------------------------------
 ;; Required packages
@@ -149,8 +154,6 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (eval-after-load "org"
     '(progn
-       (require 'remember)
-       (add-hook 'remember-mode-hook 'org-remember-apply-template)
        (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)"
                                            "WAITING(w@)" "APPT(a)" "|"
                                            "DONE(d!)" "DEFERRED(f@)" "CANCELLED(x@)"))
@@ -212,7 +215,3 @@
   t nil 'my-keys-minor-mode-map)
 
 (my-keys-minor-mode 1)
-
-;; (add-hook 'minibuffer-setup-hook
-;;           (lambda ()
-;;             (my-keys-minor-mode 0)))
