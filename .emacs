@@ -145,7 +145,7 @@
 ;; Org mode
 (when (require 'org-install nil 'noerror)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-  (global-set-key (kbd "C-r") 'org-remember)
+  (global-set-key (kbd "C-r") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (eval-after-load "org"
     '(progn
@@ -155,22 +155,24 @@
                                            "WAITING(w@)" "APPT(a)" "|"
                                            "DONE(d!)" "DEFERRED(f@)" "CANCELLED(x@)"))
              org-todo-keyword-faces '(("STARTED" . (:foreground "orange" :weight bold))
-                                      ("WAITING" . (:foreground "blue" :weight bold)))
+                                      ("WAITING" . (:foreground "blue" :weight bold))
+                                      ("CANCELLED" . (:foreground "red" :weight bold)))
+             org-directory "~/Documents/Org"
              org-agenda-files '("~/Documents/Org/todo.org")
-             org-default-notes-file "~/Documents/Org/notes.org"
+             org-default-notes-file "notes.org"
              org-agenda-ndays 7
              org-deadline-warning-days 14
              org-agenda-show-all-dates t
              org-agenda-skip-deadline-if-done t
              org-agenda-skip-scheduled-if-done t
              org-agenda-start-on-weekday nil
-             org-reverse-note-order t
              org-fast-tag-selection-single-key 'expert
-             org-remember-store-without-prompt t
-             org-remember-templates '((?t "* TODO %?\n  %u" "~/Documents/Org/todo.org" "Tasks")
-                                      (?n "* %u %?" "~/Documents/Org/notes.org" "Notes"))
-             remember-annotation-functions '(org-remember-annotation)
-             remember-handler-functions '(org-remember-handler)))))
+             org-capture-templates '(("t" "" entry
+                                      (file+headline "todo.org" "Tasks")
+                                      "* TODO %?\n  %u")
+                                     ("n" "" entry
+                                      (file+headline "notes.org" "Notes")
+                                      "* %u %?" :prepend t))))))
 
 (require 'mbledger nil 'noerror)
 
