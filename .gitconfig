@@ -34,3 +34,5 @@
     insteadOf = githubp:
 [push]
 	default = matching
+[github]
+	user = mbudde
