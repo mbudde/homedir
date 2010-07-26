@@ -20,7 +20,7 @@
 [color "diff"]
 	meta = yellow
 [core]
-	excludesfile = /home/michael/.gitignore
+	excludesfile = ~/.gitignore
 [diff]
 	renames = copies
 [gui]
