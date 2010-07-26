@@ -169,6 +169,7 @@
              org-agenda-skip-deadline-if-done t
              org-agenda-skip-scheduled-if-done t
              org-agenda-start-on-weekday nil
+             org-clock-idle-time 15
              org-fast-tag-selection-single-key 'expert
              org-capture-templates '(("t" "" entry
                                       (file+headline "todo.org" "Tasks")
