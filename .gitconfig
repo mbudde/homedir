@@ -1,9 +1,11 @@
+# -*- indent-tabs-mode: t -*-
 [user]
 	name = Michael Budde
 	email = mbudde@gmail.com
 [alias]
 	st = status -sb
 	di = diff -B
+	wdi = diff --color-words
 	co = checkout
 	ci = commit
 	br = branch
@@ -29,9 +31,9 @@
 [url "git://git.gnome.org/"]
 	insteadOf = gnome:
 [url "git://github.com/"]
-    insteadOf = github:
+	insteadOf = github:
 [url "git@github.com:"]
-    insteadOf = githubp:
+	insteadOf = githubp:
 [push]
 	default = matching
 [github]
