@@ -42,6 +42,7 @@
  '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 (require 'color-theme-subdued nil 'noerror)
+(require 'color-theme-subdued-light nil 'noerror)
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
@@ -191,6 +192,7 @@
 (global-set-key (kbd "<f6>") 'linum-mode)
 (global-set-key (kbd "<f7>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f8>") 'toggle-show-trailing-whitespace-show-ws)
+(global-set-key (kbd "<f9>") 'toggle-subdued-light-theme)
 (global-set-key (kbd "C-h") 'beginning-of-line-text)
 (global-set-key (kbd "C-j") 'newline-and-indent)
 (global-set-key (kbd "C-,") 'comment-or-uncomment-current-line-or-region)
