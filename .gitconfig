@@ -12,7 +12,7 @@
 	rt = remote
 	pr = pull --rebase
 	lg = log --stat --relative-date
-	graph = log --graph --pretty=oneline --abbrev-commit --all --decorate
+	graph = log --graph --oneline --all --decorate
 [color]
 	diff = auto
 	branch = auto
