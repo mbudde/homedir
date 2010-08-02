@@ -7,6 +7,7 @@
 ;;   yasnippet: http://code.google.com/p/yasnippet/
 ;;   org-mode:  git://repo.or.cz/org-mode.git
 ;;   jd-el:     git://git.naquadah.org/~jd/jd-el.git
+;;   magit:     git://github.com/philjackson/magit.git
 
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
 
@@ -20,6 +21,7 @@
 (add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ldg-mode")
 (add-to-list 'load-path "~/.emacs.d/jd-el")
+(add-to-list 'load-path "~/.emacs.d/magit")
 
 ;; ---------------------------------------------------------
 ;; Required packages
@@ -184,6 +186,9 @@
 ;; Rainbow mode and Google Maps from jd-el
 (require 'rainbow-mode nil 'noerror)
 (require 'google-maps nil 'noerror)
+
+;; Magit
+(require 'magit nil 'noerror)
 
 ;; ---------------------------------------------------------
 ;; Custom keybindings
