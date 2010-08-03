@@ -44,14 +44,13 @@
  '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 (require 'color-theme-subdued nil 'noerror)
-(require 'color-theme-subdued-light nil 'noerror)
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (set-variable 'color-theme-is-global nil)
             (select-frame frame)
-            (if (and window-system (fboundp 'color-theme-subdued))
-                (color-theme-subdued)
+            (if (and window-system (fboundp 'color-theme-subdued-light))
+                (color-theme-subdued-light)
               (color-theme-standard))))
 
 ;; ---------------------------------------------------------

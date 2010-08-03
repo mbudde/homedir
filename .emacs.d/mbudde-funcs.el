@@ -80,13 +80,4 @@ With argument ARG, kill ARG words."
   (interactive)
   (find-file "/home/michael/gtd/gtd.org"))
 
-(setq subdued-light-theme-on nil)
-(defun toggle-subdued-light-theme (arg)
-  (interactive "P")
-  (if (or arg (not subdued-light-theme-on))
-      (progn (setq subdued-light-theme-on t)
-             (color-theme-subdued-light))
-    (setq subdued-light-theme-on nil)
-    (color-theme-subdued)))
-
 (provide 'mbudde-funcs)
