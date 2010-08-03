@@ -209,6 +209,7 @@
 (global-set-key (kbd "C-c C-c") 'eval-buffer)
 (global-set-key (kbd "C-M-æ") 'isearch-forward-regexp)
 (global-set-key (kbd "C-M-Æ") 'isearch-backward-regexp)
+(global-set-key (kbd "s-!") 'kill-buffer-and-window)
 
 ;; ------------------------------------
 ;; Minor mode for override key bindings
