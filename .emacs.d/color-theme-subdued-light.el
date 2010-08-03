@@ -28,7 +28,7 @@ Based on the Tango color palette."
      (font-lock-function-name-face ((t (:foreground "#c4a000"))))
      (font-lock-variable-name-face ((t (nil))))
      (font-lock-preprocessor-face ((t (:foreground "#888a85"))))
-     (font-lock-constant-face ((t (:foreground "#73d216"))))
+     (font-lock-constant-face ((t (:foreground "#4e9a06"))))
      (font-lock-type-face ((t (:foreground "#ad7fa8"))))
      (font-lock-warning-face ((t (:bold t :foreground "#cc0000"))))
 
@@ -63,7 +63,7 @@ Based on the Tango color palette."
      (diff-file-header ((t (:inherit diff-header))))
      (diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
      (diff-refine-change ((t (:background "#2e3436"))))
-     (diff-changed ((t (:foreground "#75507b")))
+     (diff-changed ((t (:foreground "#75507b"))))
 
      ;; Calendar
      (holiday-face ((t (:foreground "#cc0000"))))
@@ -93,9 +93,9 @@ Based on the Tango color palette."
      (post-url-face ((t (:foreground "#729fcf" :bold t))))
 
      ;; ido-mode
-     (ido-first-match ((t (:foreground "#eeeeec" :bold t))))
+     (ido-first-match ((t (:foreground "#000" :bold t))))
      (ido-only-match ((t (:foreground "#73d216"))))
-     (ido-subdir ((t (:foreground "#729fcf" :bold t))))
-     ))))
+     (ido-subdir ((t (:foreground "#3465a4" :bold t))))
+     )))
 
 (provide 'color-theme-subdued-light)

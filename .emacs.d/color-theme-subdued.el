@@ -81,7 +81,7 @@ Based on the Tango color palette."
      (diff-file-header ((t (:inherit diff-header))))
      (diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
      (diff-refine-change ((t (:background "#2e3436"))))
-     (diff-changed ((t (:foreground "#75507b")))
+     (diff-changed ((t (:foreground "#75507b"))))
 
      ;; Calendar
      (holiday-face ((t (:foreground "#cc0000"))))
@@ -114,6 +114,6 @@ Based on the Tango color palette."
      (ido-first-match-face ((t (:foreground "#eeeeec" :bold t))))
      (ido-only-match-face ((t (:foreground "#73d216"))))
      (ido-subdir-face ((t (:foreground "#729fcf" :bold t))))
-     ))))
+     )))
 
 (provide 'color-theme-subdued)
