@@ -9,6 +9,9 @@
 ;;   jd-el:     git://git.naquadah.org/~jd/jd-el.git
 ;;   magit:     git://github.com/philjackson/magit.git
 
+;; Bugs:
+;; * Error when emacs is started in ~/Documents/Org
+
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "da")
 
 ;; ---------------------------------------------------------
