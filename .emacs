@@ -162,7 +162,8 @@
        (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)"
                                            "WAITING(w@)" "APPT(a)" "|"
                                            "DONE(d!)" "DEFERRED(f@)" "CANCELLED(x@)"))
-             org-todo-keyword-faces '(("STARTED" . (:foreground "orange" :weight bold))
+             org-todo-keyword-faces '(("TODO" . (:foreground "#ad7fa8" :weight bold))
+                                      ("STARTED" . (:foreground "orange" :weight bold))
                                       ("WAITING" . (:foreground "blue" :weight bold))
                                       ("CANCELLED" . (:foreground "red" :weight bold)))
              org-directory "~/Documents/Org"
