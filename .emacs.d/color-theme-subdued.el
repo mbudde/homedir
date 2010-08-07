@@ -114,6 +114,17 @@ Based on the Tango color palette."
      (ido-first-match ((t (:foreground "#eeeeec" :bold t))))
      (ido-only-match ((t (:foreground "#73d216"))))
      (ido-subdir ((t (:foreground "#729fcf" :bold t))))
+
+     ;; Dired
+     (dired-directory ((t (:foreground "#729fcf" :bold t))))
+     (dired-symlink ((t (:foreground "#34e2e2" :bold t))))
+
+     ;; Magit
+     (magit-diff-add ((t (:foreground "#73d216"))))
+     (magit-diff-del ((t (:foreground "#ef2929"))))
+     (magit-diff-file-header ((t (:foreground "#729fcf"))))
+     (magit-diff-hunk-header ((t (:foreground "#729fcf"))))
+     (magit-log-sha1 ((t (:foreground "#c4a000"))))
      )))
 
 (defun color-theme-subdued-light ()
@@ -161,19 +172,19 @@ Based on the Tango color palette."
      ;; Parenthesis matching
      ;; (show-paren-match-face ((t (:foreground "#2e3436" :background "#73d216"))))
      ;; (show-paren-mismatch-face ((t (:foreground "#2e3436" :background "#ef2929"))))
-     (show-paren-match ((((class color) (background dark)) (:foreground "#eeeeec" :background "#204a87"))))
-     (show-paren-mismatch ((((class color) (background dark)) (:foreground "#eeeeec" :background "#a40000"))))
+     (show-paren-match ((((class color) (background dark)) (:foreground "#eeeeec" :background "#3465a4"))))
+     (show-paren-mismatch ((((class color) (background dark)) (:foreground "#eeeeec" :background "#cc0000"))))
 
      ;; Line highlighting
-     (highlight ((t (:background "#1f1f1f" :foreground nil))))
-     (highlight-current-line-face ((t (:background "#1f1f1f" :foreground nil))))
+     (highlight ((t (:background "#7eb0e6" :foreground "#000"))))
+     (highlight-current-line-face ((t (:inherit highlight))))
 
      ;; Diff mode
-     (diff-added ((t (:foreground "#73d216"))))
+     (diff-added ((t (:foreground "#4e9a06"))))
      (diff-removed ((t (:foreground "#cc0000"))))
      (diff-context ((t (:foreground "#000"))))
      (diff-header ((t (:foreground "#c4a000" :background nil))))
-     (diff-file-header ((t (:inherit diff-header))))
+     (diff-file-header ((t (:foreground "#c4a000" :background nil))))
      (diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
      (diff-refine-change ((t (:background "#2e3436"))))
      (diff-changed ((t (:foreground "#75507b"))))
@@ -207,8 +218,19 @@ Based on the Tango color palette."
 
      ;; ido-mode
      (ido-first-match ((t (:foreground "#000" :bold t))))
-     (ido-only-match ((t (:foreground "#73d216"))))
+     (ido-only-match ((t (:foreground "#4e9a06"))))
      (ido-subdir ((t (:foreground "#3465a4" :bold t))))
+
+     ;; Dired
+     (dired-directory ((t (:foreground "#3465a4" :bold t))))
+     (dired-symlink ((t (:foreground "#2fcccc" :bold t))))
+
+     ;; Magit
+     (magit-diff-add ((t (:foreground "#4e9a06"))))
+     (magit-diff-del ((t (:foreground "#cc0000"))))
+     (magit-diff-file-header ((t (:foreground "#c4a000" :background nil))))
+     (magit-diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
+     (magit-log-sha1 ((t (:foreground "#c4a000"))))
      )))
 
 (setq subdued-light-theme-on nil)
