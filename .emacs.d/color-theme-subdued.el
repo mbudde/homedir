@@ -22,222 +22,180 @@
 
 (require 'color-theme)
 
-(defun color-theme-subdued ()
-  "Subdued color theme for Emacs by Jason Blevins.
-Based on the Tango color palette."
-  (interactive)
-  (color-theme-install
-   '(color-theme-subdued
-     ((foreground-color . "#d3d7cf")
-      (background-color . "#000")
-      (background-mode . dark)
-      (cursor-color . "#729fcf")
-      (mouse-color . "#73d216"))
+(defun color-theme-subdued-install (theme)
+  (let* ((frame-params (car theme))
+         (dark-frame-params (car frame-params))
+         (light-frame-params (car (last frame-params)))
+         (face-specs (cdr theme))
+         dark-theme
+         light-theme)
+    (setq dark-theme `(color-theme-subdued
+                        ,dark-frame-params))
+    (setq light-theme `(color-theme-subdued-light
+                         ,light-frame-params))
+    (dolist (spec face-specs)
+      (apply (lambda (face dark-spec &optional light-spec)
+               (add-to-list 'dark-theme `(,face ((t ,dark-spec))) t)
+               (if light-spec
+                   (add-to-list 'light-theme `(,face ((t ,light-spec))) t)
+                 (add-to-list 'light-theme `(,face ((t ,dark-spec))) t)))
+             spec))
+    (eval `(defun color-theme-subdued ()
+             (interactive)
+             (color-theme-install (quote ,dark-theme))))
+    (eval `(defun color-theme-subdued-light ()
+             (interactive)
+             (color-theme-install (quote ,light-theme))))))
+
+(let ((butter1 "#fce94f")
+      (butter2 "#edd400")
+      (butter3 "#c4a000")
+      (orange1 "#fcaf3e")
+      (orange2 "#f57900")
+      (orange3 "#ce5c00")
+      (chocolate1 "#e9b96e")
+      (chocolate2 "#c17d11")
+      (chocolate3 "#8f5902")
+      (chameleon1 "#8ae234")
+      (chameleon2 "#73d216")
+      (chameleon3 "#4e9a06")
+      (skyblue1 "#729fcf")
+      (skyblue2 "#3465a4")
+      (skyblue3 "#204a87")
+      (plum1 "#ad7fa8")
+      (plum2 "#75507b")
+      (plum3 "#5c3566")
+      (scarletred1 "#ef2929")
+      (scarletred2 "#cc0000")
+      (scarletred3 "#a40000")
+      (aluminium1 "#eeeeec")
+      (aluminium2 "#d3d7cf")
+      (aluminium3 "#babdb6")
+      (aluminium4 "#888a85")
+      (aluminium5 "#555753")
+      (aluminium6 "#2e3436"))
+
+  (color-theme-subdued-install
+   `((((foreground-color . ,aluminium2)
+       (background-color . "#000")
+       (background-mode . dark)
+       (cursor-color . ,skyblue1)
+       (mouse-color . ,chameleon2))
+      ((foreground-color . "#000")
+       (background-color . "#fff")
+       (background-mode . light)
+       (cursor-color . ,skyblue3)
+       (mouse-color . ,chameleon2)))
 
      ;;; Standard font lock faces
-     (default ((t (nil))))
-     (font-lock-comment-face ((t (:foreground "#888a85"))))
-     (font-lock-comment-delimiter-face ((t (:foreground "#888a85"))))
-     (font-lock-doc-face ((t (:foreground "#888a85"))))
-     (font-lock-doc-string-face ((t (:foreground "#888a85"))))
-     (font-lock-string-face ((t (:foreground "#ad7fa8"))))
-     (font-lock-keyword-face ((t (:foreground "#729fcf"))))
-     (font-lock-builtin-face ((t (:foreground "#fcaf3e"))))
-     (font-lock-function-name-face ((t (:foreground "#edd400"))))
-     (font-lock-variable-name-face ((t (nil))))
-     (font-lock-preprocessor-face ((t (:foreground "#888a85"))))
-     (font-lock-constant-face ((t (:foreground "#8ae234"))))
-     (font-lock-type-face ((t (:foreground "#ad7fa8"))))
-     (font-lock-warning-face ((t (:bold t :foreground "#cc0000"))))
+     (default (nil))
+
+     (font-lock-comment-face (:foreground ,aluminium4))
+     (font-lock-comment-delimiter-face (:foreground ,aluminium4))
+     (font-lock-doc-face (:foreground ,aluminium4))
+     (font-lock-doc-string-face (:foreground ,aluminium4))
+     (font-lock-string-face (:foreground ,plum1)
+                            (:foreground ,plum2))
+     (font-lock-keyword-face (:foreground ,skyblue1)
+                             (:foreground ,skyblue2))
+     (font-lock-builtin-face (:foreground ,orange1)
+                             (:foreground ,orange3))
+     (font-lock-function-name-face (:foreground ,butter2)
+                                   (:foreground ,butter3))
+     (font-lock-variable-name-face (nil))
+     (font-lock-preprocessor-face (:foreground ,aluminium4))
+     (font-lock-constant-face (:foreground ,chameleon1)
+                              (:foreground ,chameleon3))
+     (font-lock-type-face (:foreground ,plum1))
+     (font-lock-warning-face (:bold t :foreground ,scarletred2))
 
      ;; Search
-     (isearch ((t (:foreground "#080808" :background "#edd400"))))
-     (isearch-lazy-highlight-face ((t (:foreground "#080808" :background "#2e3436"))))
+     (isearch (:foreground "#080808" :background ,butter2))
+     (isearch-lazy-highlight-face (:foreground "#080808" :background ,aluminium6)
+                                  (:foreground ,aluminium6 :background ,aluminium2))
 
      ;; Emacs Interface
-     (fringe ((t (:background "#0f0f0f"))))
-     (border ((t (:background "#0f0f0f"))))
-     (mode-line ((t (:background "#1f1f1f" :foreground "#eeeeec"))))
-     (mode-line-buffer-id ((t (:background "#1f1f1f" :foreground "#eeeeec"))))
-     (mode-line-inactive ((t (:background "#1f1f1f" :foreground "#888a85"))))
-     (minibuffer-prompt ((t (:foreground "#729fcf"))))
-     (region ((t (:background "dark slate blue"))))
+     (fringe (:background "#0f0f0f")
+             (:background "#fff"))
+     (border (:background "#0f0f0f")
+             (:background "#fff"))
+     (mode-line (:background "#1f1f1f" :foreground ,aluminium1))
+     (mode-line-buffer-id (:background "#1f1f1f" :foreground ,aluminium1))
+     (mode-line-inactive (:background "#1f1f1f" :foreground ,aluminium4))
+     (minibuffer-prompt (:foreground ,skyblue1))
+     (region (:background "dark slate blue")
+             (:background "#ffe0a0"))
 
      ;; Parenthesis matching
-     ;; (show-paren-match-face ((t (:foreground "#2e3436" :background "#73d216"))))
-     ;; (show-paren-mismatch-face ((t (:foreground "#2e3436" :background "#ef2929"))))
-     (show-paren-match ((((class color) (background dark)) (:foreground "#eeeeec" :background "#204a87"))))
-     (show-paren-mismatch ((((class color) (background dark)) (:foreground "#eeeeec" :background "#a40000"))))
+     (show-paren-match (:foreground ,aluminium1 :background ,skyblue3)
+                       (:foreground ,aluminium1 :background ,skyblue2))
+     (show-paren-mismatch (:foreground ,aluminium1 :background ,scarletred3)
+                          (:foreground ,aluminium1 :background ,scarletred2))
 
      ;; Line highlighting
-     (highlight ((t (:background "#1f1f1f" :foreground nil))))
-     (highlight-current-line-face ((t (:background "#1f1f1f" :foreground nil))))
+     (highlight (:background "#1f1f1f" :foreground nil)
+                (:background ,skyblue1 :foreground nil))
+     (highlight-current-line-face (:background "#1f1f1f" :foreground nil)
+                                  (:background ,skyblue1 :foreground nil))
 
      ;; Diff mode
-     (diff-added ((t (:foreground "#73d216"))))
-     (diff-removed ((t (:foreground "#cc0000"))))
-     (diff-context ((t (:foreground "white"))))
-     (diff-header ((t (:foreground "#c4a000" :background nil))))
-     (diff-file-header ((t (:inherit diff-header))))
-     (diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
-     (diff-refine-change ((t (:background "#2e3436"))))
-     (diff-changed ((t (:foreground "#75507b"))))
+     (diff-added (:foreground ,chameleon3))
+     (diff-removed (:foreground ,scarletred2))
+     (diff-context (:foreground "white")
+                   (:foreground "#000"))
+     (diff-header (:foreground ,butter3 :background nil))
+     (diff-file-header (:foreground ,butter3 :background nil))
+     (diff-hunk-header (:foreground ,skyblue2 :background nil))
+     (diff-refine-change (:background ,aluminium6))
+     (diff-changed (:foreground ,plum2))
 
      ;; Calendar
-     (holiday-face ((t (:foreground "#cc0000"))))
+     (holiday-face (:foreground ,scarletred2))
 
      ;; Info
-     (info-xref ((t (:foreground "#729fcf"))))
-     (info-xref-visited ((t (:foreground "#ad7fa8"))))
+     (info-xref (:foreground ,skyblue1))
+     (info-xref-visited (:foreground ,plum1))
 
-     ;;; AUCTeX
-     (font-latex-sectioning-5-face ((t (:foreground "#c4a000" :bold t))))
-     (font-latex-bold-face ((t (:foreground "#4e9a06" :bold t))))
-     (font-latex-italic-face ((t (:foreground "#4e9a06" :italic t))))
-     (font-latex-math-face ((t (:foreground "#855c1b"))))
-     (font-latex-string-face ((t (:foreground "#77507b"))))
-     (font-latex-warning-face ((t (:foreground "#cc0000"))))
-     (font-latex-slide-title-face ((t (:foreground "#c4a000"))))
-
-     ;;; post-mode
-     (post-emoticon-face ((t (:background "#edd400" :foreground "#000000"))))
-     (post-header-value-face ((t (:foreground "#4e9a06"))))
-     (post-header-keyword-face ((t (:foreground "#4e9a06" :bold t))))
-     (post-signature-text-face ((t (:foreground "#cc0000"))))
-     (post-quoted-text-face ((t (:foreground "#855c1b" :slant normal))))
-     (post-double-quoted-text-face ((t (:foreground "#77507b" :slant normal))))
-     (post-multiply-quoted-text-face ((t (:foreground "#61635e" :slant normal))))
-     (post-email-address-text-face ((t (:foreground "#729fcf" :bold t))))
-     (post-url-face ((t (:foreground "#729fcf" :bold t))))
+          ;;; AUCTeX
+     (font-latex-sectioning-5-face (:foreground ,butter3 :bold t))
+     (font-latex-bold-face (:foreground ,chameleon3 :bold t))
+     (font-latex-italic-face (:foreground ,chameleon3 :italic t))
+     (font-latex-math-face (:foreground "#855c1b"))
+     (font-latex-string-face (:foreground ,plum2))
+     (font-latex-warning-face (:foreground ,scarletred2))
+     (font-latex-slide-title-face (:foreground ,butter3))
 
      ;; ido-mode
-     (ido-first-match ((t (:foreground "#eeeeec" :bold t))))
-     (ido-only-match ((t (:foreground "#73d216"))))
-     (ido-subdir ((t (:foreground "#729fcf" :bold t))))
+     (ido-first-match (:foreground ,aluminium1 :bold t)
+                      (:foreground "#000" :bold t))
+     (ido-only-match (:foreground ,chameleon2)
+                     (:foreground ,chameleon3))
+     (ido-subdir (:foreground ,skyblue1 :bold t)
+                 (:foreground ,skyblue2 :bold t))
 
      ;; Dired
-     (dired-directory ((t (:foreground "#729fcf" :bold t))))
-     (dired-symlink ((t (:foreground "#34e2e2" :bold t))))
+     (dired-directory (:foreground ,skyblue1 :bold t)
+                      (:foreground ,skyblue2 :bold t))
+     (dired-symlink (:foreground "#34e2e2" :bold t)
+                    (:foreground "#2fcccc" :bold t))
 
      ;; Magit
-     (magit-diff-add ((t (:foreground "#73d216"))))
-     (magit-diff-del ((t (:foreground "#ef2929"))))
-     (magit-diff-file-header ((t (:foreground "#729fcf"))))
-     (magit-diff-hunk-header ((t (:foreground "#729fcf"))))
-     (magit-log-sha1 ((t (:foreground "#c4a000"))))
-     )))
-
-(defun color-theme-subdued-light ()
-  "Subdued-Light color theme for Emacs by Michael Budde.
-Based on the Tango color palette."
-  (interactive)
-  (setq subdued-light-theme-on t)
-  (color-theme-install
-   '(color-theme-subdued-light
-     ((foreground-color . "#000")
-      (background-color . "#fff")
-      (background-mode . light)
-      (cursor-color . "#204a87")
-      (mouse-color . "#73d216"))
-
-     ;;; Standard font lock faces
-     (default ((t (nil))))
-     (font-lock-comment-face ((t (:foreground "#888a85"))))
-     (font-lock-comment-delimiter-face ((t (:foreground "#888a85"))))
-     (font-lock-doc-face ((t (:foreground "#888a85"))))
-     (font-lock-doc-string-face ((t (:foreground "#888a85"))))
-     (font-lock-string-face ((t (:foreground "#75507b"))))
-     (font-lock-keyword-face ((t (:foreground "#3465a4"))))
-     (font-lock-builtin-face ((t (:foreground "#ce5c00"))))
-     (font-lock-function-name-face ((t (:foreground "#c4a000"))))
-     (font-lock-variable-name-face ((t (nil))))
-     (font-lock-preprocessor-face ((t (:foreground "#888a85"))))
-     (font-lock-constant-face ((t (:foreground "#4e9a06"))))
-     (font-lock-type-face ((t (:foreground "#ad7fa8"))))
-     (font-lock-warning-face ((t (:bold t :foreground "#cc0000"))))
-
-     ;; Search
-     (isearch ((t (:foreground "#080808" :background "#edd400"))))
-     (isearch-lazy-highlight-face ((t (:foreground "#2e3436" :background "#d3d7cf"))))
-
-     ;; Emacs Interface
-     (fringe ((t (:background "#fff"))))
-     (border ((t (:background "#fff"))))
-     (mode-line ((t (:background "#1f1f1f" :foreground "#eeeeec"))))
-     (mode-line-buffer-id ((t (:background "#1f1f1f" :foreground "#eeeeec"))))
-     (mode-line-inactive ((t (:background "#1f1f1f" :foreground "#888a85"))))
-     (minibuffer-prompt ((t (:foreground "#729fcf"))))
-     (region ((t (:background "#ffe0a0"))))
-
-     ;; Parenthesis matching
-     ;; (show-paren-match-face ((t (:foreground "#2e3436" :background "#73d216"))))
-     ;; (show-paren-mismatch-face ((t (:foreground "#2e3436" :background "#ef2929"))))
-     (show-paren-match ((((class color) (background dark)) (:foreground "#eeeeec" :background "#3465a4"))))
-     (show-paren-mismatch ((((class color) (background dark)) (:foreground "#eeeeec" :background "#cc0000"))))
-
-     ;; Line highlighting
-     (highlight ((t (:background "#7eb0e6" :foreground "#000"))))
-     (highlight-current-line-face ((t (:inherit highlight))))
-
-     ;; Diff mode
-     (diff-added ((t (:foreground "#4e9a06"))))
-     (diff-removed ((t (:foreground "#cc0000"))))
-     (diff-context ((t (:foreground "#000"))))
-     (diff-header ((t (:foreground "#c4a000" :background nil))))
-     (diff-file-header ((t (:foreground "#c4a000" :background nil))))
-     (diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
-     (diff-refine-change ((t (:background "#2e3436"))))
-     (diff-changed ((t (:foreground "#75507b"))))
-
-     ;; Calendar
-     (holiday-face ((t (:foreground "#cc0000"))))
-
-     ;; Info
-     (info-xref ((t (:foreground "#729fcf"))))
-     (info-xref-visited ((t (:foreground "#ad7fa8"))))
-
-     ;;; AUCTeX
-     (font-latex-sectioning-5-face ((t (:foreground "#c4a000" :bold t))))
-     (font-latex-bold-face ((t (:foreground "#4e9a06" :bold t))))
-     (font-latex-italic-face ((t (:foreground "#4e9a06" :italic t))))
-     (font-latex-math-face ((t (:foreground "#855c1b"))))
-     (font-latex-string-face ((t (:foreground "#77507b"))))
-     (font-latex-warning-face ((t (:foreground "#cc0000"))))
-     (font-latex-slide-title-face ((t (:foreground "#c4a000"))))
-
-     ;;; post-mode
-     (post-emoticon-face ((t (:background "#edd400" :foreground "#000000"))))
-     (post-header-value-face ((t (:foreground "#4e9a06"))))
-     (post-header-keyword-face ((t (:foreground "#4e9a06" :bold t))))
-     (post-signature-text-face ((t (:foreground "#cc0000"))))
-     (post-quoted-text-face ((t (:foreground "#855c1b" :slant normal))))
-     (post-double-quoted-text-face ((t (:foreground "#77507b" :slant normal))))
-     (post-multiply-quoted-text-face ((t (:foreground "#61635e" :slant normal))))
-     (post-email-address-text-face ((t (:foreground "#729fcf" :bold t))))
-     (post-url-face ((t (:foreground "#729fcf" :bold t))))
-
-     ;; ido-mode
-     (ido-first-match ((t (:foreground "#000" :bold t))))
-     (ido-only-match ((t (:foreground "#4e9a06"))))
-     (ido-subdir ((t (:foreground "#3465a4" :bold t))))
-
-     ;; Dired
-     (dired-directory ((t (:foreground "#3465a4" :bold t))))
-     (dired-symlink ((t (:foreground "#2fcccc" :bold t))))
-
-     ;; Magit
-     (magit-diff-add ((t (:foreground "#4e9a06"))))
-     (magit-diff-del ((t (:foreground "#cc0000"))))
-     (magit-diff-file-header ((t (:foreground "#c4a000" :background nil))))
-     (magit-diff-hunk-header ((t (:foreground "#3465a4" :background nil))))
-     (magit-log-sha1 ((t (:foreground "#c4a000"))))
+     (magit-diff-add (:foreground ,chameleon2)
+                     (:foreground ,chameleon3))
+     (magit-diff-del (:foreground ,scarletred1)
+                     (:foreground ,scarletred2))
+     (magit-diff-file-header (:foreground ,butter3 :background nil))
+     (magit-diff-hunk-header (:foreground ,skyblue1 :background nil)
+                             (:foreground ,skyblue2 :background nil))
+     (magit-log-sha1 (:foreground ,butter3))
      )))
 
 (setq subdued-light-theme-on nil)
 (defun toggle-subdued-light-theme (arg)
   (interactive "P")
   (if (or arg (not subdued-light-theme-on))
-      (color-theme-subdued-light)
+      (progn (setq subdued-light-theme-on t)
+             (color-theme-subdued-light))
     (setq subdued-light-theme-on nil)
     (color-theme-subdued)))
 
