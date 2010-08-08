@@ -188,6 +188,8 @@
      (magit-diff-hunk-header (:foreground ,skyblue1 :background nil)
                              (:foreground ,skyblue2 :background nil))
      (magit-log-sha1 (:foreground ,butter3))
+     (magit-item-highlight (:background ,aluminium6)
+                           (:background ,aluminium2))
      )))
 
 (setq subdued-light-theme-on nil)
