@@ -177,6 +177,7 @@
              org-agenda-start-on-weekday nil
              org-clock-idle-time 15
              org-fast-tag-selection-single-key 'expert
+             org-clock-in-switch-to-state "STARTED"
              org-capture-templates '(("t" "" entry
                                       (file+headline "todo.org" "Tasks")
                                       "* TODO %?\n  %u")
