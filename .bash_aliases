@@ -12,8 +12,6 @@ alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias hgit='git --git-dir=$HOME/.homegit --work-tree=$HOME'
-
 alias saved='pwd > ~/.savedir'
 alias showd='cat ~/.savedir'
 alias god='cd "`cat ~/.savedir`"'

@@ -1,0 +1,2 @@
+#!/bin/bash
+GIT_DIR="$HOME/.homegit" GIT_WORK_TREE="$HOME" git "$@"
