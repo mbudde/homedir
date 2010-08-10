@@ -2,7 +2,7 @@
 	name = Michael Budde
 	email = mbudde@gmail.com
 [alias]
-	st = status
+	st = status -sb
 	di = diff -B
 	co = checkout
 	ci = commit
