@@ -1,0 +1,50 @@
+#!/bin/bash
+# Michael Budde <mbudde@gmail.com>
+# Add globs to .gitignore
+root=$(git rev-parse --show-cdup)
+file="${root}.gitignore"
+action="add"
+while getopts "hergf:" opt; do
+    case $opt in
+        e)
+            action="edit"
+            ;;
+        r)
+            file=$(git rev-parse --git-dir)/info/exclude
+            ;;
+        g)
+            file=$(git config core.excludesfile)
+            if [ $? -eq 1 ]; then
+                echo "configuration option core.excludesfile is not set"
+                exit 1
+            fi
+            ;;
+        f)
+            file="$OPTARG"
+            ;;
+        h | \?)
+            echo "usage: git ignore [options] [<glob>...]"
+            echo
+            echo "    -r          use repo excludes file"
+            echo "    -g          use global excludes file"
+            echo "    -f <FILE>   use given file"
+            echo "    -e          opens an editor"
+            exit 129
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+case $action in
+    edit)
+        $EDITOR $file
+        ;;
+    add)
+        if [ -z "$*" ]; then
+            cat $file
+        else
+            for glob in "$@"; do
+                echo $glob >> $file
+            done
+        fi
+        ;;
+esac
