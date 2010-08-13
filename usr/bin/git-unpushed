@@ -26,15 +26,15 @@ shift $((OPTIND-1))
 if [ -n "$1" ]; then
     branch="$1"
 else
-    branch=$(git symbolic-ref HEAD) || die $branch >&2
+    branch=$(git symbolic-ref HEAD) || die $branch
     branch=${branch#refs/heads/}
 fi
 
 remote=$(git config branch.${branch}.remote) || \
-    die "fatal: No remote is configured for branch '${branch}'." >&2
+    die "fatal: No remote is configured for branch '${branch}'."
 
 remotebranch=$(git config branch.${branch}.merge) || \
-    die "No remote tracking branch is configured for branch '${branch}'." >&2
+    die "No remote tracking branch is configured for branch '${branch}'."
 remotebranch=${remotebranch#refs/heads/}
 
 printf "# %d unpushed commits to ${remote}/${remotebranch}:\n" \
