@@ -1,9 +1,18 @@
 #!/bin/bash
 # Michael Budde <mbudde@gmail.com>
 # Add globs to .gitignore
-root=$(git rev-parse --show-cdup)
-file="${root}.gitignore"
-action="add"
+
+read -d '' USAGE <<"EOF"
+[options] [<glob>...]
+
+Options:
+    -r              use repo excludes file
+    -g              use global excludes file
+    -f <FILE>       use given file
+    -e              opens an editor
+EOF
+. "$(git --exec-path)/git-sh-setup"
+
 while getopts "hergf:" opt; do
     case $opt in
         e)
@@ -13,37 +22,31 @@ while getopts "hergf:" opt; do
             file=$(git rev-parse --git-dir)/info/exclude
             ;;
         g)
-            file=$(git config core.excludesfile)
-            if [ $? -eq 1 ]; then
-                echo "configuration option core.excludesfile is not set"
-                exit 1
-            fi
+            file=$(git config core.excludesfile) || \
+                die "Configuration option core.excludesfile is not set."
+            file=${file/~\//$HOME/}
             ;;
         f)
             file="$OPTARG"
             ;;
         h | \?)
-            echo "usage: git ignore [options] [<glob>...]"
-            echo
-            echo "    -r          use repo excludes file"
-            echo "    -g          use global excludes file"
-            echo "    -f <FILE>   use given file"
-            echo "    -e          opens an editor"
-            exit 129
+            usage
             ;;
     esac
 done
 shift $((OPTIND-1))
-case $action in
+
+file=${file:-$(git rev-parse --show-cdup)".gitignore"}
+case ${action:-add} in
     edit)
-        $EDITOR $file
+        git_editor "$file"
         ;;
     add)
-        if [ -z "$*" ]; then
-            cat $file
+        if [ $# -eq 0 ]; then
+            $(git var GIT_PAGER) "$file"
         else
             for glob in "$@"; do
-                echo $glob >> $file
+                echo $glob >> "$file"
             done
         fi
         ;;

@@ -2,31 +2,44 @@
 # Michael Budde <mbudde@gmail.com>
 # Show list of commits that haven't been pushed to tracking branch
 
-if [ "$1" = "-h" ]; then
-    echo "usage: git unpushed [-d|--dates]"
-    exit 129
+read -d '' USAGE <<"EOF"
+[options] [<branch>]
+
+Options:
+    -d              show committer date in the list
+EOF
+. "$(git --exec-path)/git-sh-setup"
+
+while getopts "dh" opt; do
+    case $opt in
+        d)
+            show_dates=1
+            ;;
+        h | \?)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ -n "$1" ]; then
+    branch="$1"
+else
+    branch=$(git symbolic-ref HEAD) || die $branch >&2
+    branch=${branch#refs/heads/}
 fi
 
-branch=$(git symbolic-ref -q HEAD 2>/dev/null | sed "s#^refs/heads/##")
-if [ -z "${branch}" ]; then
-    echo "Not on git branch"
-    exit 1
-fi
-remote=$(git config branch.${branch}.remote)
-if [ -z "${remote}" ]; then
-    echo "No remote"
-    exit 1
-fi
-remotebranch=$(git config branch.${branch}.merge | sed "s#^refs/heads/##")
-if [ -z "${remotebranch}" ]; then
-    echo "No tracking branch setup"
-    exit 1
-fi
+remote=$(git config branch.${branch}.remote) || \
+    die "fatal: No remote is configured for branch '${branch}'." >&2
+
+remotebranch=$(git config branch.${branch}.merge) || \
+    die "No remote tracking branch is configured for branch '${branch}'." >&2
+remotebranch=${remotebranch#refs/heads/}
 
 echo "# Unpushed commits to ${remote}/${remotebranch}:"
-if [ "$1" = "-d" -o "$1" = "--dates" ]; then
-    shift 1
-    git log --oneline --format=format:"%C(yellow)%h %C(blue)%cr %Creset%s" ${remote}/${remotebranch}.. $@
+if [ $show_dates ]; then
+    git log --oneline --format=format:"%C(yellow)%h %C(blue)%cr %Creset%s" \
+        "${remote}/${remotebranch}.." "$@"
 else
-    git log --oneline ${remote}/${remotebranch}.. $@
+    git log --oneline "${remote}/${remotebranch}.." "$@"
 fi
