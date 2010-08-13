@@ -11,6 +11,7 @@ Options:
     -f <FILE>       use given file
     -e              opens an editor
 EOF
+SUBDIRECTORY_OK=1
 . "$(git --exec-path)/git-sh-setup"
 
 while getopts "hergf:" opt; do
@@ -19,7 +20,7 @@ while getopts "hergf:" opt; do
             action="edit"
             ;;
         r)
-            file=$(git rev-parse --git-dir)/info/exclude
+            file=${GIT_DIR}/info/exclude
             ;;
         g)
             file=$(git config core.excludesfile) || \

@@ -8,6 +8,7 @@ read -d '' USAGE <<"EOF"
 Options:
     -d              show committer date in the list
 EOF
+SUBDIRECTORY_OK=1
 . "$(git --exec-path)/git-sh-setup"
 
 while getopts "dh" opt; do
