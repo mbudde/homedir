@@ -1,12 +1,3 @@
-up () {
-    if [ -z "$1" ]; then n=1; else n=$1; fi
-    P=""
-    for i in $(seq 1 1 $n); do
-        P="$P../"
-    done
-    cd $P
-};
-
 # ls aliases
 alias ll='ls -lh'
 alias la='ls -A'

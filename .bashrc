@@ -12,46 +12,31 @@ export HISTCONTROL=ignoredups
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+[ -f ~/.bash_functions ] && . ~/.bash_functions
+source_if_exists /etc/bash_completion
+source_if_exists ~/.bash_aliases
+
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-[ -x /usr/bin/lessfile ] && eval "$(lessfile)"
+inpath lesspipe && eval "$(lesspipe)"
+inpath lessfile && eval "$(lessfile)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b ~/.bash_colors`"
     alias ls='ls --color=auto --group-directories-first'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-
-    if [ -f ~/.bash_prompt ]; then
-        . ~/.bash_prompt
-    fi
+    source_if_exists ~/.bash_prompt
 fi
 
-if [ -d ~/.gem/ruby/1.8/bin ]; then
-    PATH=~/.gem/ruby/1.8/bin:"${PATH}"
-fi
-if [ -d ~/usr/bin ] ; then
-    PATH=~/usr/bin:"${PATH}"
-fi
-if [ -d ~/usr/lib ]; then
-    export PYTHONPATH="${PYTHONPATH}:${HOME}/lib/python2.6/site-packages"
-fi
+add_path ~/usr/bin
+add_path ~/.gem/ruby/1.8/bin
+add_path ~/usr/lib/python2.6/site-package PYTHONPATH
 
-export EDITOR="emacsclient"
+export EDITOR="$(choose_first emacsclient vim vi nano)"
 #export VISUAL="gvim -f"
 export ALTERNATE_EDITOR=""
 
@@ -66,7 +51,7 @@ export GOROOT=/home/devel/forked/go
 export GOOS=linux
 export GOARCH=amd64
 export GOBIN=$HOME/usr/bin/go
-PATH="$HOME/usr/bin/go:$PATH"
+add_path ~/usr/bin/go
 
 if [ -f "$HOME/Documents/Regnskab/ledger.dat" ]; then
     export LEDGER="$HOME/Documents/Regnskab/ledger.dat"
