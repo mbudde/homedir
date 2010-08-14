@@ -190,7 +190,11 @@
      (magit-log-sha1 (:foreground ,butter3))
      (magit-item-highlight (:background ,aluminium6)
                            (:background ,aluminium2))
-     )))
+
+     ;; sh-mode
+     (sh-heredoc (:foreground ,plum1)
+                 (:foreground ,plum2))
+     (sh-quoted-exec (:foreground ,orange2)))))
 
 (setq subdued-light-theme-on nil)
 (defun toggle-subdued-light-theme (arg)
