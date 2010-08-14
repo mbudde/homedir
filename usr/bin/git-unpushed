@@ -37,8 +37,10 @@ remotebranch=$(git config branch.${branch}.merge) || \
     die "No remote tracking branch is configured for branch '${branch}'."
 remotebranch=${remotebranch#refs/heads/}
 
-printf "# %d unpushed commits to ${remote}/${remotebranch}:\n" \
-    $(git rev-list "${remote}/${remotebranch}.." | wc -l)
+ncommits=$(git rev-list "${remote}/${remotebranch}.." | wc -l)
+[ $ncommits -gt 1 ] && plural="s"
+printf "# %d unpushed commit%s to ${remote}/${remotebranch}:\n" \
+    $ncommits $plural
 
 if [ $show_dates ]; then
     git log --oneline --format=format:"%C(yellow)%h %C(blue)%cr %Creset%s" \
