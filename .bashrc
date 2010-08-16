@@ -26,7 +26,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
+if [ "$TERM" != "dumb" -a "$TERM" != "cygwin" ]; then
     eval "`dircolors -b ~/.bash_colors`"
     alias ls='ls --color=auto --group-directories-first'
     source_if_exists ~/.bash_prompt
