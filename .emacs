@@ -160,6 +160,7 @@
   (setq org-directory "~/Documents/Org"
         org-agenda-files '("~/Documents/Org/todo.org")
         org-default-notes-file "notes.org"
+        org-hide-leading-stars t
         org-agenda-ndays 7
         org-deadline-warning-days 14
         org-agenda-show-all-dates t
