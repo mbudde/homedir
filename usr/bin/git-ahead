@@ -1,0 +1,66 @@
+#!/bin/bash
+# Michael Budde <mbudde@gmail.com>
+# Show list of commits that haven't been pushed to tracking branch
+
+read -d '' USAGE <<"EOF"
+[options] [<branch>] [<remote ref>]
+
+List commits in <branch> that are not in <remote ref>. <branch>
+defaults to the current branch and <remote ref> defaults to the
+configured remote tracking branch for <branch>.
+
+Options:
+    -d              show committer date in the list
+EOF
+SUBDIRECTORY_OK=1
+. "$(git --exec-path)/git-sh-setup"
+
+while getopts "dh" opt; do
+    case $opt in
+        d)
+            show_dates=1
+            ;;
+        h | \?)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ -n "$1" ]; then
+    branch="$1"
+else
+    branch=$(git symbolic-ref HEAD) || die $branch
+    branch=${branch#refs/heads/}
+fi
+
+if [ -n "$2" ]; then
+    remoteref="$2"
+else
+    remote=$(git config branch.${branch}.remote) || \
+        die "fatal: No remote is configured for branch '${branch}'."
+    [ "$remote" == "." ] && remote=
+
+    remotebranch=$(git config branch.${branch}.merge) || \
+        die "No remote tracking branch is configured for branch '${branch}'."
+    remotebranch=${remotebranch#refs/heads/}
+
+    remoteref="${remote}${remote:+/}${remotebranch}"
+fi
+refs="${remoteref}..${branch}"
+
+ncommits=$(git rev-list "${refs}" | wc -l)
+if [ $ncommits -gt 1 ]; then
+    plural="s"
+elif [ $ncommits -lt 1 ]; then
+    exit 0
+fi
+printf "# %d commit%s ahead of ${remoteref}:\n" \
+    $ncommits $plural
+
+if [ $show_dates ]; then
+    git log --oneline --format=format:"%C(yellow)%h %C(blue)%cr %Creset%s" \
+        "${refs}" "$@"
+else
+    git log --oneline "${refs}" "$@"
+fi
