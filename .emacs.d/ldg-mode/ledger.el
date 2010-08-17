@@ -1,1 +1,0 @@
-ldg-new.el
