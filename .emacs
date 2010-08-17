@@ -8,6 +8,7 @@
 ;;   org-mode:  git://repo.or.cz/org-mode.git
 ;;   jd-el:     git://git.naquadah.org/~jd/jd-el.git
 ;;   magit:     git://github.com/philjackson/magit.git
+;;   edit-server http://github.com/stsquad/emacs_chrome
 
 ;; Bugs:
 ;; * Error when emacs is started in ~/Documents/Org
@@ -200,6 +201,13 @@
 
 ;; Magit
 (require 'magit nil 'noerror)
+
+;; edit-server
+(if (locate-library "edit-server")
+    (progn
+     (require 'edit-server)
+     (setq edit-server-new-frame nil)
+     (edit-server-start)))
 
 ;; ---------------------------------------------------------
 ;; Custom keybindings
