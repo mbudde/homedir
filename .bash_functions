@@ -2,7 +2,7 @@
 
 function up {
     P=""
-    for i in $(seq 1 1 ${1:-1}); do
+    for ((i=${1:-1}; i > 0; i--)); do
         P="$P../"
     done
     cd $P
