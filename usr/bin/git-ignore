@@ -47,7 +47,7 @@ case ${action:-add} in
             LESS=${LESS:-FRSX} $(git var GIT_PAGER) -F "$file"
         else
             for glob in "$@"; do
-                echo $glob >> "$file"
+                echo "$glob" >> "$file"
             done
         fi
         ;;
