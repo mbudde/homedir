@@ -19,7 +19,7 @@ function source_if_exists {
 }
 
 function inpath {
-    which "$1" >/dev/null
+    which "$1" &>/dev/null
 }
 
 function choose_first {
