@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function up {
+up () {
     P=""
     for ((i=${1:-1}; i > 0; i--)); do
         P="$P../"
@@ -8,21 +8,21 @@ function up {
     cd $P
 }
 
-function add_path {
+add_path () {
     local varname=${2:-PATH}
     local varcontent=$(eval echo \$$varname)
     [ -d "$1" ] && eval export $varname=\"$1:$varcontent\"
 }
 
-function source_if_exists {
+source_if_exists () {
     [ -f "$1" ] && source $1
 }
 
-function inpath {
+inpath () {
     which "$1" &>/dev/null
 }
 
-function choose_first {
+choose_first () {
     for cmd in "$@"; do
         inpath "$cmd" && printf "$cmd" && break
     done

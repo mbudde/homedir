@@ -19,7 +19,7 @@ CYAN="\[\033[0;36m\]"
 LBRACE="${PURPLE}[${NO_COLOR}"
 RBRACE="${PURPLE}]${NO_COLOR}"
 
-function prompt_command {
+prompt_command () {
     ret="$?"
 
     git_prompt () {
