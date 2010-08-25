@@ -81,7 +81,7 @@ prompt_command () {
     # /foo/bar/baz => /f/bar/baz
     # /f/bar/baz => /f/b/baz
     shorten_path () {
-        printf "$(echo $1 | sed 's|/\([^/]\)[^/]\{1,\}/|/\1/|')"
+        printf "%s" "$(echo $1 | sed 's|/\([^/]\)[^/]\{1,\}/|/\1/|')"
     }
 
     git="$(git_prompt)"

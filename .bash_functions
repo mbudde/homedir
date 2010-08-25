@@ -24,6 +24,6 @@ inpath () {
 
 choose_first () {
     for cmd in "$@"; do
-        inpath "$cmd" && printf "$cmd" && break
+        inpath "$cmd" && printf "%s" "$cmd" && break
     done
 }
