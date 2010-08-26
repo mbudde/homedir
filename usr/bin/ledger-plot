@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+import sys
+import datetime
+import subprocess
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
+import datetime
+import numpy
+
+
+def parse_input(inputdata):
+    data = []
+    for line in inputdata:
+        if ' ' not in line:
+            continue
+        datestr, totalstr = line.split()
+        dt = datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
+        total = float(totalstr)
+        data.append((dt, total))
+    return data
+
+def cleanup_data(data):
+    x = []
+    y = []
+    curitem = data.pop(0)
+    nextitem = data.pop(0)
+    while True:
+        curdate = curitem[0]
+        if nextitem[0] != curdate:
+            x.append(curdate)
+            y.append(curitem[1])
+        if (nextitem[0] - curdate).days > 1:
+            x.append(nextitem[0] - datetime.timedelta(1))
+            y.append(curitem[1])
+        if not data:
+            x.append(nextitem[0])
+            y.append(nextitem[1])
+            # Insert todays date if the last entry is in the past
+            today = datetime.date.today()
+            if (today - nextitem[0]).days > 0:
+                x.append(today)
+                y.append(nextitem[1])
+            break
+        curitem = nextitem
+        nextitem = data.pop(0)
+    return x, y
+
+def linreg_data(x, y):
+    linreg = numpy.polyfit([d.toordinal() for d in x], y, 1)
+    def f(x):
+        return linreg[0] * x.toordinal() + linreg[1]
+    x2 = [x[0], x[-1]]
+    return x2, [f(a) for a in x2]
+
+def plot_data(x, y):
+    plt.plot(x, y, '-b',
+                  color='#0077cc',
+                  linewidth=2.5)
+    plt.fill_between(x, y,
+                     facecolor='#d9eaf7',
+                     linewidth=0)
+    w = [a < 0 for a in y]
+    plt.fill_between(x, y,
+                     where=w,
+                     facecolor='#f7dbda',
+                     linewidth=0)
+    x2, y2 = linreg_data(x, y)
+    plt.plot(x2, y2, '-r',
+             alpha=0.2,
+             linewidth=2)
+    # plt.ylim(ymin=0)
+    plt.grid(True)
+    plt.show()
+
+def main():
+    inputdata = subprocess.Popen(['ledger'] + sys.argv[1:], stdout=subprocess.PIPE).communicate()[0].split('\n')
+    data = parse_input(inputdata)
+    x, y = cleanup_data(data)
+    for z in zip(x, y):
+        print z
+    plot_data(x, y)
+
+if __name__ == '__main__':
+    main()
