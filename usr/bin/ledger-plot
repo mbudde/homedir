@@ -76,8 +76,6 @@ def main():
     inputdata = subprocess.Popen(['ledger'] + sys.argv[1:], stdout=subprocess.PIPE).communicate()[0].split('\n')
     data = parse_input(inputdata)
     x, y = cleanup_data(data)
-    for z in zip(x, y):
-        print z
     plot_data(x, y)
 
 if __name__ == '__main__':
