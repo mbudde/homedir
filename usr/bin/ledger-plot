@@ -20,8 +20,8 @@ def parse_input(inputdata):
     return data
 
 def cleanup_data(data):
-    x = []
-    y = []
+    x, y = [], []
+    data = sorted(data, key=lambda i: i[0])
     curitem = data.pop(0)
     nextitem = data.pop(0)
     while True:
