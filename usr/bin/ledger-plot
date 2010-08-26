@@ -6,6 +6,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import datetime
 import numpy
+import optparse
 
 
 def parse_input(inputdata):
@@ -52,7 +53,7 @@ def linreg_data(x, y):
     x2 = [x[0], x[-1]]
     return x2, [f(a) for a in x2]
 
-def plot_data(x, y):
+def plot_data(x, y, plot_regression=False):
     plt.plot(x, y, '-b',
                   color='#0077cc',
                   linewidth=2.5)
@@ -64,19 +65,26 @@ def plot_data(x, y):
                      where=w,
                      facecolor='#f7dbda',
                      linewidth=0)
-    x2, y2 = linreg_data(x, y)
-    plt.plot(x2, y2, '-r',
-             alpha=0.2,
-             linewidth=2)
+    if plot_regression:
+        x2, y2 = linreg_data(x, y)
+        plt.plot(x2, y2, '-r',
+                 alpha=0.2,
+                 linewidth=2)
     # plt.ylim(ymin=0)
     plt.grid(True)
     plt.show()
 
 def main():
-    inputdata = subprocess.Popen(['ledger'] + sys.argv[1:], stdout=subprocess.PIPE).communicate()[0].split('\n')
+    parser = optparse.OptionParser()
+    parser.add_option('--plot-reg', action='store_true', dest='reg',
+                      help='plot linear regression line')
+    options, args = parser.parse_args()
+    if not args:
+        args = ['-J', 'reg', 'bank']
+    inputdata = subprocess.Popen(['ledger'] + args, stdout=subprocess.PIPE).communicate()[0].split('\n')
     data = parse_input(inputdata)
     x, y = cleanup_data(data)
-    plot_data(x, y)
+    plot_data(x, y, plot_regression=options.reg)
 
 if __name__ == '__main__':
     main()
