@@ -1,0 +1,122 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mbudde}
+
+\RequirePackage{etoolbox}
+%% \RequirePackage{xkeyval}
+\RequirePackage{xifthen}
+
+\newcommand\mb@createoption[2][]%
+    {\newtoggle{mb@opt#2}
+     \DeclareOption{#2}{\toggletrue{mb@opt#2}}
+     \ifthenelse{\equal{#1}{}}%
+       {\DeclareOption{no#2}{\togglefalse{mb@opt#2}}}%
+       {\DeclareOption{#1}{\togglefalse{mb@opt#2}}}}
+
+\newcommand\mb@getoption[1]{mb@opt#1}
+
+\mb@createoption{sets}
+\mb@createoption{arrows}
+\mb@createoption{units}
+\mb@createoption{short}
+\mb@createoption{vectors}
+\mb@createoption{textlogic}
+\mb@createoption[lmodern]{iwona}
+\mb@createoption{biblatex}
+\mb@createoption{english}
+
+\ExecuteOptions{arrows,units,short,vectors,lmodern,textlogic,sets}
+\ProcessOptions\relax
+
+% Default included packages {{{
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+\RequirePackage[babel]{csquotes}
+\RequirePackage{graphicx}
+\RequirePackage{icomma}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{booktabs}
+
+\DeclareMathOperator{\Dm}{Dm}
+\DeclareMathOperator{\Vm}{Vm}
+% }}}
+
+\iftoggle{\mb@getoption{english}}%
+  {\RequirePackage[english]{babel}}%
+  {\RequirePackage[english,danish]{babel}
+   \addto\captionsdanish{
+       \renewcommand\contentsname{Indholdsfortegnelse}
+       \renewcommand\refname{Litteraturliste}}
+   \captionsdanish}
+
+
+\iftoggle{\mb@getoption{arrows}}%
+  {\renewcommand\iff{\ \Leftrightarrow\ }
+   \renewcommand\implies{\ \Rightarrow\ }
+   \newcommand\lrarr{\ \Leftrightarrow\ }
+   \newcommand\Lrarr{\quad\Leftrightarrow\quad}
+   \newcommand\rarr{\ \Rightarrow\ }
+   \newcommand\Rarr{\quad\Rightarrow\quad}
+   \newcommand\larr{\ \Leftarrow\ }
+   \newcommand\Larr{\quad\Leftarrow\quad}}%
+  {}
+  
+\iftoggle{\mb@getoption{units}}%
+  {\RequirePackage{siunitx}
+   \sisetup{
+       per=slash,
+       unitsep=cdot,
+       valuesep=thin,
+       decimalsymbol=comma,
+       expproduct=cdot,
+       digitsep=thin,
+       sepfour=false,
+	   alsoload=astro}}%
+  {}
+
+\iftoggle{\mb@getoption{sets}}%
+  {\newcommand{\Integer}{\mathbb{Z}}
+   \newcommand{\Natural}{\mathbb{N}}
+   \newcommand{\Real}{\mathbb{R}}
+   \newcommand{\Complex}{\mathbb{C}}
+   \newcommand{\Rational}{\mathbb{Q}}}%
+  {}
+
+\iftoggle{\mb@getoption{vectors}}%
+  {\RequirePackage[e]{esvect}
+   \newcommand{\vecarr}[3]{\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}}%
+  {}
+
+\iftoggle{\mb@getoption{iwona}}%
+  {\RequirePackage[math]{iwona}}%
+  {\RequirePackage{lmodern}}
+
+\iftoggle{\mb@getoption{textlogic}}%
+  {\newcommand\og{\text{ og }}
+   \newcommand\qog{\quad\text{og}\quad}
+   \newcommand\eller{\text{ eller }}
+   \newcommand\qeller{\quad\text{eller}\quad}
+   \newcommand\for{\text{ for }}
+   \newcommand\qfor{\quad\text{for}\quad}}%
+ {}
+
+\iftoggle{\mb@getoption{short}}%
+  {\renewcommand\t{\text}
+   \iftoggle{\mb@getoption{sets}}%
+     {\let\Z\Integer
+      \let\N\Natural
+      \let\R\Real
+      \let\C\Complex
+      \let\Q\Rational}{}
+   \iftoggle{\mb@getoption{vectors}}
+     {\renewcommand\v{\vv}}
+     {\renewcommand\v{\vec}}}%
+  {}
+
+\iftoggle{\mb@getoption{biblatex}}%
+  {\usepackage[style=authortitle-ibid,bibtex8=true,maxnames=2,minnames=2]{biblatex}
+   \iftoggle{\mb@getoption{english}}{}
+     {\defbibheading{bibliography}{\section*{Litteraturliste}}}
+   \let\cite\footcite}%
+  {}
