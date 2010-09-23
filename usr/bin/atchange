@@ -4,17 +4,21 @@
 #       who wrote the original version as a shell script
 
 #  For current version and other information about this program, see:
-#  http://www.ccrnp.ncifcrf.gov/~toms/atchange.html
+#  http://alum.mit.edu/www/toms/atchange.html
 
-# Dr. Thomas D. Schneider
+# Thomas D. Schneider, Ph.D.
 # National Institutes of Health
 # National Cancer Institute
-# Center for Cancer Research Nanobiology Program
 # Molecular Information Theory Group
 # Frederick, Maryland  21702-1201
-# toms@ncifcrf.gov
-# permanent email: toms@alum.mit.edu (use only if first address fails)
-# http://www.ccrnp.ncifcrf.gov/~toms/
+# schneidt@mail.nih.gov
+# toms@alum.mit.edu (permanent)
+# http://alum.mit.edu/www/toms (permanent)
+
+#    version = 2.10 of atchange 2010 Jul 10
+# 2010 Jun 23, 2.10: TDS standardized and upgraded documentation; adjust indents
+# 2010 Jun 23, 2.091: Added support for globing in atchange file format.
+#                     by Andr\'e R Brodtkorb, http://babrodtk.at.ifi.uio.no
 
 #    version = 2.09 of atchange 2006 Mar 22
 # 2006 Mar 22, 2.09: Remove the -w to avoid a warning message:
@@ -77,11 +81,14 @@ if (@ARGV > 1) {		# it's a file and a command
 	$/ = "";			# paragraph mode
 	while(<PGM>) {			# first read the program
 		s/#.*\n/\n/g;
-		($file, $cmd) = /(\S*)\s+([^\000]+)/;
-		$cmd{$file} = $cmd;
-		unless ($file) { print $cmd{$file}; next; }
-		if ($file && ! $cmd{$file}) { warn "odd line"; next; };
-		$old{$file} = (stat($file))[9];	# mod time.
+		($file_string, $cmd) = /(\S*)\s+([^\000]+)/;
+                @files = glob($file_string);
+                foreach $file (@files) {
+		   $cmd{$file} = $cmd;
+		   unless ($file) { print $cmd{$file}; next; }
+		   if ($file && ! $cmd{$file}) { warn "odd line"; next; };
+		   $old{$file} = (stat($file))[9];	# mod time.
+                }
 	}
 }
 
