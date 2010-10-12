@@ -2,6 +2,8 @@
 [user]
 	name = Michael Budde
 	email = mbudde@gmail.com
+[core]
+	excludesfile = ~/.gitignore
 [alias]
 	st = status -sb
 	di = diff -B
@@ -18,16 +20,16 @@
 	graph = log --graph --oneline --all --decorate
 	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
 	squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+[diff]
+	renames = copies
+[push]
+	default = matching
 [color]
 	diff = auto
 	branch = auto
 	status = auto
 [color "diff"]
 	meta = yellow
-[core]
-	excludesfile = ~/.gitignore
-[diff]
-	renames = copies
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
@@ -40,7 +42,5 @@
 	insteadOf = githubp:
 [url "ssh://michael@home.mbudde.dk:9998/opt/git/"]
 	insteadOf = home:
-[push]
-	default = matching
 [github]
 	user = mbudde
