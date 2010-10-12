@@ -11,10 +11,13 @@
 	br = branch
 	h = help
 	rb = rebase
+	ri = rebase --interactive --autosquash
 	rt = remote
 	pr = pull --rebase
 	lg = log --stat --relative-date
 	graph = log --graph --oneline --all --decorate
+	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+	squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
 [color]
 	diff = auto
 	branch = auto
