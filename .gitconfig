@@ -13,7 +13,7 @@
 	br = branch
 	h = help
 	rb = rebase
-	ri = rebase --interactive --autosquash
+	ri = rebase --interactive
 	rt = remote
 	pr = pull --rebase
 	lg = log --stat --relative-date
@@ -24,6 +24,8 @@
 	renames = copies
 [push]
 	default = matching
+[rebase]
+	autosquash = true
 [color]
 	diff = auto
 	branch = auto
