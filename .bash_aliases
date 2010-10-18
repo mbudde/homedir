@@ -16,6 +16,7 @@ alias gvimr='gvim --servername "${GVIMSERVER}" --remote'
 alias e='emacsclient'
 alias ec='emacsclient -n'
 alias et='emacsclient -t'
+alias emacscompile='emacs -Q --batch -f batch-byte-compile'
 
 alias lfnid='fnid --separator=newline'
 alias llid='lid --separator=newline'
