@@ -6,7 +6,8 @@
 	excludesfile = ~/.gitignore
 [alias]
 	st = status -sb
-	di = diff -B
+	di = diff
+	dic = diff --cached
 	wdi = diff --color-words
 	co = checkout
 	ci = commit
