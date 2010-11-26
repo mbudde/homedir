@@ -44,7 +44,7 @@
 	insteadOf = github:
 [url "git@github.com:"]
 	insteadOf = githubp:
-[url "ssh://michael@home.mbudde.dk:9998/opt/git/"]
+[url "ssh://nas.home/opt/git/"]
 	insteadOf = home:
 [github]
 	user = mbudde
