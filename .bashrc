@@ -56,3 +56,6 @@ add_path ~/usr/bin/go
 if [ -f "$HOME/Documents/Regnskab/ledger.dat" ]; then
     export LEDGER="$HOME/Documents/Regnskab/ledger.dat"
 fi
+
+add_path ~/Code/android/android-sdk-linux_x86/tools
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
