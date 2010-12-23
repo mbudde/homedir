@@ -63,4 +63,5 @@ if [ -d "$HOME/Documents/AmazonEC2" ]; then
 fi
 
 add_path ~/Code/android/android-sdk-linux_x86/tools
+add_path ~/Code/android/android-sdk-linux_x86/platform-tools
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
