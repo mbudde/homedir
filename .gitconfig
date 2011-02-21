@@ -17,6 +17,7 @@
 	ri = rebase --interactive
 	rt = remote
 	pr = pull --rebase
+	ff = pull --ff-only
 	lg = log --stat --relative-date
 	graph = log --graph --oneline --all --decorate
 	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
