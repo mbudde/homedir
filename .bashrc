@@ -15,6 +15,7 @@ shopt -s checkwinsize
 [ -f ~/.bash_functions ] && . ~/.bash_functions
 source_if_exists /etc/bash_completion
 source_if_exists ~/.bash_aliases
+source_if_exists ~/etc/profile
 
 # make less more friendly for non-text input files, see lesspipe(1)
 inpath lesspipe && eval "$(lesspipe)"
