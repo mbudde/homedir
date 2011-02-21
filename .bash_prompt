@@ -125,4 +125,4 @@ prompt_command () {
     echo -ne "]0;${cwd}"
 }
 
-PROMPT_COMMAND=prompt_command
+export PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; prompt_command"
