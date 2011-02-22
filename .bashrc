@@ -63,6 +63,8 @@ if [ -d "$HOME/Documents/AmazonEC2" ]; then
     export EC2_CERT=$(ls -1 $HOME/Documents/AmazonEC2/cert-HDK*.pem | head -1)
 fi
 
-add_path ~/Code/android/android-sdk-linux_x86/tools
-add_path ~/Code/android/android-sdk-linux_x86/platform-tools
+ANDROID_SDK_PATH=~/Code/android/android-sdk-linux_x86
+add_path $ANDROID_SDK_PATH/tools
+add_path $ANDROID_SDK_PATH/platform-tools
+
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
