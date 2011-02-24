@@ -1,0 +1,14 @@
+[ui]
+username = Michael Budde <mbudde@gmail.com>
+
+[pager]
+pager = LESS='FSRX' less
+
+[extensions]
+pager =
+color =
+transplant =
+shelve =
+rebase =
+hgext.bookmarks =
+hggit =
