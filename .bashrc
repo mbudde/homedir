@@ -34,6 +34,7 @@ if [ "$TERM" != "dumb" -a "$TERM" != "cygwin" ]; then
 fi
 
 add_path ~/usr/bin
+add_path ~/.local/bin  # pip install binaries here
 add_path ~/.gem/ruby/1.8/bin
 add_path ~/usr/lib/python2.6/site-package PYTHONPATH
 
