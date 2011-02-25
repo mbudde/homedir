@@ -60,8 +60,8 @@ if [ -f "$HOME/Documents/Regnskab/ledger.dat" ]; then
 fi
 
 if [ -d "$HOME/Documents/AmazonEC2" ]; then
-    export EC2_PRIVATE_KEY=$(ls -1 $HOME/Documents/AmazonEC2/pk-HDK*.pem | head -1)
-    export EC2_CERT=$(ls -1 $HOME/Documents/AmazonEC2/cert-HDK*.pem | head -1)
+    export EC2_PRIVATE_KEY=$(ls -1 $HOME/Documents/AmazonEC2/pk-HDK*.pem 2>/dev/null | head -1)
+    export EC2_CERT=$(ls -1 $HOME/Documents/AmazonEC2/cert-HDK*.pem 2>/dev/null | head -1)
 fi
 
 ANDROID_SDK_PATH=~/Code/android/android-sdk-linux_x86
