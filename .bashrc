@@ -69,3 +69,8 @@ add_path $ANDROID_SDK_PATH/tools
 add_path $ANDROID_SDK_PATH/platform-tools
 
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+if inpath virtualenvwrapper.sh ; then
+    export WORKON_HOME=~/Code/envs
+    source $(which virtualenvwrapper.sh)
+fi

@@ -6,8 +6,3 @@
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
-
-if inpath virtualenvwrapper.sh ; then
-    export WORKON_HOME=~/Code/envs
-    source $(which virtualenvwrapper.sh)
-fi
