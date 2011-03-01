@@ -78,6 +78,12 @@ prompt_command () {
         fi
     }
 
+    virtualenv_prompt () {
+        if [ -n "$VIRTUAL_ENV" ]; then
+            printf "$(basename "$VIRTUAL_ENV")"
+        fi
+    }
+
     # /foo/bar/baz => /f/bar/baz
     # /f/bar/baz => /f/b/baz
     shorten_path () {
@@ -86,9 +92,10 @@ prompt_command () {
 
     git="$(git_prompt)"
     bzr="$(bzr_prompt)"
+    env="$(virtualenv_prompt)"
     hostname=$(hostname)
     cwd=$(pwd | sed "s|$HOME|~|")
-    let maxlen=${COLUMNS}-${#hostname}-${#git}-${#bzr}-20
+    let maxlen=${COLUMNS}-${#hostname}-${#git}-${#bzr}-${#env}-23
     [ $ret -ge 1 ] && let maxlen-=${#ret}-3
     while [ ${#cwd} -gt $maxlen ]; do
         newcwd=$(shorten_path "$cwd")
@@ -110,13 +117,17 @@ prompt_command () {
         bzr="${LBRACE}${CYAN}${bzr}${RBRACE} "
     fi
 
+    if [ -n "${env}" ]; then
+        env="${LBRACE}${LIGHT_PURPLE}${env}${RBRACE} "
+    fi
+
     if [ $ret -ge 1 ]; then
         ret="${LBRACE}${RED}${ret}${RBRACE} "
     else
         ret=""
     fi
 
-    infoline="${LBRACE}${BLUE}\#${RBRACE} ${LBRACE}${BLUE}\t${RBRACE} ${ret}${BLUE}\h${LIGHT_BLUE}:${BLUE}${cwd} ${git}${bzr}"
+    infoline="${LBRACE}${BLUE}\#${RBRACE} ${LBRACE}${BLUE}\t${RBRACE} ${env}${ret}${BLUE}\h${LIGHT_BLUE}:${BLUE}${cwd} ${git}${bzr}"
 
     PS1="${infoline}\n${PURPLE}\$ ${NO_COLOR}"
     PS2="${PURPLE}>${NO_COLOR} "
