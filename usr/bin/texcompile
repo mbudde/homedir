@@ -1,0 +1,14 @@
+#!/bin/sh
+
+maindoc="$1"
+if [ -z "$maindoc" ]; then
+    maindoc="document.tex"
+else
+    shift
+fi
+files="$(rubber-info --deps "$maindoc")"
+
+echo MAINDOC: $maindoc
+echo DEPS: $files
+
+while inotifywait -q -e modify $files ; do rubber -d $maindoc && echo DONE ; done
