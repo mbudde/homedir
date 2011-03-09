@@ -1,14 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 
-maindoc="$1"
-if [ -z "$maindoc" ]; then
-    maindoc="document.tex"
-else
-    shift
-fi
+maindoc="${1:-document.tex}"
 files="$(rubber-info --deps "$maindoc")"
 
 echo MAINDOC: $maindoc
 echo DEPS: $files
 
-while inotifywait -q -e modify $files ; do rubber -d $maindoc && echo DONE ; done
+# Do a first compile
+rubber -d $maindoc
+if [ -f "${maindoc%.tex}.pdf" ]; then
+    nohup evince "${maindoc%.tex}.pdf" >/dev/null 2>&1 &
+fi
+
+while inotifywait -q -e modify $files ; do
+    rubber -d $maindoc
+    echo DONE
+done
