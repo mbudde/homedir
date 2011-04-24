@@ -1,0 +1,51 @@
+#!/bin/sh
+
+force="no"
+version=
+
+get_versions() {
+    curl -s http://code.google.com/p/waf/downloads/list \
+        | egrep -o "waf-([0-9]+\.)*[0-9]+" \
+        | sort -V | uniq
+}
+
+download_version() {
+    echo "Downloading $1..."
+    curl "http://waf.googlecode.com/files/$1" > waf
+    chmod +x waf
+}
+
+download_waf() {
+    if [ -f waf -a "$force" != "yes" ]; then
+        echo "waf file already exists! use -f to overwrite"
+        exit 1
+    fi
+    if [ -n "$version" ]; then
+        download_version "$version"
+    else
+        download_version $(get_versions | tail -1)
+    fi
+}
+
+list_versions() {
+    for v in $(get_versions); do
+        echo $v
+    done
+    exit 0
+}
+
+action="download_waf"
+while [ -n "$1" ]; do
+    case "$1"
+        in
+        -f) force="yes" ;;
+        -v) shift
+            version="waf-$1" ;;
+        -l) action="list_versions" ;;
+        -h) echo "usage $0 [-f] [-v VERSION]"
+            exit 0 ;;
+    esac
+    shift
+done
+
+eval $action
