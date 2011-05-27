@@ -7,12 +7,13 @@ echo MAINDOC: $maindoc
 echo DEPS: $files
 
 # Do a first compile
-rubber -d $maindoc
+rubber -Wall -d $maindoc
 if [ -f "${maindoc%.tex}.pdf" ]; then
     nohup evince "${maindoc%.tex}.pdf" >/dev/null 2>&1 &
 fi
 
-while inotifywait -q -e modify $files ; do
-    rubber -d $maindoc
+while true; do
+    inotifywait -q -e modify $files
+    rubber -Wall -d $maindoc
     echo DONE
 done
