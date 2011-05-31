@@ -18,6 +18,7 @@
 	rt = remote
 	pr = pull --rebase
 	ff = pull --ff-only
+	mff = !git merge --ff-only
 	lg = log --stat --relative-date
 	graph = log --graph --oneline --all --decorate
 	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
@@ -26,7 +27,7 @@
 [diff]
 	renames = copies
 [push]
-	default = matching
+	default = upstream
 [rebase]
 	autosquash = true
 [color]
