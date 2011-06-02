@@ -64,14 +64,12 @@
 \iftoggle{\mb@getoption{units}}%
   {\RequirePackage{siunitx}
    \sisetup{
-       per=slash,
-       unitsep=cdot,
-       valuesep=thin,
-       decimalsymbol=comma,
-       expproduct=cdot,
-       digitsep=thin,
-       sepfour=false,
-	   alsoload=astro}}%
+       per-mode=symbol,
+       inter-unit-product=\cdot,
+       number-unit-product=\,,
+       output-decimal-marker={,},
+       exponent-product=\cdot,
+       load-configurations=abbreviations}}%
   {}
 
 \iftoggle{\mb@getoption{sets}}%
