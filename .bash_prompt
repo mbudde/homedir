@@ -136,4 +136,6 @@ prompt_command () {
     echo -ne "]0;${cwd}"
 }
 
-export PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; prompt_command"
+if echo $PROMPT_COMMAND | grep -v prompt_command >/dev/null ; then
+    export PROMPT_COMMAND="prompt_command ; ${PROMPT_COMMAND:-:}"
+fi
