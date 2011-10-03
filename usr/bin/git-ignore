@@ -1,54 +1,64 @@
-#!/bin/bash
+#!/bin/sh
 # Michael Budde <mbudde@gmail.com>
 # Add globs to .gitignore
 
-read -d '' USAGE <<"EOF"
-[options] [<glob>...]
+SUBDIRECTORY_OK=Yes
+OPTIONS_SPEC="\
+git ignore [options] [<glob>...]
+--
+a,add           add changes to index (only when using repo .gitignore)
+e,edit          opens an editor
+f,file=         use given file
+g,global        use global excludes file
+r,repo          use repo excludes file"
 
-Options:
-    -r              use repo excludes file
-    -g              use global excludes file
-    -f <FILE>       use given file
-    -e              opens an editor
-EOF
-SUBDIRECTORY_OK=1
 . "$(git --exec-path)/git-sh-setup"
 
-while getopts "hergf:" opt; do
-    case $opt in
-        e)
-            action="edit"
-            ;;
-        r)
-            file=${GIT_DIR}/info/exclude
-            ;;
-        g)
-            file=$(git config core.excludesfile) || \
+file=
+add_changes=
+while [ $# != 0 ]; do
+    case "$1" in
+        -a)
+            add_changes=t ;;
+        -e)
+            action=edit ;;
+        -r)
+            file="$GIT_DIR/info/exclude" ;;
+        -g)
+            file="$(git config core.excludesfile)" || \
                 die "Configuration option core.excludesfile is not set."
-            file=${file/~\//$HOME/}
+            eval file="$file" # force tilde expansion
             ;;
-        f)
-            file="$OPTARG"
+        -f)
+            shift
+            file="$1"
             ;;
-        h | \?)
-            usage
-            ;;
+        --)
+            shift; break ;;
     esac
+    shift
 done
-shift $((OPTIND-1))
 
+if [ "$add_changes" -a "$file" ]; then
+    die "Can only use -a/--add with repo .gitignore file"
+fi
 file=${file:-$(git rev-parse --show-cdup)".gitignore"}
+
 case ${action:-add} in
     edit)
         git_editor "$file"
         ;;
     add)
         if [ $# -eq 0 ]; then
-            LESS=${LESS:-FRSX} $(git var GIT_PAGER) -F "$file"
+            [ -f "$file" ] || die "Could not find file '$file'."
+            git_pager "$file"
         else
             for glob in "$@"; do
                 echo "$glob" >> "$file"
             done
+        fi
+        if [ -n "$add_changes" ]; then
+            git add -v "$file"
         fi
         ;;
 esac
