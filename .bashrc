@@ -49,11 +49,9 @@ export DEBFULLNAME=$FULLNAME
 export DEBEMAIL=$EMAIL
 
 # Google Go compilation env variables
-export GOROOT=/home/devel/forked/go
-export GOOS=linux
-export GOARCH=amd64
-export GOBIN=$HOME/usr/bin/go
-add_path ~/usr/bin/go
+export GOROOT=$HOME/Code/forked/go
+export GOBIN=$GOROOT/bin
+add_path $GOBIN
 
 if [ -f "$HOME/Documents/Regnskab/ledger.dat" ]; then
     export LEDGER="$HOME/Documents/Regnskab/ledger.dat"
