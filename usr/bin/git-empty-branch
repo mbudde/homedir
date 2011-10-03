@@ -1,0 +1,19 @@
+#!/bin/sh
+# Michael Budde <mbudde@gmail.com>
+# Create an empty branch
+set -e
+
+USAGE="<branchname>"
+SUBDIRECTORY_OK=1
+. "$(git --exec-path)/git-sh-setup"
+
+if [ $# != 1 ]; then
+    usage
+fi
+
+require_clean_work_tree "create empty branch"
+cd_to_toplevel
+
+git symbolic-ref HEAD "refs/heads/$1"
+rm .git/index
+git clean -fdxq
