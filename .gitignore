@@ -4,3 +4,4 @@
 .waf*
 .lock-wscript
 _build_
+a.out
