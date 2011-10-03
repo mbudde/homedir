@@ -1,6 +1,13 @@
 #!/bin/bash
 
 maindoc="${1:-document.tex}"
+
+if [ ! -f "$maindoc" ]; then
+    echo -n "No document named '$maindoc' found. "
+    echo "Specify the document name as the first argument." >&2
+    exit 1
+fi
+
 files="$(rubber-info --deps "$maindoc")"
 
 echo MAINDOC: $maindoc
