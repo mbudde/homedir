@@ -8,7 +8,7 @@ alias showd='cat ~/.savedir'
 alias god='cd "`cat ~/.savedir`"'
 
 alias :q=exit
-alias :e=$EDITOR
+alias :e="$EDITOR"
 
 export GVIMSERVER=GVIM
 alias gvimr='gvim --servername "${GVIMSERVER}" --remote'
