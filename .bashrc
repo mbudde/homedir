@@ -34,9 +34,6 @@ if [ "$TERM" != "dumb" -a "$TERM" != "cygwin" ]; then
 fi
 
 add_path ~/usr/bin
-add_path ~/.local/bin  # pip install binaries here
-add_path ~/.gem/ruby/1.8/bin
-add_path ~/usr/lib/python2.6/site-package PYTHONPATH
 
 export EDITOR="$(choose_first vim vi nano)"
 export VISUAL="$(choose_first "gvim --remote-wait")"
@@ -48,11 +45,6 @@ export EMAIL='mbudde@gmail.com'
 export DEBFULLNAME=$FULLNAME
 export DEBEMAIL=$EMAIL
 
-# Google Go compilation env variables
-export GOROOT=$HOME/Code/forked/go
-export GOBIN=$GOROOT/bin
-add_path $GOBIN
-
 if [ -f "$HOME/Documents/Regnskab/ledger.dat" ]; then
     export LEDGER="$HOME/Documents/Regnskab/ledger.dat"
 fi
@@ -60,23 +52,4 @@ fi
 if [ -d "$HOME/Documents/AmazonEC2" ]; then
     export EC2_PRIVATE_KEY=$(ls -1 $HOME/Documents/AmazonEC2/pk-HDK*.pem 2>/dev/null | head -1)
     export EC2_CERT=$(ls -1 $HOME/Documents/AmazonEC2/cert-HDK*.pem 2>/dev/null | head -1)
-fi
-
-ANDROID_SDK_PATH=~/Code/android/android-sdk-linux_x86
-add_path $ANDROID_SDK_PATH/tools
-add_path $ANDROID_SDK_PATH/platform-tools
-
-export JAVA_HOME=/usr/lib/jvm/java-6-sun
-
-if inpath virtualenvwrapper.sh ; then
-    export WORKON_HOME=~/Code/envs
-    source $(which virtualenvwrapper.sh)
-fi
-
-# TeXLive setup
-add_path /usr/local/texlive/2010/bin/x86_64-linux
-alias tlmgr='sudo /usr/local/texlive/2010/bin/x86_64-linux/tlmgr'
-
-if [ -d "$HOME/opt/vala" ]; then
-    add_path ~/opt/vala/bin
 fi
