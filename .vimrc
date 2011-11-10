@@ -1,6 +1,23 @@
 " vimrc file for Michael Budde <mbudde@gmail.com>
 "
 
+
+set rtp+=~/.vam/vim-addon-manager
+call vam#ActivateAddons([
+            \ 'Align294',
+            \ 'DetectIndent',
+            \ 'FuzzyFinder',
+            \ 'indentpython974',
+            \ 'JavaScript_Indent',
+            \ 'python30',
+            \ 'surround',
+            \ 'The_NERD_Commenter',
+            \ 'The_NERD_tree',
+            \ 'vim-coffee-script',
+            \ 'vimroom'
+            \ ])
+
+
 " General settings {{{1
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -19,7 +36,8 @@ set expandtab
 set foldcolumn=0
 set foldmethod=syntax
 set formatoptions+=l " Don't break long lines when entering insert mode
-set guifont=Monospace\ 9
+set guifont=Ubuntu\ Mono\ 12
+set hidden
 set history=30
 set ignorecase smartcase
 set incsearch
@@ -41,8 +59,11 @@ set tags+=~/.vim/tags
 set nowrap
 " :sort /set \(no\)\?/
 
+" FuzzyFinder
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 
 let NERDShutUp=1     " Make NERDCommenter shut up.
+let NERDSpaceDelims=1
 
 let g:tags_dirs = '.'
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
@@ -54,6 +75,12 @@ let g:netrw_list_hide = "\.pyc$,\.swp$,^\\..*/$,\.a$,\.o$,\.so$"
 if has("gui_running")
     set guioptions-=T
     set guioptions+=c
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=m  " default to no menu
+    command! Menu set guioptions+=m
     command! NoMenu set guioptions-=m
 endif
 
@@ -82,6 +109,8 @@ autocmd BufRead,BufNewFile wscript* set filetype=python
 autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
 autocmd BufRead,BufNewFile *.mac set filetype=maxima
 autocmd BufRead,BufNewFile *.pde set filetype=java
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.mdown set filetype=markdown
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
@@ -110,6 +139,13 @@ let python_highlight_numbers = 1
 "let python_highlight_exceptions = 1
 
 " }}}2
+
+" HTML/Javascript/CoffeeScript settings {{{2
+
+autocmd FileType {html*,javascript,coffee} setlocal shiftwidth=2 tabstop=2
+
+" }}}2
+
 
 " LaTeX-Suite settings {{{2
 
@@ -142,11 +178,12 @@ let go_highlight_trailing_whitespace_error = 0
 
 " Mappings {{{1
 
+nmap - :NERDTree<CR>
+
 map <expr> <F4> ':!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS ' . g:tags_dirs . '<CR>'
 map <silent> <F8> :TlistToggle<CR>
-nmap <F9> :e %:h<CR>
 nmap <S-F9> :15split +:e\ %:h<CR>
-nmap <F10> :cd %:h<CR>
+nmap <F9> :cd %:h<CR>
 nmap <silent> <F12>
     \ :if filereadable("./waf") <Bar>
     \   !./waf<CR> <Bar>
@@ -154,11 +191,6 @@ nmap <silent> <F12>
     \   !waf<CR> <Bar>
     \ endif<CR>
 nmap <S-F12> :!./waf 
-
-" maps for options
-nmap <Leader>ow :set wrap!<CR>
-nmap <Leader>oh :set hlsearch!<CR>
-nmap <Leader>oi :set list!<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
@@ -171,10 +203,11 @@ nmap <Leader>f :bn<CR>
 nmap <Leader>d :bp<CR>
 nmap <Leader>e :b#<CR>
 nmap <Leader>q :bd<CR>
+nmap <Leader>Q :w<CR>:bd<CR>
 
 " maps for moving through tabs
-"nmap <C-S-h> gT
-"nmap <C-S-l> gt
+nmap <A-h> gT
+nmap <A-l> gt
 nmap <A-1> :tabn 1<CR>
 nmap <A-2> :tabn 2<CR>
 nmap <A-3> :tabn 3<CR>
@@ -193,11 +226,16 @@ imap <C-s> <ESC>:w<CR>
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-"map j gj
-"map k gk
+map j gj
+map k gk
 
 " Copy from mark a to current line and go back to current line
 nmap <C-y> "+y'a<C-o>
+
+" maps for options
+nmap <Leader>ow :set wrap!<CR>
+nmap <Leader>oh :set hlsearch!<CR>
+nmap <Leader>oi :set list!<CR>
 
 " Highlight long lines
 nnoremap <silent> <Leader>ol
@@ -209,6 +247,18 @@ nnoremap <silent> <Leader>ol
     \ else <Bar>
     \   let w:long_line_match = matchadd('Error', '\%>80v.\+', -1) <Bar>
     \ endif<CR>
+
+nnoremap <silent> <Leader>sj     :FufBuffer<CR>
+nnoremap <silent> <Leader>sl     :FufCoverageFile<CR>
+nnoremap <silent> <Leader>sL     :FufCoverageFileRegister<CR>
+nnoremap <silent> <Leader>sf     :FufFileWithCurrentBufferDir<CR>
+nnoremap <silent> <Leader>sF     :FufFile<CR>
+nnoremap <silent> <Leader>sbd    :FufBookmarkDir<CR>
+nnoremap <silent> <Leader>sBd    :FufBookmarkDirAdd<CR>
+nnoremap <silent> <Leader>sbf    :FufBookmarkFile<CR>
+nnoremap <silent> <Leader>sBf    :FufBookmarkFileAdd<CR>
+nnoremap <silent> <Leader>sC     :FufRenewCache<CR>
+
 
 " }}}1
 
@@ -229,4 +279,6 @@ iab bash#! #!/bin/bash
 
 
 " }}}1
+
+au! BufWritePost .vimrc source %
 
