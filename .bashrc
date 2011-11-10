@@ -38,8 +38,8 @@ add_path ~/.local/bin  # pip install binaries here
 add_path ~/.gem/ruby/1.8/bin
 add_path ~/usr/lib/python2.6/site-package PYTHONPATH
 
-export EDITOR="$(choose_first emacsclient vim vi nano)"
-#export VISUAL="gvim -f"
+export EDITOR="$(choose_first vim vi nano)"
+export VISUAL="$(choose_first "gvim --remote-wait")"
 export ALTERNATE_EDITOR=""
 
 export FULLNAME='Michael Budde'
