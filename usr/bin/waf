@@ -8,7 +8,7 @@ find_waf() {
         wafbin="$dir/waf"
         if [ "$wafbin" != "$this_script" ]; then
             tried="$tried  $wafbin\n"
-            if [ -x "$wafbin" ]; then
+            if [ -f "$wafbin" -a -x "$wafbin" ]; then
                 echo "$wafbin"
                 return 0
             fi
