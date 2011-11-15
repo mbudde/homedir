@@ -13,6 +13,7 @@ export HISTCONTROL=ignoredups
 shopt -s checkwinsize
 
 [ -f ~/.bash_functions ] && . ~/.bash_functions
+add_path ~/usr/bin
 source_if_exists /etc/bash_completion
 source_if_exists ~/.bash_aliases
 source_if_exists ~/etc/profile
@@ -33,7 +34,6 @@ if [ "$TERM" != "dumb" -a "$TERM" != "cygwin" ]; then
     source_if_exists ~/.bash_prompt
 fi
 
-add_path ~/usr/bin
 
 export EDITOR="$(choose_first vim vi nano)"
 export VISUAL="$(choose_first "gvim --remote-wait")"

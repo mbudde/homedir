@@ -11,7 +11,7 @@ up () {
 add_path () {
     local varname=${2:-PATH}
     local varcontent=$(eval echo \$$varname)
-    [ -d "$1" ] && eval export $varname=\"$1:$varcontent\"
+    [ -d "$1" ] && [[ $varcontent != *$1* ]] && eval export $varname=\"$varcontent:$1\"
 }
 
 source_if_exists () {
