@@ -20,7 +20,6 @@ source_if_exists ~/etc/profile
 
 # make less more friendly for non-text input files, see lesspipe(1)
 inpath lesspipe && eval "$(lesspipe)"
-inpath lessfile && eval "$(lessfile)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
