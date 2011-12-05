@@ -115,3 +115,5 @@ EXEC 01;32
 .pdf 36
 .ps 36
 .dvi 36
+.aux 37
+.log 37
