@@ -22,12 +22,12 @@ fi
 
 NAME="${DIST}-${ARCH}"
 
-
-BASETGZ="/var/cache/pbuilder/${NAME}-base.tgz"
+PBUILDER_ROOT="/home/pbuilder"
+BASETGZ="${PBUILDER_ROOT}/${NAME}-base.tgz"
 DISTRIBUTION="${DIST}"
-BUILDRESULT="$(realpath ..)/result/${NAME}/"
-APTCACHE="/var/cache/pbuilder/${NAME}/aptcache/"
-BUILDPLACE="/var/cache/pbuilder/build/"
+BUILDRESULT="$(readlink -f ..)/result/${NAME}"
+APTCACHE="${PBUILDER_ROOT}/${NAME}/aptcache"
+BUILDPLACE="${PBUILDER_ROOT}/build"
 
 MIRRORSITE="http://${UBUNTU_MIRROR}/ubuntu/"
 COMPONENTS="main restricted universe multiverse"
