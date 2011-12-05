@@ -5,3 +5,4 @@
 .lock-wscript
 _build_
 a.out
+*.fdb_latexmk
