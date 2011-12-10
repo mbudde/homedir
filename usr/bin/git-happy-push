@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git push "$@"
+[ "$?" -eq 0 ] && sh ~/usr/share/sounds/happy-kids || sh ~/usr/share/sounds/noooooooo
