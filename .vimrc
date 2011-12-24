@@ -17,6 +17,8 @@ call vam#ActivateAddons([
             \ 'vimroom'
             \ ])
 
+" Go syntax and filetype plugins
+set rtp+=$GOROOT/misc/vim
 
 " General settings {{{1
 
