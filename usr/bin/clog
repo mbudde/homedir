@@ -1,3 +1,9 @@
 #!/bin/sh
 
-echo [`date`] "$@" >> ~/.system_changelog
+SYSTEM_CHANGELOG=${SYSTEM_CHANGELOG:-~/.system_changelog}
+
+if [ -z "$1" ]; then
+    less ${LESS:--RSX} $SYSTEM_CHANGELOG
+else
+    echo [`date`] "$@" | tee -a $SYSTEM_CHANGELOG
+fi
