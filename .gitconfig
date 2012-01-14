@@ -17,8 +17,6 @@
 	ri = rebase --interactive
 	rt = remote
 	pr = pull --rebase
-	ff = pull --ff-only
-	mff = !git merge --ff-only
 	lg = log --stat --relative-date
 	graph = log --graph --oneline --all --decorate
 	ppp = !git push || git pull && git push
