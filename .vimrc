@@ -1,30 +1,31 @@
 " vimrc file for Michael Budde <mbudde@gmail.com>
 "
 
+set nocompatible
+filetype off
 
-set rtp+=~/.vam/vim-addon-manager
-call vam#ActivateAddons([
-            \ 'Align294',
-            \ 'DetectIndent',
-            \ 'FuzzyFinder',
-            \ 'indentpython974',
-            \ 'JavaScript_Indent',
-            \ 'python30',
-            \ 'surround',
-            \ 'The_NERD_Commenter',
-            \ 'The_NERD_tree',
-            \ 'vim-coffee-script',
-            \ 'vimroom'
-            \ ])
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'ciaranm/detectindent'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+
+Bundle 'Align'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'JavaScript-Indent'
+Bundle 'indentpython.vim'
+Bundle 'python.vim--Vasiliev'
 
 " Go syntax and filetype plugins
 set rtp+=$GOROOT/misc/vim
 
 " General settings {{{1
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 filetype plugin indent on
 
