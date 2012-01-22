@@ -1,4 +1,5 @@
 # -*- indent-tabs-mode: t -*-
+# vim: set noexpandtab:
 [user]
 	name = Michael Budde
 	email = mbudde@gmail.com
@@ -31,11 +32,11 @@
 [rebase]
 	autosquash = true
 [color]
-	diff = auto
-	branch = auto
-	status = auto
+	ui = auto
 [color "diff"]
 	meta = yellow
+[color "grep"]
+    filename = magenta
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Ubuntu Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
