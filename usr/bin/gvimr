@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gvim --servername "${GVIMSERVER}" --remote "$@"

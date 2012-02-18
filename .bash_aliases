@@ -11,9 +11,6 @@ alias god='cd "`cat ~/.savedir`"'
 alias :q=exit
 alias :e="$EDITOR"
 
-export GVIMSERVER=GVIM
-alias gvimr='gvim --servername "${GVIMSERVER}" --remote'
-
 alias e='emacsclient'
 alias ec='emacsclient -n'
 alias et='emacsclient -t'
