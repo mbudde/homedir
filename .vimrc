@@ -251,6 +251,11 @@ nnoremap <silent> <Leader>ol
     \   let w:long_line_match = matchadd('Error', '\%>80v.\+', -1) <Bar>
     \ endif<CR>
 
+
+let g:fuf_keyPreview = '<C-p>'
+let g:fuf_keyPreview = '<C-p>'
+let g:fuf_buffer_keyDelete = '<C-d>'
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pdf|fdb_latexmk|pyc)$|(^|[/\\])\.(hg|git|bzr|svn)($|[/\\])'
 nnoremap <silent> <Leader>sj     :FufBuffer<CR>
 nnoremap <silent> <Leader>sl     :FufCoverageFile<CR>
 nnoremap <silent> <Leader>sL     :FufCoverageFileRegister<CR>
@@ -260,7 +265,9 @@ nnoremap <silent> <Leader>sbd    :FufBookmarkDir<CR>
 nnoremap <silent> <Leader>sBd    :FufBookmarkDirAdd<CR>
 nnoremap <silent> <Leader>sbf    :FufBookmarkFile<CR>
 nnoremap <silent> <Leader>sBf    :FufBookmarkFileAdd<CR>
-nnoremap <silent> <Leader>sC     :FufRenewCache<CR>
+nnoremap <silent> <Leader>sr     :FufRenewCache<CR>
+nnoremap <silent> <Leader>si     :FufLine<CR>
+nnoremap <silent> <Leader>sc     :FufChangeList<CR>
 
 
 " }}}1
