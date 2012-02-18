@@ -202,6 +202,8 @@ nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 
+imap kj <Esc>
+
 " maps for buffers
 nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
