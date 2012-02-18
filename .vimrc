@@ -240,9 +240,9 @@ map k gk
 nmap <C-y> "+y'a<C-o>
 
 " maps for options
-nmap <Leader>ow :set wrap!<CR>
-nmap <Leader>oh :set hlsearch!<CR>
-nmap <Leader>oi :set list!<CR>
+nmap <Leader>ow :setlocal wrap!<CR>
+nmap <Leader>oh :setlocal hlsearch!<CR>
+nmap <Leader>oi :setlocal list!<CR>
 
 " Highlight long lines
 nnoremap <silent> <Leader>ol
