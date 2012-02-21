@@ -1,6 +1,6 @@
 
 if [ -d ~/etc/profile.d ]; then
-  for i in ~/etc/profile.d/*; do
+  for i in ~/etc/profile.d/*.bash; do
     if [ -r $i ]; then
       . $i
     fi
