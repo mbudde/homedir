@@ -18,6 +18,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'frimik/vim-puppet'
 
 Bundle 'Align'
+Bundle 'bufkill.vim'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'JavaScript-Indent'
@@ -210,7 +211,9 @@ nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
 nmap <Leader>d :bp<CR>
 nmap <Leader>e :b#<CR>
-nmap <Leader>q :bd<CR>
+nmap <Leader>q :BD<CR>
+nmap <Leader>Q :bd<CR>
+nmap <Leader>w :w<CR>:BD<CR>
 nmap <Leader>Q :w<CR>:bd<CR>
 
 " maps for moving through tabs
