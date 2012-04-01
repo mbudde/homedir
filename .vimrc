@@ -23,6 +23,7 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'JavaScript-Indent'
 Bundle 'indentpython.vim'
+Bundle 'keepcase.vim'
 Bundle 'python.vim--Vasiliev'
 
 " Go syntax and filetype plugins
