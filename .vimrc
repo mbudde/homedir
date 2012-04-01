@@ -188,6 +188,7 @@ nmap - :NERDTree<CR>
 
 map <expr> <F4> ':!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS ' . g:tags_dirs . '<CR>'
 nmap <F7> mp:%s/\s\+$//e<CR>'p
+vmap <F7> :s/\s\+$//e<CR>
 map <silent> <F8> :TlistToggle<CR>
 nmap <S-F9> :15split +:e\ %:h<CR>
 nmap <F9> :cd %:h<CR>
