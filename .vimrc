@@ -215,7 +215,7 @@ nmap <Leader>e :b#<CR>
 nmap <Leader>q :BD<CR>
 nmap <Leader>Q :bd<CR>
 nmap <Leader>w :w<CR>:BD<CR>
-nmap <Leader>Q :w<CR>:bd<CR>
+nmap <Leader>W :w<CR>:bd<CR>
 
 " maps for moving through tabs
 nmap <A-h> gT
