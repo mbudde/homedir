@@ -106,10 +106,10 @@ prompt_command () {
     done
 
     if [ -n "${git}" ];then
-        if [ "$(git status --porcelain 2>/dev/null | grep '^ M')" ]; then
-            git="${LBRACE}${YELLOW}${git}${RBRACE} "
-        else
+        if git diff-index --quiet HEAD 2>/dev/null ; then
             git="${LBRACE}${GREEN}${git}${RBRACE} "
+        else
+            git="${LBRACE}${YELLOW}${git}${RBRACE} "
         fi
     fi
 
