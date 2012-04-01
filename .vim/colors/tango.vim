@@ -33,7 +33,7 @@ hi LineNr       guifg=#303030 guibg=#000000 gui=none    ctermfg=black
 hi StatusLine   guifg=#c9c9c9 guibg=#242424 gui=italic
 hi StatusLineNC guifg=#707070 guibg=#242424 gui=none
 hi VertSplit    guifg=#242424 guibg=#242424 gui=none
-hi Folded       guifg=#a0a8b0 guibg=#384048 gui=none
+hi Folded       guifg=#000000 guibg=#121416 gui=none
 hi Title        guifg=#f6f3e8               gui=bold
 hi Visual                     guibg=#2b2b2b gui=none
 hi SpecialKey   guifg=#808080 guibg=#343434 gui=none
