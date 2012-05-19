@@ -117,3 +117,5 @@ EXEC 01;32
 .dvi 36
 .aux 37
 .log 37
+# python
+.pyc 30
