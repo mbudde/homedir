@@ -106,7 +106,7 @@ prompt_command () {
     done
 
     if [ -n "${git}" ];then
-        if git diff-index --quiet HEAD 2>/dev/null ; then
+        if git diff-index --quiet HEAD 2>/dev/null || [ $? == 128 ]; then
             git="${LBRACE}${GREEN}${git}${RBRACE} "
         else
             git="${LBRACE}${YELLOW}${git}${RBRACE} "
