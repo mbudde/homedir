@@ -118,6 +118,8 @@ autocmd BufRead,BufNewFile *.mac set filetype=maxima
 autocmd BufRead,BufNewFile *.pde set filetype=java
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.mdown set filetype=markdown
+autocmd BufRead,BufNewFile *.tup set filetype=tup
+autocmd BufRead,BufNewFile Tupfile set filetype=tup
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
