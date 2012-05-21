@@ -278,6 +278,13 @@ nnoremap <silent> <Leader>sr     :FufRenewCache<CR>
 nnoremap <silent> <Leader>si     :FufLine<CR>
 nnoremap <silent> <Leader>sc     :FufChangeList<CR>
 
+" Line swapping (http://vim.wikia.com/wiki/Moving_lines_up_or_down)
+nnoremap <A-j> :m+<CR>
+nnoremap <A-k> :m-2<CR>
+inoremap <A-j> <Esc>:m+<CR>gi
+inoremap <A-k> <Esc>:m-2<CR>gi
+vnoremap <A-j> :m'>+<CR>gv
+vnoremap <A-k> :m-2<CR>gv
 
 " }}}1
 
