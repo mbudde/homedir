@@ -66,9 +66,6 @@ set tags+=~/.vim/tags
 set nowrap
 " :sort /set \(no\)\?/
 
-" FuzzyFinder
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-
 let NERDShutUp=1     " Make NERDCommenter shut up.
 let NERDSpaceDelims=1
 
@@ -80,12 +77,12 @@ let g:netrw_hide = 1
 let g:netrw_list_hide = "\.pyc$,\.swp$,^\\..*/$,\.a$,\.o$,\.so$"
 
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=c
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
+    set guioptions-=T  " hide toolbar
+    set guioptions+=c  " use console dialogs
+    set guioptions-=l  " hide left scrollbar
+    set guioptions-=L  " hide left scrollbar when vertically split
+    set guioptions-=r  " hide right scrollbar
+    set guioptions-=R  " hide right scrollbar when vertically split
     set guioptions-=m  " default to no menu
     command! Menu set guioptions+=m
     command! NoMenu set guioptions-=m
@@ -264,7 +261,7 @@ nnoremap <silent> <Leader>ol
     \ endif<CR>
 
 
-let g:fuf_keyPreview = '<C-p>'
+" FuzzyFinder
 let g:fuf_keyPreview = '<C-p>'
 let g:fuf_buffer_keyDelete = '<C-d>'
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pdf|fdb_latexmk|pyc)$|(^|[/\\])\.(hg|git|bzr|svn)($|[/\\])'
