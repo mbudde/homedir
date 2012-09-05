@@ -17,6 +17,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'frimik/vim-puppet'
 Bundle 'pangloss/vim-javascript'
+Bundle 'sjl/gundo.vim'
 
 Bundle 'Align'
 Bundle 'bufkill.vim'
@@ -187,6 +188,7 @@ let go_highlight_trailing_whitespace_error = 0
 nmap - :NERDTree<CR>
 
 map <expr> <F4> ':!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS ' . g:tags_dirs . '<CR>'
+nnoremap <F5> :GundoToggle<CR>
 nmap <F7> mp:%s/\s\+$//e<CR>'p
 vmap <F7> :s/\s\+$//e<CR>
 map <silent> <F8> :TlistToggle<CR>
