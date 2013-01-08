@@ -20,6 +20,7 @@
 	pr = pull --rebase
 	lg = log --stat --relative-date
 	graph = log --graph --oneline --all --decorate
+	pusht = !git push && git push --tags
 	ppp = !git push || git pull && git push
 	pprp = !git push || git pr && git push
 	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
