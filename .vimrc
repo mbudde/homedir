@@ -18,6 +18,9 @@ Bundle 'tpope/vim-repeat'
 Bundle 'frimik/vim-puppet'
 Bundle 'pangloss/vim-javascript'
 Bundle 'sjl/gundo.vim'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'Align'
 Bundle 'bufkill.vim'
@@ -140,6 +143,7 @@ autocmd BufReadPost *
 autocmd FileType python setlocal textwidth=79
 autocmd FileType python setlocal foldmethod=indent
 autocmd Syntax python syn keyword pythonSelf self
+autocmd FileType python iab <buffer> ifmain if __name__ == '__main__':
 
 let python_highlight_numbers = 1
 "let python_highlight_builtins = 1
@@ -149,10 +153,13 @@ let python_highlight_numbers = 1
 
 " HTML/Javascript/CoffeeScript settings {{{2
 
-autocmd FileType {html*,javascript,coffee} setlocal shiftwidth=2 tabstop=2
+autocmd FileType {html*,javascript,coffee,php} setlocal shiftwidth=2 tabstop=2
 
 " }}}2
 
+" Haskell settings {{{2
+autocmd FileType haskell setlocal shiftwidth=2 tabstop=2
+" }}}2
 
 " LaTeX-Suite settings {{{2
 
@@ -180,6 +187,25 @@ autocmd FileType go setlocal noexpandtab
 let go_highlight_trailing_whitespace_error = 0
 
 " }}}2
+
+" {{{2 Ledger
+
+autocmd FileType ledger nmap <buffer> <Leader>m :call LedgerAmount(49, ',')<CR>
+autocmd FileType ledger imap <buffer> <Leader>m <Esc>:call LedgerAmount(49, ',')<CR>
+autocmd FileType ledger iab <buffer> AB Aktiver:Bankkonto
+
+" }}}2
+
+" }}}1
+
+" Project specific settings {{{1
+
+" Colligo/Refero {{{2
+
+autocmd BufRead /home/michael/Code/projects/viewworld/colligo/*/*.java setlocal noexpandtab
+
+" }}}2
+
 
 " }}}1
 
@@ -305,6 +331,26 @@ iab bash#! #!/bin/bash
 "command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 	 	"\ | wincmd p | diffthis
 
+
+func! GotoCol(pos)
+    exec "normal " . a:pos . "|"
+    let diff = a:pos - virtcol('.')
+    if diff > 0
+        exec "normal " . diff . "a "
+    endif
+endfunc
+
+func! LedgerAmount(col, sep)
+    call inputsave()
+    let amount = input("Amount: ")
+    call inputrestore()
+    if amount == ""
+        return
+    endif
+    let seppos = match(amount, a:sep)
+    call GotoCol(a:col - seppos - 1)
+    call setline('.', getline('.') . amount)
+endfunc
 
 " }}}1
 
