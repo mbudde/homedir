@@ -1,2 +1,2 @@
 # TeXLive setup
-add_path ~/opt/texlive/2011/bin/x86_64-linux
+add_path ~/opt/texlive/2012/bin/x86_64-linux
