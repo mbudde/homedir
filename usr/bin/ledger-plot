@@ -80,7 +80,7 @@ def main():
                       help='plot linear regression line')
     options, args = parser.parse_args()
     if not args:
-        args = ['-J', 'reg', 'bank']
+        args = ['-J', 'reg', 'aktiver', 'passiver']
     inputdata = subprocess.Popen(['ledger'] + args, stdout=subprocess.PIPE).communicate()[0].split('\n')
     data = parse_input(inputdata)
     x, y = cleanup_data(data)
