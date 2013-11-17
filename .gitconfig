@@ -5,6 +5,7 @@
 	email = mbudde@gmail.com
 [core]
 	excludesfile = ~/.gitignore
+	editor = vim
 [alias]
 	st = status -sb
 	di = diff
