@@ -15,12 +15,16 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-fugitive'
 Bundle 'frimik/vim-puppet'
 Bundle 'pangloss/vim-javascript'
 Bundle 'sjl/gundo.vim'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'kien/ctrlp.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'chriskempson/base16-vim'
 
 Bundle 'Align'
 Bundle 'bufkill.vim'
@@ -58,20 +62,24 @@ set linebreak
 set listchars=tab:→\ ,eol:¬,trail:·,extends:⇒
 set mouse=a          " In many terminal emulators the mouse works just fine, thus enable it.
 set number
+set relativenumber
 set ruler
 set scrolloff=5
 set shiftwidth=4
 set showbreak=»\ 
 set showcmd
 set nosmartindent
-set statusline=[%n]\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=[%n]\ %<%f\ %h%m%r\ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tabstop=4
 set tags+=~/.vim/tags
+set wildmode=longest:full
+set wildmenu
 set nowrap
 " :sort /set \(no\)\?/
 
 let NERDShutUp=1     " Make NERDCommenter shut up.
 let NERDSpaceDelims=1
+let NERDTreeQuitOnOpen=1
 
 let g:tags_dirs = '.'
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
@@ -98,7 +106,9 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if has("gui_running")
-    colorscheme tango
+    " colorscheme tango
+    colorscheme solarized
+    set background=light
 else
     set t_Co=16
     colorscheme wombat
@@ -121,6 +131,7 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.mdown set filetype=markdown
 autocmd BufRead,BufNewFile *.tup set filetype=tup
 autocmd BufRead,BufNewFile Tupfile set filetype=tup
+autocmd BufRead,BufNewFile *.ja set filetype=janus
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
@@ -135,6 +146,9 @@ autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+" Delete fugitive buffers when they are hidden.
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " }}}2
 
@@ -163,6 +177,7 @@ autocmd FileType haskell setlocal shiftwidth=2 tabstop=2
 
 " LaTeX-Suite settings {{{2
 
+let g:tex_indent_brace = 0
 autocmd FileType tex call <SID>TexFileSettings()
 function! s:TexFileSettings()
     imap <S-F4> binom<F7>
@@ -206,6 +221,9 @@ autocmd BufRead /home/michael/Code/projects/viewworld/colligo/*/*.java setlocal 
 
 " }}}2
 
+" YAML settings {{{2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+" }}}2
 
 " }}}1
 
@@ -220,13 +238,6 @@ vmap <F7> :s/\s\+$//e<CR>
 map <silent> <F8> :TlistToggle<CR>
 nmap <S-F9> :15split +:e\ %:h<CR>
 nmap <F9> :cd %:h<CR>
-nmap <silent> <F12>
-    \ :if filereadable("./waf") <Bar>
-    \   !./waf<CR> <Bar>
-    \ else <Bar>
-    \   !waf<CR> <Bar>
-    \ endif<CR>
-nmap <S-F12> :!./waf 
 
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
@@ -266,8 +277,8 @@ imap <C-s> <ESC>:w<CR>
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-map j gj
-map k gk
+" map j gj
+" map k gk
 
 " Copy from mark a to current line and go back to current line
 nmap <C-y> "+y'a<C-o>
@@ -305,6 +316,9 @@ nnoremap <silent> <Leader>sBf    :FufBookmarkFileAdd<CR>
 nnoremap <silent> <Leader>sr     :FufRenewCache<CR>
 nnoremap <silent> <Leader>si     :FufLine<CR>
 nnoremap <silent> <Leader>sc     :FufChangeList<CR>
+
+" Ctrl-P
+nmap <C-b> :CtrlPBuffer<CR>
 
 " Line swapping (http://vim.wikia.com/wiki/Moving_lines_up_or_down)
 nnoremap <A-j> :m+<CR>
