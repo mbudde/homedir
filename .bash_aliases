@@ -43,3 +43,6 @@ alias apsh='aptitude show'
 alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
 alias agp='sudo apt-get remove --purge'
+
+
+alias dquilt='quilt --quiltrc=${HOME}/.quiltrc-dpkg'
