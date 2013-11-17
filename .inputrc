@@ -20,6 +20,8 @@ set editing-mode emacs
 
 set completion-ignore-case on
 set completion-prefix-display-length 5
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
 
 
 "\ej": backward-char
@@ -41,3 +43,6 @@ set completion-prefix-display-length 5
 "\ev": yank
 "\e;": forward-search-history
 "\e:": reverse-search-history
+"\C-j": menu-complete
+"\C-k": menu-complete-backward
+
