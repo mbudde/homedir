@@ -3,3 +3,5 @@ remove Lock = Caps_Lock
 remove Mod5 = ISO_Level3_Shift
 keysym Caps_Lock = ISO_Level3_Shift
 keysym ISO_Level3_Shift = Alt_L
+keycode 192 = F14
+keycode 193 = F15
