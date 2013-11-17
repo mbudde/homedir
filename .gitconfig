@@ -32,6 +32,8 @@
 	default = upstream
 [rebase]
 	autosquash = true
+[fetch]
+	prune = true
 [color]
 	ui = auto
 [color "diff"]
