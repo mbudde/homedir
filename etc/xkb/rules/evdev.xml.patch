@@ -1,0 +1,15 @@
+--- evdev.xml	2014-01-10 11:56:23.522835881 +0100
++++ evdev.xml	2014-01-10 11:57:28.826838316 +0100
+@@ -2548,6 +2548,12 @@
+             <description>Danish (Dvorak)</description>
+           </configItem>
+         </variant>
++        <variant>
++          <configItem>
++            <name>mbudde</name>
++            <description>Danish (eliminate dead keys, MB variant)</description>
++          </configItem>
++        </variant>
+       </variantList>
+     </layout>
+     <layout>
