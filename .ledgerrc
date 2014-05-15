@@ -1,0 +1,3 @@
+--date-format %Y-%m-%d
+--price-db ~/Documents/Regnskab/prices.db
+--decimal-comma
