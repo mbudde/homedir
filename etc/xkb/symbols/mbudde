@@ -9,10 +9,6 @@ xkb_symbols "mbudde" {
     key <CAPS>	{ [ ISO_Level3_Shift, ISO_Level3_Shift, Caps_Lock ] };
     key <RALT>	{ [ ISO_Level3_Shift ] };
 
-    // Swap End and Ins so End key works in FnLk mode
-    key <INS>	{ [ End ] };
-    key <END>	{ [ Insert ] };
-
     // Remap brackets to better positions
     key <AC06>	{ [ h,  H,  braceleft    ] };
     key <AC07>	{ [ j,  J,  parenleft    ] };
@@ -31,3 +27,17 @@ xkb_symbols "mbudde" {
     key <AD09>	{ [ o,      O,          bar                      ] };
 
 };
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "mbudde_thinkpad" {
+
+    include "dk(mbudde)"
+
+    name[Group1]="Danish (MB variant on Thinkpad)";
+
+    // Swap End and Ins so End key works in FnLk mode
+    key <INS>	{ [ End ] };
+    key <END>	{ [ Insert ] };
+
+};
+
