@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cmd=$1
+shift
+
+if which ledger-$cmd &>/dev/null; then
+    ledger-$cmd "$@"
+else
+    ledger $cmd "$@"
+fi

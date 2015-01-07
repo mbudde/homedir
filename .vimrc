@@ -39,6 +39,8 @@ Bundle 'ReplaceWithRegister'
 " Go syntax and filetype plugins
 set rtp+=$GOROOT/misc/vim
 
+set rtp+=~/Code/cloned/rust/src/etc/vim
+
 " General settings {{{1
 
 filetype plugin indent on
@@ -135,6 +137,7 @@ autocmd BufRead,BufNewFile *.mdown set filetype=markdown
 autocmd BufRead,BufNewFile *.tup set filetype=tup
 autocmd BufRead,BufNewFile Tupfile set filetype=tup
 autocmd BufRead,BufNewFile *.ja set filetype=janus
+autocmd BufRead,BufNewFile *.rs set filetype=rust
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
