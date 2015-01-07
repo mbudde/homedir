@@ -372,6 +372,15 @@ func! LedgerAmount(col, sep)
     call setline('.', getline('.') . amount)
 endfunc
 
+function! OpenAll(arg)
+    let args=globpath(&path, a:arg)
+    for temp_file in split(args, '\n')
+        silent exec "e ".temp_file
+    endfor
+endfunction
+
+com! -nargs=1 Eglob call OpenAll('<args>')
+
 " }}}1
 
 au! BufWritePost .vimrc source %
