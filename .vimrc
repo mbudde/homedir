@@ -61,7 +61,7 @@ set incsearch
 set nojoinspaces
 set laststatus=2
 set linebreak
-set listchars=tab:→\ ,eol:¬,trail:·,extends:⇒
+set listchars=tab:→\ ,trail:·,extends:⇒
 set mouse=a          " In many terminal emulators the mouse works just fine, thus enable it.
 set number
 set relativenumber
