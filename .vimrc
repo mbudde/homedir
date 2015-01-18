@@ -110,7 +110,7 @@ endif
 if has("gui_running")
     " colorscheme tango
     colorscheme solarized
-    set background=light
+    set background=dark
 else
     set t_Co=16
     colorscheme wombat
