@@ -135,6 +135,7 @@ autocmd BufRead,BufNewFile *.tup set filetype=tup
 autocmd BufRead,BufNewFile Tupfile set filetype=tup
 autocmd BufRead,BufNewFile *.ja set filetype=janus
 autocmd BufRead,BufNewFile *.rs set filetype=rust
+autocmd BufRead,BufNewFile *.tikz set filetype=tex
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
