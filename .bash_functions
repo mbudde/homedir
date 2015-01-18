@@ -14,6 +14,12 @@ add_path () {
     [ -d "$1" ] && [[ $varcontent != *$1* ]] && eval export $varname=\"$varcontent:$1\"
 }
 
+prepend_path () {
+    local varname=${2:-PATH}
+    local varcontent=$(eval echo \$$varname)
+    [ -d "$1" ] && [[ $varcontent != *$1* ]] && eval export $varname=\"$1:$varcontent\"
+}
+
 source_if_exists () {
     [ -f "$1" ] && source $1
 }

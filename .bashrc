@@ -6,6 +6,7 @@
 [ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
+export HISTSIZE=2000
 export HISTCONTROL=ignoredups
 shopt -s histappend
 

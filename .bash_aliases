@@ -27,6 +27,8 @@ alias screengrab='ffmpeg -f x11grab -s 1280x1024 -r 25 -i :0 -sameq "$HOME/Video
 tree_pager () { tree -C "$@" | less ${LESS:--FRSX} ; }
 alias tree="tree_pager"
 
+alias lmk="latexmk -pvc"
+
 # aptitude aliases
 alias apu='sudo aptitude update'
 alias apug='sudo aptitude safe-upgrade'
