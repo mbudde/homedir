@@ -25,6 +25,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'chriskempson/base16-vim'
+Bundle 'danro/rename.vim'
 
 Bundle 'Align'
 Bundle 'bufkill.vim'
@@ -33,6 +34,7 @@ Bundle 'FuzzyFinder'
 Bundle 'indentpython.vim'
 Bundle 'keepcase.vim'
 Bundle 'python.vim--Vasiliev'
+Bundle 'ReplaceWithRegister'
 
 " Go syntax and filetype plugins
 set rtp+=$GOROOT/misc/vim
@@ -74,8 +76,9 @@ set nosmartindent
 set statusline=[%n]\ %<%f\ %h%m%r\ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tabstop=4
 set tags+=~/.vim/tags
-set wildmode=longest:full
+set wildignorecase
 set wildmenu
+set wildmode=longest:full,full
 set nowrap
 " :sort /set \(no\)\?/
 
@@ -239,7 +242,7 @@ map <expr> <F4> ':!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS ' . g:tags_dir
 nnoremap <F5> :GundoToggle<CR>
 nmap <F7> mp:%s/\s\+$//e<CR>`p
 vmap <F7> :s/\s\+$//e<CR>
-map <silent> <F8> :TlistToggle<CR>
+nnoremap <F8> :setl nocin nosi inde=<CR>
 nmap <S-F9> :15split +:e\ %:h<CR>
 nmap <F9> :cd %:h<CR>
 
@@ -344,6 +347,9 @@ iab py#! #!/usr/bin/env python
 iab sh#! #!/bin/sh
 iab bash#! #!/bin/bash
 
+" Current file directory expansion
+cabbr <expr> %% expand('%:p:h')
+
 " }}}1
 
 " Miscellaneous {{{1
@@ -373,6 +379,15 @@ func! LedgerAmount(col, sep)
     call GotoCol(a:col - seppos - 1)
     call setline('.', getline('.') . amount)
 endfunc
+
+function! OpenAll(arg)
+    let args=globpath(&path, a:arg)
+    for temp_file in split(args, '\n')
+        silent exec "e ".temp_file
+    endfor
+endfunction
+
+com! -nargs=1 Eglob call OpenAll('<args>')
 
 " }}}1
 
