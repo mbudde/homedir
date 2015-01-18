@@ -250,6 +250,10 @@ nmap <C-k> <C-w>k
 
 imap kj <Esc>
 
+cmap w!! w !sudo tee >/dev/null %
+
+vmap D ygv<Leader>c<Space>P
+
 " maps for buffers
 nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
