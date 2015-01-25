@@ -1,6 +1,7 @@
 # -*- sh-mode -*-
 
 # hgit completion
+
 source /usr/share/bash-completion/completions/git
 
 __hgit ()
@@ -9,3 +10,6 @@ __hgit ()
 }
 
 __git_complete hgit __hgit
+
+# rust
+source ~/opt/rust-nightly/etc/bash_completion.d/cargo
