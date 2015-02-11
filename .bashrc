@@ -14,11 +14,8 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-[ -f ~/.bash_functions ] && . ~/.bash_functions
-add_path ~/usr/bin
 source_if_exists /etc/bash_completion
 source_if_exists ~/.bash_aliases
-source_if_exists ~/etc/profile
 
 # make less more friendly for non-text input files, see lesspipe(1)
 inpath lesspipe && eval "$(lesspipe)"
