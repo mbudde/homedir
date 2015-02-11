@@ -12,4 +12,6 @@ __hgit ()
 __git_complete hgit __hgit
 
 # rust
-source ~/opt/rust-nightly/etc/bash_completion.d/cargo
+if [ -r ~/opt/rust-nightly/etc/bash_completion.d/cargo ]; then
+    source ~/opt/rust-nightly/etc/bash_completion.d/cargo
+fi
