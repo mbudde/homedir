@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+[ -f ~/.bash_functions ] && . ~/.bash_functions
+add_path ~/usr/bin
+source_if_exists ~/etc/profile
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
