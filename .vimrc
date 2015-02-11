@@ -268,18 +268,18 @@ nmap <Leader>w :w<CR>:BD<CR>
 nmap <Leader>W :w<CR>:bd<CR>
 
 " maps for moving through tabs
-nmap <A-h> gT
-nmap <A-l> gt
-nmap <A-1> :tabn 1<CR>
-nmap <A-2> :tabn 2<CR>
-nmap <A-3> :tabn 3<CR>
-nmap <A-4> :tabn 4<CR>
-nmap <A-5> :tabn 5<CR>
-nmap <A-6> :tabn 6<CR>
-nmap <A-7> :tabn 7<CR>
-nmap <A-8> :tabn 8<CR>
-nmap <A-9> :tabn 9<CR>
-"nmap <C-S-t> :tabnew<CR>
+nmap <Leader>D gT
+nmap <Leader>F gt
+" nmap <A-1> :tabn 1<CR>
+" nmap <A-2> :tabn 2<CR>
+" nmap <A-3> :tabn 3<CR>
+" nmap <A-4> :tabn 4<CR>
+" nmap <A-5> :tabn 5<CR>
+" nmap <A-6> :tabn 6<CR>
+" nmap <A-7> :tabn 7<CR>
+" nmap <A-8> :tabn 8<CR>
+" nmap <A-9> :tabn 9<CR>
+nmap <C-t> :tabnew<CR>
 
 " Easy saving
 nmap <C-s> :w<CR>
