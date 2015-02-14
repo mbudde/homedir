@@ -4,46 +4,46 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-Bundle 'ciaranm/detectindent'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-fugitive'
-Bundle 'frimik/vim-puppet'
-Bundle 'pangloss/vim-javascript'
-Bundle 'sjl/gundo.vim'
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'kien/ctrlp.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'chriskempson/base16-vim'
-Bundle 'danro/rename.vim'
+Plugin 'ciaranm/detectindent'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-fugitive'
+Plugin 'frimik/vim-puppet'
+Plugin 'pangloss/vim-javascript'
+Plugin 'sjl/gundo.vim'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'chriskempson/base16-vim'
+Plugin 'danro/rename.vim'
+Plugin 'rust-lang/rust.vim'
 
-Bundle 'Align'
-Bundle 'bufkill.vim'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'indentpython.vim'
-Bundle 'keepcase.vim'
-Bundle 'python.vim--Vasiliev'
-Bundle 'ReplaceWithRegister'
+Plugin 'Align'
+Plugin 'bufkill.vim'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'indentpython.vim'
+Plugin 'keepcase.vim'
+Plugin 'python.vim--Vasiliev'
+Plugin 'ReplaceWithRegister'
+
+call vundle#end()
+filetype plugin indent on
 
 " Go syntax and filetype plugins
 set rtp+=$GOROOT/misc/vim
 
-set rtp+=~/Code/cloned/rust/src/etc/vim
-
 " General settings {{{1
-
-filetype plugin indent on
 
 let mapleader = ','
 
