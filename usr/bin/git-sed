@@ -1,0 +1,67 @@
+#/bin/bash
+SUBDIRECTORY_OK=Yes
+OPTIONS_SPEC="\
+git sed <regex> <replacement> [<glob>]
+--
+E,extended-regexp use POSIX extended regexp
+n,noop      only search for regex
+s,staged    only search in staged files
+h,help      show the help
+"
+
+. "$(git --exec-path)/git-sh-setup"
+
+noop=
+staged=
+grep_args=
+sed_args=
+while [ $# != 0 ]; do
+    case "$1" in
+        -E)
+            grep_args="$grep_args -E"
+            sed_args="$sed_args -r"
+            ;;
+        -n)
+            noop=t ;;
+        -s)
+            staged=t ;;
+        --)
+            shift; break ;;
+    esac
+    shift
+done
+
+if [[ "$#" < 2 && -z "$noop" ]]; then
+    usage
+fi
+
+find=$1
+replace=$2
+glob=$3
+
+ORIG_GLOBIGNORE=$GLOBIGNORE
+GLOBIGNORE=*.*
+
+find_matching_files () {
+    glob=$1; shift
+    find=$1; shift
+    files=
+    if [[ $staged ]]; then
+        files=$(git diff-index --cached --name-only HEAD -- "$glob")
+    fi
+    git grep $grep_args "$@" "$find" -- ${files%\n}
+}
+
+if [[ $noop && $staged ]]; then
+    find_matching_files "$glob" "$find"
+elif [[ $noop ]]; then
+    git grep "$find" -- "$glob"
+else
+    for file in $(find_matching_files "$glob" "$find" -l); do
+        echo $file
+        sed $sed_args -e "s/${find//\//\\/}/${replace//\//\\/}/g" -i'' $file
+    done
+fi
+
+GLOBIGNORE=$ORIG_GLOBIGNORE
+
