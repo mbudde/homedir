@@ -1,0 +1,19 @@
+#!/bin/sh
+
+vimcmd=vim
+xargs_args=
+while [ $# != 0 ]; do
+    case "$1" in
+        -g)
+            vimcmd=gvim ;;
+        -0)
+            xargs_args="-0" ;;
+        --)
+            shift; break ;;
+        *)
+            break ;;
+    esac
+    shift
+done
+
+xargs $xargs_args bash -c "</dev/tty $vimcmd \"\$@\"" ignored "$@"
