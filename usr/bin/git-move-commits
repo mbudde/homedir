@@ -16,19 +16,28 @@ while [ $# != 0 ]; do
     shift
 done
 
+if [ $# -lt 3 ]; then
+    usage
+fi
+
 base_rev=$1
 from_branch=$2
 to_branch=$3
 
-base_cid=$(git rev-parse $base_rev)
-from_branch_cid=$(git rev-parse $from_branch)
-if [ $(git merge-base $base_cid $from_branch_cid) != $base_cid ]; then
+
+base_cid=$(git rev-parse $base_rev 2>/dev/null)
+[ $? -eq 0 ] || die "unknown revision '$base_rev'"
+from_branch_cid=$(git rev-parse $from_branch 2>/dev/null)
+[ $? -eq 0 ] || die "unknown revision '$from_branch'"
+if [ "$(git merge-base $base_cid $from_branch_cid)" != "$base_cid" ]; then
     echo "$base_rev is not an ancestor of $from_branch" >&2
     exit 1
 fi
 
 from_ref=$(git show-ref $from_branch | head -n1 | cut -f2 -d' ')
+[ -z "$from_ref" ] && die "unknown 'from' branch '$from_branch'"
 to_ref=$(git show-ref $to_branch | head -n1 | cut -f2 -d' ')
+[ -z "$to_ref" ] && die "unknown 'to' branch '$to_branch'"
 git rebase $base_cid $from_branch_cid --onto $to_branch && \
     git update-ref $from_ref $base_cid && \
     git branch -f $to_branch HEAD && git checkout $to_branch
