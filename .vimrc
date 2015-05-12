@@ -56,7 +56,7 @@ set nofoldenable
 set foldcolumn=0
 set foldmethod=syntax
 set formatoptions+=l " Don't break long lines when entering insert mode
-set guifont=Ubuntu\ Mono\ 12
+set guifont=Ubuntu\ Mono\ 11
 set hidden
 set history=30
 set ignorecase smartcase
