@@ -238,6 +238,8 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 nmap - :NERDTree<CR>
 
+nnoremap <F2> :mksession! ~/.vim_session<CR>
+nnoremap <F3> :source ~/.vim_session<CR>
 map <expr> <F4> ':!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS ' . g:tags_dirs . '<CR>'
 nnoremap <F5> :GundoToggle<CR>
 nmap <F7> mp:%s/\s\+$//e<CR>`p
