@@ -1,2 +1,2 @@
-add_path ~/opt/rust-nightly/bin
-add_path ~/opt/rust-nightly/lib LD_LIBRARY_PATH
+add_path ~/opt/rust/bin
+add_path ~/opt/rust/lib LD_LIBRARY_PATH
