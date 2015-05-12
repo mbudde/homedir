@@ -1,6 +1,6 @@
 
-partial alphanumeric_keys modifier_keys
-xkb_symbols "mbudde" {
+alphanumeric_keys modifier_keys
+xkb_symbols "default" {
 
     include "dk(nodeadkeys)"
 
@@ -28,10 +28,10 @@ xkb_symbols "mbudde" {
 
 };
 
-partial alphanumeric_keys modifier_keys
-xkb_symbols "mbudde_thinkpad" {
+alphanumeric_keys modifier_keys
+xkb_symbols "thinkpad" {
 
-    include "dk(mbudde)"
+    include "mbudde(default)"
 
     name[Group1]="Danish (MB variant on Thinkpad)";
 
