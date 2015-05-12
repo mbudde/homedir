@@ -331,7 +331,10 @@ nnoremap <silent> <Leader>si     :FufLine<CR>
 nnoremap <silent> <Leader>sc     :FufChangeList<CR>
 
 " Ctrl-P
-nmap <C-b> :CtrlPBuffer<CR>
+nnoremap <C-b> :CtrlPBuffer<CR>
+nnoremap æ :CtrlP<CR>
+nmap ø :CtrlP %%<CR>
+nnoremap å :CtrlPBuffer<CR>
 
 " Line swapping (http://vim.wikia.com/wiki/Moving_lines_up_or_down)
 nnoremap <A-j> :m+<CR>
