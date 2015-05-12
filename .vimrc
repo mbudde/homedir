@@ -52,6 +52,7 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 set nobackup
 set diffopt+=vertical
 set expandtab
+set nofoldenable
 set foldcolumn=0
 set foldmethod=syntax
 set formatoptions+=l " Don't break long lines when entering insert mode
