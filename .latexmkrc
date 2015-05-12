@@ -1,11 +1,15 @@
+use v5.10;
+
+$preview_continuous_mode = 1;
 
 $pdf_mode = 1;
-$pdflatex = 'lualatex --shell-escape --interaction=nonstopmode %O %S';
+$pdflatex_compiler = $ENV{PDFLATEX} ? "pdflatex" : "lualatex";
+$pdflatex = "$pdflatex_compiler --shell-escape --interaction=batchmode %O %S";
+
+say "Latex compiler: $pdflatex_compiler";
 
 $pdf_previewer = 'evince %S';
 $pdf_update_method = 0;
-
-$bibtex_use = 2;
 
 push @generated_exts, 'snm';
 push @generated_exts, 'nav';
