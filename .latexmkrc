@@ -4,7 +4,7 @@ $preview_continuous_mode = 1;
 
 $pdf_mode = 1;
 $pdflatex_compiler = $ENV{PDFLATEX} ? "pdflatex" : "lualatex";
-$pdflatex = "$pdflatex_compiler --shell-escape --interaction=batchmode %O %S";
+$pdflatex = "$pdflatex_compiler --shell-escape --interaction=nonstopmode %O %S";
 
 say "Latex compiler: $pdflatex_compiler";
 
