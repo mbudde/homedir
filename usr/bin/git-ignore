@@ -10,7 +10,8 @@ a,add           add changes to index (only when using repo .gitignore)
 e,edit          opens an editor
 f,file=         use given file
 g,global        use global excludes file
-r,repo          use repo excludes file"
+r,repo          use repo excludes file
+c,cwd           use current working directory excludes file"
 
 . "$(git --exec-path)/git-sh-setup"
 
@@ -29,6 +30,8 @@ while [ $# != 0 ]; do
                 die "Configuration option core.excludesfile is not set."
             eval file="$file" # force tilde expansion
             ;;
+        -c)
+            file=".gitignore" ;;
         -f)
             shift
             file="$1"
