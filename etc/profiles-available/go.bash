@@ -1,5 +1,3 @@
 # Google Go compilation env variables
-export GOROOT=$HOME/Code/cloned/go
-export GOPATH=$HOME/opt/go
-export GOBIN=$GOPATH/bin
-add_path $GOBIN
+export GOROOT=$HOME/Code/binary/go
+add_path $GOROOT/bin
