@@ -156,6 +156,7 @@ autocmd BufRead,BufNewFile Tupfile set filetype=tup
 autocmd BufRead,BufNewFile *.ja set filetype=janus
 autocmd BufRead,BufNewFile *.rs set filetype=rust
 autocmd BufRead,BufNewFile *.tikz set filetype=tex
+autocmd BufRead,BufNewFile *.html*.ep set filetype=html.epl
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
@@ -413,6 +414,7 @@ vnoremap <A-k> :m-2<CR>gv
 iab py#! #!/usr/bin/env python
 iab sh#! #!/bin/sh
 iab bash#! #!/bin/bash
+iab ddd say STDERR Mojo::Util::dumper
 
 " Current file directory expansion
 cabbr <expr> %% expand('%:p:h')
