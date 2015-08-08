@@ -1,2 +1,2 @@
-add_path ~/opt/rust/bin
-add_path ~/opt/rust/lib LD_LIBRARY_PATH
+DEFAULT=$(cat ~/.multirust/default)
+add_path ~/.multirust/toolchains/$DEFAULT/share/man MANPATH
