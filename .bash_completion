@@ -1,20 +1,10 @@
 # -*- sh-mode -*-
 
-# hgit completion
+dir=~/etc/bash_completion.d
 
-if [ -r /usr/share/bash-completion/completions/git ]; then
-    source /usr/share/bash-completion/completions/git
-
-    __hgit ()
-    {
-        GIT_DIR=$HOME/.homegit __git_main
-    }
-
-    __git_complete hgit __hgit
-
-fi
-
-# rust
-if [ -r ~/opt/rust-nightly/etc/bash_completion.d/cargo ]; then
-    source ~/opt/rust-nightly/etc/bash_completion.d/cargo
+if [ -d $dir ]; then
+    for f in $(ls $dir); do
+        f=$dir/$f
+        [[ -f $f && -r $f ]] && . "$f"
+    done
 fi

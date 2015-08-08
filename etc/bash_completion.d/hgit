@@ -1,0 +1,10 @@
+if [ -r /usr/share/bash-completion/completions/git ]; then
+    source /usr/share/bash-completion/completions/git
+
+    __hgit ()
+    {
+        GIT_DIR=$HOME/.homegit __git_main
+    }
+
+    __git_complete hgit __hgit
+fi
