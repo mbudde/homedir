@@ -359,6 +359,8 @@ nnoremap <silent> <Leader>si     :FufLine<CR>
 nnoremap <silent> <Leader>sc     :FufChangeList<CR>
 
 " Ctrl-P
+let g:ctrlp_working_path_mode = 'a'
+
 nnoremap <C-b> :CtrlPBuffer<CR>
 nnoremap æ :CtrlP<CR>
 nmap ø :CtrlP %%<CR>
