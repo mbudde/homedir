@@ -21,8 +21,8 @@ if version >= 700
   hi CursorLine                 guibg=#2d2d2d           ctermbg=black cterm=none
   hi CursorColumn               guibg=#2d2d2d
   hi MatchParen   guifg=#f6f3e8 guibg=#343b21 gui=bold
-  hi Pmenu        guifg=#f6f3e8 guibg=#444444
-  hi PmenuSel     guifg=#000000 guibg=#cae682
+  hi Pmenu        guifg=#f6f3e8 guibg=#444444           ctermfg=lightgray ctermbg=black
+  hi PmenuSel     guifg=#000000 guibg=#cae682           ctermfg=white
 endif
 
 " General colors
