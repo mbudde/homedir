@@ -281,18 +281,20 @@ nmap <C-k> <C-w>k
 
 imap kj <Esc>
 
+" save with sudo
 cmap w!! w !sudo tee >/dev/null %
 
+" duplicate and comment
 vmap D ygv<Leader>c<Space>P
 
 " maps for buffers
 nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
 nmap <Leader>d :bp<CR>
-nmap <Leader>e :b#<CR>
-nmap <Leader>q :BD<CR>
-nmap <Leader>Q :bd<CR>
-nmap <Leader>w :w<CR>:BD<CR>
+nmap <Leader>e :b #<CR>
+nmap <Leader>q :bd<CR>
+nmap <Leader>Q :bd!<CR>
+nmap <Leader>w :w<CR>:bd<CR>
 nmap <Leader>W :w<CR>:bd<CR>
 
 " maps for moving through tabs
