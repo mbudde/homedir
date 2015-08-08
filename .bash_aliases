@@ -48,3 +48,6 @@ alias agp='sudo apt-get remove --purge'
 
 
 alias dquilt='quilt --quiltrc=${HOME}/.quiltrc-dpkg'
+
+# typos
+alias carog=cargo
