@@ -104,6 +104,11 @@ if has("gui_running")
     set guioptions-=m  " default to no menu
     command! Menu set guioptions+=m
     command! NoMenu set guioptions-=m
+
+    " Maximize GUI on startup. GUIEnter auto command is executed after the GUI
+    " has been successfully initialized. Depends on the wmctrl program which
+    " is usually not installed by default.
+    autocmd GUIEnter * call system('wmctrl -i -b add,maximized_vert,maximized_horz -r '.v:windowid)
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
