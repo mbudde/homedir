@@ -9,7 +9,7 @@ show_status() {
 }
 
 wait_for_event() {
-    inotifywait --quiet --recursive --event modify,move,create,delete --format "%f %e" \
+    inotifywait --quiet --quiet --recursive --event modify,move,create,delete \
         --exclude "\.(swp|swo)$" \
         @/.git .
 }
@@ -17,7 +17,8 @@ wait_for_event() {
 clear
 show_status
 
-while wait_for_event; do
+while true; do
+    wait_for_event
     clear
     show_status
     sleep $REFRESH_PAUSE
