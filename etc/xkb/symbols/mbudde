@@ -1,6 +1,6 @@
 
 alphanumeric_keys modifier_keys
-xkb_symbols "default" {
+xkb_symbols "mbudde" {
 
     include "dk(nodeadkeys)"
 
@@ -10,20 +10,25 @@ xkb_symbols "default" {
     key <RALT>	{ [ ISO_Level3_Shift ] };
 
     // Remap brackets to better positions
-    key <AC06>	{ [ h,  H,  braceleft    ] };
-    key <AC07>	{ [ j,  J,  parenleft    ] };
-    key <AC08>	{ [ k,  K,  parenright   ] };
-    key <AC09>	{ [ l,  L,  braceright   ] };
-    key <AD07>	{ [ u,  U,  bracketleft  ] };
-    key <AD08>	{ [ i,  I,  bracketright ] };
+    key <AC06>	{ [ h,      H,  braceleft                        ] };
+    key <AC07>	{ [ j,      J,  parenleft,              less     ] };
+    key <AC08>	{ [ k,      K,  parenright,             greater  ] };
+    key <AC09>	{ [ l,      L,  braceright                       ] };
+    key <AD07>	{ [ u,      U,  bracketleft                      ] };
+    key <AD08>	{ [ i,      I,  bracketright                     ] };
 
     // Remap freqent symbols
     key <AB06>  { [ n,      N,          slash                    ] };
     key <AB07>  { [ m,      M,          backslash,      mu       ] };
+    key <AB08>  { [ comma,  semicolon,  semicolon                ] };
     key <AB09>  { [ period, colon,      periodcentered, ellipsis ] };
     key <AB10>  { [ minus,  underscore, endash,         emdash   ] };
     key <AC01>	{ [ a,      A,          ampersand                ] };
     key <AC02>	{ [ s,      S,          percent                  ] };
+    key <AC03>	{ [ d,      D,          numbersign               ] };
+    key <AC04>	{ [ f,      F,          dollar                   ] };
+    key <AD03>	{ [ e,      E,          less                     ] };
+    key <AD04>	{ [ r,      R,          greater                  ] };
     key <AD09>	{ [ o,      O,          bar                      ] };
 
 };
