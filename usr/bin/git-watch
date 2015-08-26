@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Sleep for this many seconds after refreshing the status.
+REFRESH_PAUSE=3
+
+show_status() {
+    git status --short --branch
+    git --no-pager diff --shortstat
+}
+
+wait_for_event() {
+    inotifywait --quiet --recursive --event modify,move,create,delete --format "%f %e" \
+        --exclude "\.(swp|swo)$" \
+        @/.git .
+}
+
+clear
+show_status
+
+while wait_for_event; do
+    clear
+    show_status
+    sleep $REFRESH_PAUSE
+done
