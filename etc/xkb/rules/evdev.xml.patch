@@ -1,21 +1,26 @@
---- evdev.xml	2014-01-10 11:56:23.522835881 +0100
-+++ evdev.xml	2014-01-10 11:57:28.826838316 +0100
-@@ -2548,6 +2548,18 @@
-             <description>Danish (Dvorak)</description>
-           </configItem>
-         </variant>
+--- evdev.xml.orig	2015-08-26 22:37:25.943725233 +0200
++++ evdev.xml	2015-08-26 22:41:11.861990236 +0200
+@@ -1306,4 +1306,23 @@
+   <layoutList>
++    <layout>
++      <configItem>
++        <name>mbudde</name>
++        
++        <shortDescription>mb</shortDescription>
++        <description>Budde</description>
++        <languageList>
++          <iso639Id>dan</iso639Id>
++        </languageList>
++      </configItem>
++      <variantList>
 +        <variant>
 +          <configItem>
-+            <name>mbudde</name>
-+            <description>Danish (eliminate dead keys, MB variant)</description>
++            <name>thinkpad</name>
++            <description>Budde (Thinkpad)</description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>mbudde_thinkpad</name>
-+            <description>Danish (MB variant on Thinkpad)</description>
-+          </configItem>
-+        </variant>
-       </variantList>
-     </layout>
++      </variantList>
++    </layout>
      <layout>
+       <configItem>
+         <name>us</name>

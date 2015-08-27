@@ -10,27 +10,20 @@ ok() {
     echo -e "\033[0;32mdone\033[0m"
 }
 
-if [ -f $XKB_DIR/symbols/dk.orig ]; then
-    info "Restoring original symbol map"
-    sudo cp $XKB_DIR/symbols/dk.orig $XKB_DIR/symbols/dk
-else
-    info "Backing up original symbol map"
-    sudo cp $XKB_DIR/symbols/dk $XKB_DIR/symbols/dk.orig
+if [ ! -e $XKB_DIR/symbols/mbudde ]; then
+    info "Symlinking mbudde symbol map"
+    sudo ln -s "$HOME/etc/xkb/symbols/mbudde" "$XKB_DIR/symbols/mbudde"
+    ok
 fi
-ok
-
-info "Updating symbol map"
-cat symbols/mbudde | sudo tee -a $XKB_DIR/symbols/dk >/dev/null
-ok
 
 info "Updating evdev.xml rule file"
 sudo patch --forward --backup --reject-file=- $XKB_DIR/rules/evdev.xml rules/evdev.xml.patch
 ok
 
 info "Clearing cached keymaps"
-sudo rm /var/lib/xkb/*.xkm
+sudo dpkg-reconfigure xkb-data
 ok
 
-info "Loading new keymap"
-setxkbmap -layout dk -variant mbudde
-ok
+# info "Loading new keymap"
+# setxkbmap -layout mbudde -variant default
+# ok

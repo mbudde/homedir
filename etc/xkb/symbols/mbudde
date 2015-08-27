@@ -1,6 +1,6 @@
 
 alphanumeric_keys modifier_keys
-xkb_symbols "mbudde" {
+xkb_symbols "default" {
 
     include "dk(nodeadkeys)"
 
