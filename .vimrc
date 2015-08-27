@@ -194,6 +194,7 @@ let g:tex_indent_brace = 0
 autocmd FileType tex call <SID>TexFileSettings()
 autocmd FileType bib nnoremap <buffer> <Leader>bo :call <SID>BibtexOpen()<CR>
 autocmd FileType bib nnoremap <buffer> <Leader>bc :call <SID>BibtexCite()<CR>
+autocmd FileType bib nnoremap <buffer> <Leader>bq ?@<CR>jV/^}<CR>k=gv:Align =<CR>gv:s/=/              =/<CR>gv:s/^\(.\{19\}\).*=/\1=/<CR>?@<CR>
 
 function! s:TexFileSettings()
     imap <S-F4> binom<F7>
