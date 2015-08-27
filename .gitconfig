@@ -40,7 +40,7 @@
 [color "diff"]
 	meta = yellow
 [color "grep"]
-    filename = magenta
+	filename = magenta
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Ubuntu Mono\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
@@ -48,11 +48,7 @@
 	commitmsgwidth = 72
 [url "git://git.gnome.org/"]
 	insteadOf = gnome:
-[url "git://github.com/"]
-	insteadOf = github:
 [url "git@github.com:"]
-	insteadOf = githubp:
-[url "ssh://nas.home/opt/git/"]
-	insteadOf = home:
+	insteadOf = github:
 [github]
 	user = mbudde
