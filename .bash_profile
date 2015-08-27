@@ -2,10 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
 
-[ -f ~/.bash_functions ] && . ~/.bash_functions
-add_path ~/usr/bin
-source_if_exists ~/etc/profile
-
 # include .bashrc if it exists
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
