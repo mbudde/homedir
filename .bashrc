@@ -2,7 +2,12 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-[ -f ~/.bash_functions ] && . ~/.bash_functions
+if [ ! -f ~/.bash_functions ]; then
+    echo ".bash_functions not found - aborting!"
+    return
+fi
+. ~/.bash_functions
+
 add_path ~/usr/bin
 source_if_exists ~/etc/profile
 
@@ -48,9 +53,3 @@ export EMAIL='mbudde@gmail.com'
 
 export DEBFULLNAME=$FULLNAME
 export DEBEMAIL=$EMAIL
-
-if [ -d "$HOME/Documents/AmazonEC2" ]; then
-    export EC2_URL=https://ec2.eu-west-1.amazonaws.com
-    export EC2_PRIVATE_KEY=$HOME/Documents/AmazonEC2/mb.pem 2>/dev/null
-    export EC2_CERT=$HOME/Documents/AmazonEC2/mb_cert.pem
-fi
