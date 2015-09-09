@@ -4,4 +4,5 @@ if [[ -d ~/.multirust ]]; then
 else
     add_path ~/opt/rust/bin
     add_path ~/opt/rust/share/man MANPATH
+    add_path ~/opt/rust/lib LD_LIBRARY_PATH
 fi
