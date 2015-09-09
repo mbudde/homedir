@@ -1,9 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 # Michael Budde <mbudde@gmail.com>
 
 SUBDIRECTORY_OK=Yes
 OPTIONS_SPEC="\
-git move-commits [options] <base-rev> <from-branch> <to-branch>
+git move-commits [options] <base-rev> [<from-branch>] <to-branch>
+
+Rebase the commits in the range <base-rev>..<from-branch> onto of <to-branch>.
+
+Assuming we have the following history:
+
+              A---B---C topic
+             /
+        D---E---F---G master
+
+Then the result of the following command:
+
+    git move-commits topic~2 topic master
+
+would be:
+
+              A topic
+             /
+        D---E---F---G---B'--C' master
 --
 "
 . "$(git --exec-path)/git-sh-setup"
@@ -16,28 +34,38 @@ while [ $# != 0 ]; do
     shift
 done
 
-if [ $# -lt 3 ]; then
+if [ $# -lt 2 ]; then
     usage
 fi
 
 base_rev=$1
-from_branch=$2
-to_branch=$3
+if [ -n "$3" ]; then
+    from_ref=$2
+    to_ref=$3
+else
+    if from_ref=$(git symbolic-ref -q HEAD); then
+        to_ref=$2
+    else
+        die "no explicit from-branch given and not on any branch"
+    fi
+fi
 
+echo "Moving commits ${base_rev}..${from_ref##refs/heads/} ontop of ${to_ref}"
 
 base_cid=$(git rev-parse $base_rev 2>/dev/null)
 [ $? -eq 0 ] || die "unknown revision '$base_rev'"
-from_branch_cid=$(git rev-parse $from_branch 2>/dev/null)
-[ $? -eq 0 ] || die "unknown revision '$from_branch'"
-if [ "$(git merge-base $base_cid $from_branch_cid)" != "$base_cid" ]; then
-    echo "$base_rev is not an ancestor of $from_branch" >&2
-    exit 1
+from_branch_cid=$(git rev-parse $from_ref 2>/dev/null)
+[ $? -eq 0 ] || die "unknown revision '$from_ref'"
+if [ "$(git merge-base $base_cid $from_ref)" != "$base_cid" ]; then
+    die "$base_rev is not an ancestor of $from_ref"
 fi
 
-from_ref=$(git show-ref $from_branch | head -n1 | cut -f2 -d' ')
-[ -z "$from_ref" ] && die "unknown 'from' branch '$from_branch'"
-to_ref=$(git show-ref $to_branch | head -n1 | cut -f2 -d' ')
-[ -z "$to_ref" ] && die "unknown 'to' branch '$to_branch'"
-git rebase $base_cid $from_branch_cid --onto $to_branch && \
-    git update-ref $from_ref $base_cid && \
-    git branch -f $to_branch HEAD && git checkout $to_branch
+git rev-parse --verify -q $to_ref &>/dev/null || die "local to-branch '$to_ref' does not exist"
+if git rebase $base_cid ${from_ref##refs/heads/} --onto $to_ref; then
+    git branch -f $to_ref HEAD && \
+        git checkout $to_ref && \
+        git update-ref $from_ref $base_cid
+else
+    echo "Resolve conflict and run the following command to complete:"
+    echo "  git branch -f $to_ref HEAD && git checkout $to_ref && git update-ref $from_ref $base_cid"
+fi
