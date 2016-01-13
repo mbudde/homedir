@@ -456,6 +456,43 @@ endfunction
 
 com! -nargs=1 Eglob call OpenAll('<args>')
 
+function! ToggleWorklogEntry()
+    if getline(".") =~ '\[ \]'
+        exec "s/\\[.\\]/[x]/"
+    else
+        exec "s/\\[.\\]/[ ]/"
+    endif
+    normal ``
+endfunction
+
+function!GetWorklogFold(lnum)
+    if getline(a:lnum) =~? '\v^\s*$'
+        return '-1'
+    endif
+
+    let this_level = indent(a:lnum) / &shiftwidth
+    let next_level = indent(a:lnum + 1) / &shiftwidth
+    if next_level > this_level
+        return '>' . next_level
+    else
+        return this_level
+endfunction
+
+
+function! OpenWorklog()
+    silent! botright vertical 70 new
+    edit ~/worklog.txt
+    setl shiftwidth=4
+    setl foldlevel=3
+    setl foldmethod=expr
+    setl foldexpr=GetWorklogFold(v:lnum)
+    nmap <buffer> <CR> :w<CR>:bd<CR>
+    nmap <buffer> <Space> :call ToggleWorklogEntry()<CR>
+    setl autoindent
+    normal! zz
+endfunction
+nnoremap <silent> <F6> :call OpenWorklog()<CR>
+
 " }}}1
 
 au! BufWritePost .vimrc source %
