@@ -15,6 +15,8 @@ cur_cid="$(git rev-parse HEAD)"
 ups_cid="$(git rev-parse --verify @{upstream} 2>/dev/null)"
 [ -z "$ups_cid" ] && die "No upstream configured for the current branch!"
 
+git fetch
+
 if [ "$(git merge-base "$cur_cid" "$ups_cid")" = "$cur_cid" ]; then
     if [ "$cur_cid" != "$ups_cid" ]; then
         git merge --ff-only @{upstream}
@@ -22,5 +24,8 @@ if [ "$(git merge-base "$cur_cid" "$ups_cid")" = "$cur_cid" ]; then
         git pull --ff-only
     fi
 else
-    die "Branch has diverged from upstream!"
+    echo -e "\033[1;33mBranch has diverged from upstream!\033[0m"
+    echo
+
+    git log --decorate --oneline --graph HEAD @{upstream} ^$(git merge-base HEAD @{upstream})^
 fi
