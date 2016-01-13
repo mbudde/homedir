@@ -324,6 +324,7 @@ nmap <Leader>q :bd<CR>
 nmap <Leader>Q :bd!<CR>
 nmap <Leader>w :w<CR>:bd<CR>
 nmap <Leader>W :w<CR>:bd<CR>
+nmap <Leader>x :Bdelete<CR>
 
 " maps for moving through tabs
 nmap <Leader>D gT
