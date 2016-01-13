@@ -358,6 +358,8 @@ nmap <Leader>ow :setlocal wrap!<CR>
 nmap <Leader>oh :setlocal hlsearch!<CR>
 nmap <Leader>oi :setlocal list!<CR>
 
+nnoremap <leader>m  :<C-u><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><Left>
+
 " Highlight long lines
 nnoremap <silent> <Leader>ol
     \ :if exists('w:long_line_match') <Bar>
