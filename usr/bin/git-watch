@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Sleep for this many seconds after refreshing the status.
-REFRESH_PAUSE=3
+REFRESH_DELAY=0.5
+REFRESH_PAUSE=2
 
 show_status() {
     git status --short --branch
@@ -19,6 +20,7 @@ show_status
 
 while true; do
     wait_for_event
+    sleep $REFRESH_DELAY
     clear
     show_status
     sleep $REFRESH_PAUSE
