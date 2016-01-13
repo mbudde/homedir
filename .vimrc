@@ -391,6 +391,7 @@ nnoremap <silent> <Leader>sc     :FufChangeList<CR>
 
 " Ctrl-P
 let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_max_files = 30000
 
 nnoremap <C-b> :CtrlPBuffer<CR>
 nnoremap æ :CtrlP<CR>
