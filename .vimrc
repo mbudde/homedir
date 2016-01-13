@@ -261,6 +261,17 @@ autocmd FileType ledger iab <buffer> AB Aktiver:Bankkonto
 
 " }}}2
 
+" Perl {{{
+
+autocmd FileType perl vmap <buffer> <Leader>pt :!perltidy<CR>
+autocmd FileType perl nmap <buffer> <Leader>pt :%!perltidy<CR>
+
+vnoremap <Leader>tr xi<%= __('<C-r>"') %><Esc>
+nnoremap <Leader>tr ^v$hxa%= __('<C-r>"')<Esc>
+
+
+" }}}
+
 " }}}1
 
 " Project specific settings {{{1
