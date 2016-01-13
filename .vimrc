@@ -17,7 +17,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'frimik/vim-puppet'
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
 Plugin 'sjl/gundo.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
@@ -27,6 +27,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'chriskempson/base16-vim'
 Plugin 'danro/rename.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'yko/mojo.vim'
+Plugin 'drmikehenry/vim-fontsize'
+Plugin 'moll/vim-bbye'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'KurtPreston/JavaScript-Indent'
 
 Plugin 'Align'
 Plugin 'bufkill.vim'
@@ -93,6 +99,11 @@ let Tlist_WinWidth = 50
 
 let g:netrw_hide = 1
 let g:netrw_list_hide = "\.pyc$,\.swp$,^\\..*/$,\.a$,\.o$,\.so$"
+
+let g:fontsize#timeoutlen = 5000
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
 
 if has("gui_running")
     set guioptions-=T  " hide toolbar
