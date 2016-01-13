@@ -21,6 +21,8 @@
 	pr = pull --rebase
 	lg = log --stat --relative-date
 	graph = log --graph --oneline --all --decorate
+	graph-two = !git log --graph --oneline --decorate $1 ${2:-HEAD} ^$(git merge-base $1 ${2:-HEAD})^
+	incoming = !git graph-two origin/master
 	pusht = !git push && git push --tags
 	ppp = !git push || git pull && git push
 	pprp = !git push || git pr && git push
