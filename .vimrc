@@ -351,7 +351,7 @@ map Q gq
 " map k gk
 
 " Copy from mark a to current line and go back to current line
-nmap <C-y> "+y'a<C-o>
+"nmap <C-y> "+y'a<C-o>
 
 " maps for options
 nmap <Leader>ow :setlocal wrap!<CR>
@@ -399,8 +399,8 @@ nmap ø :CtrlP %%<CR>
 nnoremap å :CtrlPBuffer<CR>
 
 " Line swapping (http://vim.wikia.com/wiki/Moving_lines_up_or_down)
-nnoremap <A-j> :m+<CR>
-nnoremap <A-k> :m-2<CR>
+nnoremap <A-j> :<C-u>execute 'move +' . v:count1<CR>
+nnoremap <A-k> :<C-u>execute 'move -1-' . v:count1<CR>
 inoremap <A-j> <Esc>:m+<CR>gi
 inoremap <A-k> <Esc>:m-2<CR>gi
 vnoremap <A-j> :m'>+<CR>gv
