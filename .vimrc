@@ -299,6 +299,8 @@ nmap <C-k> <C-w>k
 
 imap kj <Esc>
 
+inoremap <S-Enter> <Esc>O
+
 " save with sudo
 cmap w!! w !sudo tee >/dev/null %
 
@@ -306,7 +308,7 @@ cmap w!! w !sudo tee >/dev/null %
 vmap D ygv<Leader>c<Space>P
 
 " maps for buffers
-nmap <Leader>l :ls<CR>
+"nmap <Leader>l :ls<CR>
 nmap <Leader>f :bn<CR>
 nmap <Leader>d :bp<CR>
 nmap <Leader>e :b #<CR>
@@ -341,11 +343,6 @@ map Q gq
 
 " Copy from mark a to current line and go back to current line
 nmap <C-y> "+y'a<C-o>
-
-" maps for options
-nmap <Leader>ow :setlocal wrap!<CR>
-nmap <Leader>oh :setlocal hlsearch!<CR>
-nmap <Leader>oi :setlocal list!<CR>
 
 " Highlight long lines
 nnoremap <silent> <Leader>ol
