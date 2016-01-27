@@ -19,7 +19,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'frimik/vim-puppet'
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
 Plugin 'sjl/gundo.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
@@ -30,6 +30,12 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'danro/rename.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'lervag/vimtex'
+Plugin 'groenewege/vim-less'
+Plugin 'yko/mojo.vim'
+Plugin 'drmikehenry/vim-fontsize'
+Plugin 'moll/vim-bbye'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'KurtPreston/JavaScript-Indent'
 
 Plugin 'Align'
 Plugin 'bufkill.vim'
@@ -96,6 +102,11 @@ let Tlist_WinWidth = 50
 let g:netrw_hide = 1
 let g:netrw_list_hide = "\.pyc$,\.swp$,^\\..*/$,\.a$,\.o$,\.so$"
 
+let g:fontsize#timeoutlen = 5000
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
 if has("gui_running")
     set guioptions-=T  " hide toolbar
     set guioptions+=c  " use console dialogs
@@ -147,6 +158,7 @@ autocmd BufRead,BufNewFile Tupfile set filetype=tup
 autocmd BufRead,BufNewFile *.ja set filetype=janus
 autocmd BufRead,BufNewFile *.rs set filetype=rust
 autocmd BufRead,BufNewFile *.tikz set filetype=tex
+autocmd BufRead,BufNewFile *.html*.ep set filetype=html.epl
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
@@ -262,6 +274,17 @@ autocmd FileType ledger iab <buffer> AB Aktiver:Bankkonto
 
 " }}}2
 
+" Perl {{{
+
+autocmd FileType perl vmap <buffer> <Leader>pt :!perltidy<CR>
+autocmd FileType perl nmap <buffer> <Leader>pt :%!perltidy<CR>
+
+vnoremap <Leader>tr xi<%= __('<C-r>"') %><Esc>
+nnoremap <Leader>tr ^v$hxa%= __('<C-r>"')<Esc>
+
+
+" }}}
+
 " }}}1
 
 " Project specific settings {{{1
@@ -316,6 +339,7 @@ nmap <Leader>q :bd<CR>
 nmap <Leader>Q :bd!<CR>
 nmap <Leader>w :w<CR>:bd<CR>
 nmap <Leader>W :w<CR>:bd<CR>
+nmap <Leader>x :Bdelete<CR>
 
 " maps for moving through tabs
 nmap <Leader>D gT
@@ -342,7 +366,9 @@ map Q gq
 " map k gk
 
 " Copy from mark a to current line and go back to current line
-nmap <C-y> "+y'a<C-o>
+"nmap <C-y> "+y'a<C-o>
+
+nnoremap <leader>m  :<C-u><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><Left>
 
 " Highlight long lines
 nnoremap <silent> <Leader>ol
@@ -375,6 +401,7 @@ nnoremap <silent> <Leader>sc     :FufChangeList<CR>
 
 " Ctrl-P
 let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_max_files = 30000
 
 nnoremap <C-b> :CtrlPBuffer<CR>
 nnoremap æ :CtrlP<CR>
@@ -382,8 +409,8 @@ nmap ø :CtrlP %%<CR>
 nnoremap å :CtrlPBuffer<CR>
 
 " Line swapping (http://vim.wikia.com/wiki/Moving_lines_up_or_down)
-nnoremap <A-j> :m+<CR>
-nnoremap <A-k> :m-2<CR>
+nnoremap <A-j> :<C-u>execute 'move +' . v:count1<CR>
+nnoremap <A-k> :<C-u>execute 'move -1-' . v:count1<CR>
 inoremap <A-j> <Esc>:m+<CR>gi
 inoremap <A-k> <Esc>:m-2<CR>gi
 vnoremap <A-j> :m'>+<CR>gv
@@ -396,6 +423,7 @@ vnoremap <A-k> :m-2<CR>gv
 iab py#! #!/usr/bin/env python
 iab sh#! #!/bin/sh
 iab bash#! #!/bin/bash
+iab ddd say STDERR Mojo::Util::dumper
 
 " Current file directory expansion
 cabbr <expr> %% expand('%:p:h')
@@ -438,6 +466,43 @@ function! OpenAll(arg)
 endfunction
 
 com! -nargs=1 Eglob call OpenAll('<args>')
+
+function! ToggleWorklogEntry()
+    if getline(".") =~ '\[ \]'
+        exec "s/\\[.\\]/[x]/"
+    else
+        exec "s/\\[.\\]/[ ]/"
+    endif
+    normal ``
+endfunction
+
+function!GetWorklogFold(lnum)
+    if getline(a:lnum) =~? '\v^\s*$'
+        return '-1'
+    endif
+
+    let this_level = indent(a:lnum) / &shiftwidth
+    let next_level = indent(a:lnum + 1) / &shiftwidth
+    if next_level > this_level
+        return '>' . next_level
+    else
+        return this_level
+endfunction
+
+
+function! OpenWorklog()
+    silent! botright vertical 70 new
+    edit ~/worklog.txt
+    setl shiftwidth=4
+    setl foldlevel=3
+    setl foldmethod=expr
+    setl foldexpr=GetWorklogFold(v:lnum)
+    nmap <buffer> <CR> :w<CR>:bd<CR>
+    nmap <buffer> <Space> :call ToggleWorklogEntry()<CR>
+    setl autoindent
+    normal! zz
+endfunction
+nnoremap <silent> <F6> :call OpenWorklog()<CR>
 
 " }}}1
 
