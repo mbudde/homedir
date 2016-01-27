@@ -190,7 +190,7 @@ autocmd FileType {html*,javascript,coffee,php} setlocal shiftwidth=2 tabstop=2
 autocmd FileType haskell setlocal shiftwidth=2 tabstop=2
 " }}}2
 
-" LaTeX-Suite settings {{{2
+" LaTeX/Vimtex settings {{{2
 
 let g:tex_indent_brace = 0
 autocmd FileType tex call <SID>TexFileSettings()
@@ -206,12 +206,19 @@ endfunction
 function! s:BibtexOpen()
     let save_unnamed = @@
 
-    exe "silent normal! ma?^@\<cr>k"
+    exe "silent normal! maj?^@"
+    exe "silent normal! /^\\s*\\(}\\|file\\)"
     let line = getline(".")
-    if line[0] ==# "%"
-        exe "silent ! gnome-open ~/Documents/Uni/MScThesis/" . line[2:] . " &"
+    if line =~ "\s*file"
+        let filename = matchstr(line, "{\\zs.*\\ze}")
+        if filename !=# ""
+            echomsg "Opening " . filename
+            exe "silent ! gnome-open ~/Documents/Uni/MScThesis/" . filename . " &"
+        else
+            echoerr "Empty filename"
+        endif
     else
-        echom "No filename found!"
+        echoerr "No filename found!"
     endif
     exe "silent normal! `a"
 
@@ -233,6 +240,9 @@ let g:Tex_Com_num = "\\number{<++>}<++>"
 let g:Tex_Com_binom = "\\binom{<++>}{<++>}<++>"
 let g:Tex_Com_nfrac = "\\nicefrac{<++>}{<++>}<++>"
 let g:Tex_HotKeyMappings = "align*,aligned,equation*"
+
+let g:vimtex_complete_recursive_bib = 1
+let g:vimtex_latexmk_build_dir = 'output'
 
 " }}}2
 
