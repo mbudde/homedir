@@ -277,12 +277,6 @@ nnoremap <Leader>tr ^v$hxa%= __('<C-r>"')<Esc>
 
 " Project specific settings {{{1
 
-" Colligo/Refero {{{2
-
-autocmd BufRead /home/michael/Code/projects/viewworld/colligo/*/*.java setlocal noexpandtab
-
-" }}}2
-
 " YAML settings {{{2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 " }}}2
