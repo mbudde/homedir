@@ -146,19 +146,8 @@ endif
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
-
-autocmd BufRead,BufNewFile wscript* set filetype=python
 autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
-autocmd BufRead,BufNewFile *.mac set filetype=maxima
-autocmd BufRead,BufNewFile *.pde set filetype=java
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.mdown set filetype=markdown
-autocmd BufRead,BufNewFile *.tup set filetype=tup
-autocmd BufRead,BufNewFile Tupfile set filetype=tup
-autocmd BufRead,BufNewFile *.ja set filetype=janus
-autocmd BufRead,BufNewFile *.rs set filetype=rust
-autocmd BufRead,BufNewFile *.tikz set filetype=tex
-autocmd BufRead,BufNewFile *.html*.ep set filetype=html.epl
+
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
@@ -260,7 +249,6 @@ let g:vimtex_latexmk_build_dir = 'output'
 
 " {{{2 Go
 
-autocmd BufRead,BufNewFile *.go set filetype=go
 autocmd FileType go setlocal noexpandtab
 let go_highlight_trailing_whitespace_error = 0
 
