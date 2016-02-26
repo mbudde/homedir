@@ -124,6 +124,7 @@ if has("gui_running")
     set guioptions-=r  " hide right scrollbar
     set guioptions-=R  " hide right scrollbar when vertically split
     set guioptions-=m  " default to no menu
+    set guioptions-=e  " disable GUI tabs in favor of text tabs
     command! Menu set guioptions+=m
     command! NoMenu set guioptions-=m
 
