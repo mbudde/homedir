@@ -66,6 +66,7 @@ set nobackup
 set diffopt+=vertical
 set expandtab
 set nofoldenable
+set fillchars=
 set foldcolumn=0
 set foldmethod=syntax
 set formatoptions+=l " Don't break long lines when entering insert mode
