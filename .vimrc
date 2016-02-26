@@ -172,12 +172,6 @@ autocmd BufRead,BufNewFile *.tikz setlocal filetype=tex
 autocmd BufRead,BufNewFile *.html*.ep setlocal filetype=html.epl
 autocmd BufRead,BufNewFile sqlreport.txt setlocal filetype=jixsqlreport autoread
 
-" Show trailing whitespace and spaces before tabs
-"highlight link TrailingWhitespace Error
-autocmd Syntax * syn match TrailingWhitespace /\(\zs\%#\|\s\)\+$/ display
-autocmd Syntax * syn match TrailingWhitespace / \+\ze\t/ display
-
-
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
