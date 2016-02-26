@@ -328,7 +328,8 @@ nmap <C-k> <C-w>k
 
 imap kj <Esc>
 
-inoremap <S-Enter> <Esc>O
+inoremap <S-Enter> <C-O>O
+inoremap <C-Enter> <C-O>o
 
 " save with sudo
 cmap w!! w !sudo tee >/dev/null %
@@ -359,7 +360,7 @@ nmap <Leader>F gt
 " nmap <A-7> :tabn 7<CR>
 " nmap <A-8> :tabn 8<CR>
 " nmap <A-9> :tabn 9<CR>
-nmap <C-t> :tabnew<CR>
+" nmap <C-t> :tabnew<CR>
 
 " Easy saving
 nmap <C-s> :w<CR>
