@@ -69,6 +69,7 @@ set nofoldenable
 set fillchars=
 set foldcolumn=0
 set foldmethod=syntax
+set foldnestmax=1
 set formatoptions+=l " Don't break long lines when entering insert mode
 set guifont=Ubuntu\ Mono\ 11
 set hidden
