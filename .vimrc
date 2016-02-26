@@ -36,6 +36,7 @@ Plugin 'drmikehenry/vim-fontsize'
 Plugin 'moll/vim-bbye'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'KurtPreston/JavaScript-Indent'
+Plugin 'junegunn/fzf.vim'
 
 Plugin 'Align'
 Plugin 'bufkill.vim'
@@ -48,8 +49,12 @@ Plugin 'ReplaceWithRegister'
 call vundle#end()
 filetype plugin indent on
 
+runtime macros/matchit.vim
+
+
 " Go syntax and filetype plugins
 set rtp+=$GOROOT/misc/vim
+set rtp+=~/.fzf
 
 " General settings {{{1
 
