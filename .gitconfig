@@ -23,11 +23,12 @@
 	graph = log --graph --oneline --all --decorate
 	graph-two = !git log --graph --oneline --decorate $1 ${2:-HEAD} ^$(git merge-base $1 ${2:-HEAD})^
 	incoming = !git graph-two origin/master
+	linc = log ..origin/master
 	pusht = !git push && git push --tags
 	ppp = !git push || git pull && git push
 	pprp = !git push || git pr && git push
-	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
-	squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+	fixup = !sh -c 'git commit -m \"fixup! $(git find-commit-title)\" $@' -
+	squash = !sh -c 'git commit -m \"squash! $(git find-commit-title)\" $@' -
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 [diff]
 	renames = copies
