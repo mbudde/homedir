@@ -157,8 +157,20 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
-autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
-
+autocmd BufRead,BufNewFile .vimrc setlocal foldmethod=marker
+autocmd BufRead,BufNewFile wscript* setlocal filetype=python
+autocmd BufRead,BufNewFile .vimrc setlocal foldmethod=marker
+autocmd BufRead,BufNewFile *.mac setlocal filetype=maxima
+autocmd BufRead,BufNewFile *.pde setlocal filetype=java
+autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+autocmd BufRead,BufNewFile *.mdown setlocal filetype=markdown
+autocmd BufRead,BufNewFile *.tup setlocal filetype=tup
+autocmd BufRead,BufNewFile Tupfile setlocal filetype=tup
+autocmd BufRead,BufNewFile *.ja setlocal filetype=janus
+autocmd BufRead,BufNewFile *.rs setlocal filetype=rust
+autocmd BufRead,BufNewFile *.tikz setlocal filetype=tex
+autocmd BufRead,BufNewFile *.html*.ep setlocal filetype=html.epl
+autocmd BufRead,BufNewFile sqlreport.txt setlocal filetype=jixsqlreport autoread
 
 " Show trailing whitespace and spaces before tabs
 "highlight link TrailingWhitespace Error
