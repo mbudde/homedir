@@ -114,6 +114,8 @@ let g:fontsize#timeoutlen = 5000
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
+let g:solarized_underline=0
+
 if has("gui_running")
     set guioptions-=T  " hide toolbar
     set guioptions+=c  " use console dialogs
