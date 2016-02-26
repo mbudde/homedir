@@ -20,7 +20,7 @@ set editing-mode emacs
 
 set completion-ignore-case on
 set completion-prefix-display-length 5
-set show-all-if-ambiguous on
+set show-all-if-ambiguous off
 set show-all-if-unmodified on
 
 
