@@ -48,6 +48,8 @@ find_matching_files () {
     files=
     if [[ $staged ]]; then
         files=$(git diff-index --cached --name-only HEAD -- "$glob")
+    else
+        files=$glob
     fi
     git grep $grep_args "$@" "$find" -- ${files%\n}
 }
