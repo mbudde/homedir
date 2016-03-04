@@ -1,6 +1,0 @@
-#!/bin/sh
-
-git log --pretty=format:'%C(yellow)%h %C(blue)[%ae]%Creset %s' origin/master..HEAD \
-    | sed 's/@jobindex.dk//' \
-    | fzf --ansi --no-sort --reverse \
-    | cut -f3- -d' '
