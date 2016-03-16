@@ -14,10 +14,9 @@ Plug 'scrooloose/nerdcommenter'
 
 Plug 'guns/xterm-color-table.vim'
 
-"Plug 'nanotech/jellybeans.vim'
-
 Plug 'vim-perl/vim-perl'
 Plug 'rust-lang/rust.vim'
+Plug 'yko/mojo.vim'
 
 call plug#end()
 
@@ -37,6 +36,7 @@ set number
 set relativenumber
 set ruler
 set scrolloff=5
+set splitright
 
 set nofoldenable
 set foldcolumn=0
@@ -54,9 +54,6 @@ set nowrap
 
 " Colorscheme {{{
 
-" let g:jellybeans_overrides = {
-" \    'VertSplit': { '256ctermbg': '235' },
-" \}
 set t_Co=256
 colorscheme wombat
 
@@ -75,6 +72,7 @@ autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
 autocmd BufRead,BufNewFile *.rs setlocal filetype=rust
 autocmd BufRead,BufNewFile *.tikz setlocal filetype=tex
 autocmd BufRead,BufNewFile *.html*.ep setlocal filetype=html.epl
+autocmd BufRead,BufNewFile *.txt*.ep setlocal filetype=text.epl
 autocmd BufRead,BufNewFile sqlreport.txt setlocal filetype=jixsqlreport autoread
 
 " When editing a file, always jump to the last known cursor position.
@@ -130,6 +128,14 @@ inoremap <A-j> <Esc>:m+<CR>gi
 inoremap <A-k> <Esc>:m-2<CR>gi
 vnoremap <A-j> :m'>+<CR>gv
 vnoremap <A-k> :m-2<CR>gv
+
+" Set visual selection to search pattern
+vnoremap <Leader>v y:setl hlsearch<CR>:let @/=@"<CR>
+
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+nnoremap <silent> <Leader>g :vnew<CR>:call termopen('ssh -t gnu "cd jobxx; bash -l"')<CR>:startinsert<CR>
+nnoremap <silent> <Leader>G :new<CR>:call termopen('ssh -t gnu "cd jobxx; bash -l"')<CR>:startinsert<CR>
 
 " }}}
 
