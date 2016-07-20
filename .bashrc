@@ -45,6 +45,7 @@ fi
 export EDITOR="$(choose_first vim vi nano)"
 export VISUAL="$(choose_first "gvim --remote-wait")"
 export ALTERNATE_EDITOR=""
+export GIT_EDITOR=$EDITOR
 
 export GVIMSERVER=GVIM
 
