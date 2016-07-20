@@ -42,7 +42,11 @@ if [ "$TERM" != "dumb" -a "$TERM" != "cygwin" ]; then
 fi
 
 
-export EDITOR="$(choose_first vim vi nano)"
+if [[ -n $NVIM_LISTEN_ADDRESS ]]; then
+    export EDITOR=nve
+else
+    export EDITOR="$(choose_first nvim vim vi nano)"
+fi
 export VISUAL="$(choose_first "gvim --remote-wait")"
 export ALTERNATE_EDITOR=""
 export GIT_EDITOR=$EDITOR
