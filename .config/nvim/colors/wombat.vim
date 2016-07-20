@@ -22,6 +22,10 @@ hi Visual                                               ctermbg=53
 hi Folded                           ctermfg=241         ctermbg=235
 hi TabLine          cterm=none      ctermfg=250         ctermbg=236
 hi TabLineSel       cterm=bold      ctermfg=255         ctermbg=240
+hi Pmenu                            ctermfg=251         ctermbg=233
+hi PmenuSel                         ctermfg=253         ctermbg=52
+hi MatchParen                                           ctermbg=125
+hi Conceal                          ctermfg=NONE        ctermbg=NONE
 hi! link TabLineFill Normal
 
 hi Search                           ctermfg=202         ctermbg=236
@@ -39,11 +43,14 @@ hi DiffAdd                          ctermfg=2           ctermbg=none
 hi DiffChange                       ctermfg=5           ctermbg=none
 hi DiffDelete                       ctermfg=1           ctermbg=none
 hi DiffText                         ctermfg=3           ctermbg=none
+hi! link diffAdded DiffAdd
+hi! link diffRemoved DiffDelete
+hi! link diffChanged DiffChange
 
 hi podCmdText                       ctermfg=70
 hi podSpecial                       ctermfg=252
 hi podFormat                        ctermfg=252
-hi podVerbatimLine                  ctermfg=228
+hi podVerbatimLine                  ctermfg=252
 
 hi link perlPOD Comment
 hi link perlSubName Function
