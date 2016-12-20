@@ -56,3 +56,6 @@ hi link perlPOD Comment
 hi link perlSubName Function
 hi link perlVarPlain Type
 hi link perlVarPlain2 Identifier
+
+hi NeomakeWarning cterm=underline ctermfg=220
+hi link NeomakeWarningSign NeomakeWarning
