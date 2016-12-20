@@ -1,6 +1,6 @@
 if [[ -d ~/.multirust ]]; then
-    default=$(cat ~/.multirust/default)
-    dir=~/.multirust/toolchains/$default/etc/bash_completion.d
+    sysroot=$(rustc --print sysroot)
+    dir=$sysroot/etc/bash_completion.d
     for f in $(ls $dir); do
         f=$dir/$f
         [[ -f $f && -r $f ]] && . "$f"
