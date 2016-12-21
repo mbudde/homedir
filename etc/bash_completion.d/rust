@@ -1,4 +1,4 @@
-if [[ -d ~/.multirust ]]; then
+if [[ -d ~/.rustup ]]; then
     sysroot=$(rustc --print sysroot)
     dir=$sysroot/etc/bash_completion.d
     for f in $(ls $dir); do
