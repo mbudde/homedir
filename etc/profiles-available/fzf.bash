@@ -1,4 +1,7 @@
+[ ! -f ~/.fzf.bash -a -f ~/.fzf/install ] && ~/.fzf/install
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export FZF_DEFAULT_OPTS="
     --bind 'alt-i:up'
     --bind 'alt-k:down'
