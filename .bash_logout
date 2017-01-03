@@ -5,3 +5,7 @@
 if [ "$SHLVL" = 1 ]; then
     [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
 fi
+
+# nvim keeps xsel running after exiting, which will block the logout.
+# Force-kill it here so logout can proceed.
+pkill xsel
