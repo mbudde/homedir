@@ -29,6 +29,7 @@ hi Conceal                          ctermfg=NONE        ctermbg=NONE
 hi! link TabLineFill Normal
 
 hi Search                           ctermfg=202         ctermbg=236
+hi IncSearch        cterm=none      ctermfg=233         ctermbg=214
 
 hi Comment          cterm=none      ctermfg=244
 hi Constant         cterm=none      ctermfg=73
