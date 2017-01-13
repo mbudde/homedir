@@ -13,5 +13,7 @@ export FZF_DEFAULT_OPTS="
     --bind 'alt-f:delete-char'
     --bind 'alt-j:backward-char'
     --bind 'alt-l:forward-char'
-    --bind 'ctrl-s:toggle-sort'"
+    --bind 'ctrl-s:toggle-sort'
+    --bind 'ctrl-u:preview-page-up'
+    --bind 'ctrl-d:preview-page-down'"
 
