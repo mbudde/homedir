@@ -50,6 +50,7 @@ set scrolloff=5
 set splitright
 set showcmd
 set lazyredraw
+set mouse=a
 
 set nofoldenable
 set foldcolumn=0
