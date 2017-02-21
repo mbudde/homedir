@@ -284,11 +284,13 @@ function! s:perl_buffer_sub_handler(lines)
         endwhile
     endif
     if header_line > 0
+        normal! m`
         execute header_line
         normal! zt
         execute sub_line
         normal! ^
     else
+        normal! m`
         execute sub_line
         normal! ^zt
     endif
@@ -298,7 +300,7 @@ function! s:perl_buffer_subs()
     let color = '38;5;' . synIDattr(synIDtrans(hlID('LineNr')), 'fg', 'cterm')
     return map(filter(map(getline(1, "$"),
                 \ 'printf(" \x1b[%sm%4d\x1b[m \t%s", color, v:key + 1, v:val)'),
-                \ 'v:val =~ "\\t\\s*sub\\s\\+[A-Za-z_]"'),
+                \ 'v:val =~ "\\t\\s*\\(\\*\\s*[A-Za-z_]\\+\\s*=[^>]\\|sub\\s\\+[A-Za-z_]\\)"'),
                 \ 'substitute(v:val, "sub\\s\\+\\(.*\\)\\s*{.*$", "\\1", "")')
 endfunction
 
