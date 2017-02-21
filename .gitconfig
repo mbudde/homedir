@@ -19,7 +19,7 @@
 	rt = remote
 	pr = pull --rebase
 	lg = log --stat --relative-date
-	fa = !sh -c 'git add $@ $(git status --short | grep -v \"^[D ][D ]\" | fzf --ansi --multi | cut -c4-)' -
+	fa = !sh -c 'git add $@ $(git -c color.status=always status --short | grep -v \"^[D ][D ]\" | fzf --ansi --multi | cut -c4-)' -
 	g = log --graph --oneline --decorate
 	graph = log --graph --oneline --all --decorate
 	graph-two = !git log --graph --oneline --decorate --date-order $1 ${2:-HEAD} ^$(git merge-base $1 ${2:-HEAD})^
