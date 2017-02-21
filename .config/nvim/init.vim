@@ -30,6 +30,7 @@ Plug 'vim-perl/vim-perl'
 Plug 'othree/html5.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
