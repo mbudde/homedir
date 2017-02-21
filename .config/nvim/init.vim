@@ -257,6 +257,8 @@ nnoremap Ø :call PerlSubs()<CR>
 nnoremap Å :BLines<CR>
 nnoremap <Leader>gt :Tags<CR>
 
+command! -nargs=0 Todo Rg (TODO|FIXME|XXX)\(mbu\)
+
 inoremap <expr> <C-l> fzf#complete('perlmods')
 
 function! PerlOpen(mod)
