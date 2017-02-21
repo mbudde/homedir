@@ -27,6 +27,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-perl/vim-perl'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -369,6 +371,16 @@ nnoremap <silent> <Leader>tc :call neoterm#kill()<cr>
 nnoremap <silent> <Leader>ts :TREPLSend<cr>
 vnoremap <silent> <Leader>ts :TREPLSend<cr>
 nnoremap <silent> <Leader>tf :TREPLSendFile<cr>
+
+" }}}
+
+" Airline {{{
+
+let g:airline_theme = 'luna'
+let g:airline_skip_empty_sections = 1
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 " }}}
 
