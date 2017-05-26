@@ -1,2 +1,4 @@
 #!/bin/bash
-GIT_DIR="$HOME/.homegit" GIT_WORK_TREE="$HOME" git "$@"
+bin=$(basename $0)
+bin=${bin#h}
+GIT_DIR="$HOME/.homegit" GIT_WORK_TREE="$HOME" $bin "$@"
