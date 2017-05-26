@@ -133,6 +133,7 @@ iab py#! #!/usr/bin/env python
 iab sh#! #!/bin/sh
 iab bash#! #!/bin/bash
 iab ddd use Mojo::Util; say STDERR Mojo::Util::dumper
+iab yyy use YAML; say STDERR YAML::Dump
 iab ddD say STDERR Data::Dumper::Dumper
 iab sss say STDERR
 
