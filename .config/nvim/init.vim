@@ -374,8 +374,8 @@ nnoremap <silent> <Leader>tl :call neoterm#clear()<cr>
 " kills the current job (send a ^C)
 nnoremap <silent> <Leader>tc :call neoterm#kill()<cr>
 
-nnoremap <silent> <Leader>ts :TREPLSend<cr>
-vnoremap <silent> <Leader>ts :TREPLSend<cr>
+nnoremap <silent> <Leader>ts :TREPLSendLine<cr>
+vnoremap <silent> <Leader>ts :TREPLSendLine<cr>
 nnoremap <silent> <Leader>tf :TREPLSendFile<cr>
 
 " }}}
