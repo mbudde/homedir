@@ -269,7 +269,9 @@ inoremap <expr> <C-l> fzf#complete({ 'source': 'perlmods', 'options': '-i' })
 
 function! PerlOpen(mod)
     let path = system('perlopen -f ' . a:mod)
-    execute 'e' path
+    if !v:shell_error
+        execute 'e' path
+    endif
 endfunction
 
 command! -nargs=0 PerlOpen call fzf#run({
