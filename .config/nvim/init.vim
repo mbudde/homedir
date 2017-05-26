@@ -265,7 +265,7 @@ nnoremap <Leader>gt :Tags<CR>
 
 command! -nargs=0 Todo Rg (TODO|FIXME|XXX)\(mbu\)
 
-inoremap <expr> <C-l> fzf#complete('perlmods')
+inoremap <expr> <C-l> fzf#complete({ 'source': 'perlmods', 'options': '-i' })
 
 function! PerlOpen(mod)
     let path = system('perlopen -f ' . a:mod)
