@@ -400,7 +400,9 @@ function! PerlOpenModuleUnderCursor()
     let oldiskeyword = &iskeyword
     try
         setl iskeyword=@,48-57,_,:
-        let currentIdent = expand('<cword>')
+        let currentIdent = substitute(expand('<cword>'), "\\C::\\([a-z_][^:]*\\|[A-Z_][A-Z_]\\+\\)$", "", "")
+        " let currentIdent = substitute(expand('<cword>'), "C::DEFAULT", "", "")
+        echo currentIdent
     finally
         let &iskeyword = oldiskeyword
     endtry
