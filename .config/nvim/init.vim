@@ -327,8 +327,8 @@ endfunction
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always '.join(map([<f-args>], 'shellescape(v:val)'), ' '), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0 ? fzf#vim#with_preview({ 'options': '--reverse' }, 'up:60%')
+  \           : fzf#vim#with_preview({ 'options': '--reverse' }, 'right:50%:hidden', '?'),
   \   <bang>0)
 
 " }}}
