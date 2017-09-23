@@ -44,12 +44,13 @@ fi
 
 export COLORTERM=gnome-terminal
 
-if [[ -n $NVIM_LISTEN_ADDRESS ]]; then
-    export EDITOR=nve
+if [[ -n $NVIM_LISTEN_ADDRESS ]] && inpath nvr; then
+    alias nvim=nvr
+    export EDITOR="nvr --remote-wait-silent"
 else
     export EDITOR="$(choose_first nvim vim vi nano)"
 fi
-export VISUAL="$(choose_first "gvim --remote-wait")"
+# export VISUAL="$(choose_first "nvr --remote-wait-silent" "gvim --remote-wait")"
 export ALTERNATE_EDITOR=""
 export GIT_EDITOR=$EDITOR
 
