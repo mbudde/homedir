@@ -348,7 +348,6 @@ let g:NERDCustomDelimiters = {
 
 " }}}
 
-
 " Multiple cursors {{{
 let g:multi_cursor_exit_from_insert_mode = 0
 " }}}
@@ -356,7 +355,11 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " vim-test {{{
 let test#strategy = "neoterm"
 
-nnoremap <silent> <Leader>tt :TestLast<CR>
+nnoremap <silent> <Leader>TT :TestLast<CR>
+nnoremap <silent> <leader>Ts :TestSuite<CR>
+nnoremap <silent> <leader>Tf :TestFile<CR>
+nnoremap <silent> <leader>Tn :TestNearest<CR>
+nnoremap <silent> <leader>Tv :TestVisit<CR>
 
 " }}}
 
