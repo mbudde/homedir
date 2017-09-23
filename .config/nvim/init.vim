@@ -31,6 +31,7 @@ Plug 'othree/html5.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
+Plug 'ledger/vim-ledger'
 
 call plug#end()
 
