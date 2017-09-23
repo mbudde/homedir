@@ -1,6 +1,6 @@
 if [[ -d ~/.rustup ]]; then
     sysroot=$(rustc --print sysroot)
-    dir=$sysroot/etc/bash_completions.d
+    dir=$sysroot/etc/bash_completion.d
     for f in $(ls $dir); do
         f=$dir/$f
         [[ -f $f && -r $f ]] && . "$f"
