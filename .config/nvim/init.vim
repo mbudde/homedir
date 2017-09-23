@@ -423,7 +423,9 @@ autocmd FileType perl setlocal foldmethod=indent
 autocmd FileType perl,html.epl vnoremap <buffer> <Leader>pt :!perltidy<CR>
 autocmd FileType perl nnoremap <buffer> <Leader>pt :%!perltidy<CR>
 autocmd FileType perl,html.epl nnoremap <buffer> gp :call PerlOpenModuleUnderCursor()<CR>
+" Custom surround -
 autocmd FileType *.epl let b:surround_45 = "<% \r %>"
+" Custom surround =
 autocmd FileType *.epl let b:surround_61 = "<%= \r %>"
 
 
