@@ -26,7 +26,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-perl/vim-perl'
+Plug 'vim-perl/vim-perl', { 'branch': 'no-method-highlighting' }
 Plug 'othree/html5.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
