@@ -255,10 +255,10 @@ if system('git --version') =~ ' 1\.\([0-7]\|8\.[0-2]\)\.'
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(yellow)%h%C(reset)%d %s %C(black)%C(bold)%cr%C(reset)"'
 endif
 
-nnoremap æ :Files<CR>
+nnoremap æ :GitFiles<CR>
 nmap ø :Files %%<CR>
 nnoremap å :Buffers<CR>
-nnoremap Æ :Lines<CR>
+nnoremap Æ :Files<CR>
 nnoremap Å :BLines<CR>
 nnoremap <Leader>gt :Tags<CR>
 
