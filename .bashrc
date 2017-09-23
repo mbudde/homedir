@@ -42,6 +42,7 @@ if [ "$TERM" != "dumb" -a "$TERM" != "cygwin" ]; then
     source_if_exists ~/.bash_prompt
 fi
 
+export COLORTERM=gnome-terminal
 
 if [[ -n $NVIM_LISTEN_ADDRESS ]]; then
     export EDITOR=nve
