@@ -31,7 +31,7 @@
 	fixup = !sh -c 'git commit --fixup=$(git find-commit) $@' -
 	squash = !sh -c 'git commit --squash=$(git find-commit) $@' -
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-	me = log --oneline --decorate --graph --date-order --format='%C(yellow)%h %Creset%s %Cblue[%ar] %Cgreen%d' --author='Michael Budde' master
+	me = log --oneline --decorate --graph --date-order --format='%C(yellow)%h %Cblue%ci %Creset%s %Cblue[%ar] %Cgreen%d' --author='Michael Budde' master
 	vimgrep = "!f() { vim $(git grep -l \"$@\"); }; f"
 	conflicts = diff --name-only --diff-filter=U
 	land = "!f() { arc land --merge --hold \"$@\" && git checkout master && git merge --ff-only HEAD@{1}; }; f"
