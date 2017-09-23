@@ -74,6 +74,9 @@ set formatoptions+=n " Format numbered lists
 
 let g:terminal_scrollback_buffer_size = 5000
 
+" Syntax highlight subroutine signatures
+let g:perl_sub_signatures = 1
+
 " }}}
 
 " Colorscheme {{{
@@ -123,9 +126,6 @@ autocmd TermOpen *bin/fzf* tnoremap <buffer> <Esc> <Esc>
 
 autocmd BufWritePost *.{sh,pl} silent exe "!chmod +x %"
 
-" Neoterm REPL support
-autocmd FileType perl call neoterm#repl#set('re.pl')
-
 augroup END
 
 " }}}
@@ -135,10 +135,6 @@ augroup END
 iab py#! #!/usr/bin/env python
 iab sh#! #!/bin/sh
 iab bash#! #!/bin/bash
-iab ddd use Mojo::Util; say STDERR Mojo::Util::dumper
-iab yyy use YAML; say STDERR YAML::Dump
-iab ddD say STDERR Data::Dumper::Dumper
-iab sss say STDERR
 
 " Current file directory expansion
 cabbr <expr> %% expand('%:p:h')
@@ -262,70 +258,10 @@ nnoremap æ :Files<CR>
 nmap ø :Files %%<CR>
 nnoremap å :Buffers<CR>
 nnoremap Æ :Lines<CR>
-nnoremap Ø :call PerlSubs()<CR>
 nnoremap Å :BLines<CR>
 nnoremap <Leader>gt :Tags<CR>
 
 command! -nargs=0 Todo Rg (TODO|FIXME|XXX)\(mbu\)
-
-inoremap <expr> <C-l> fzf#complete({ 'source': 'perlmods', 'options': '-i' })
-
-function! PerlOpen(mod)
-    let path = system('perlopen -f ' . a:mod)
-    if !v:shell_error
-        execute 'e' path
-    endif
-endfunction
-
-command! -nargs=0 PerlOpen call fzf#run({
-            \ 'source': 'perlmods',
-            \ 'sink': function('PerlOpen')
-            \ })
-
-" PerlSubs {{{
-function! s:perl_buffer_sub_handler(lines)
-    let sub_line = matchstr(a:lines, "[0-9]\\+")
-    let cur_line = prevnonblank(sub_line - 1)
-    let header_line = 0
-    if getline(cur_line) =~# '^=cut'
-        let end_line = max([1, cur_line - (line('w$') - line('w0'))/2])
-        while cur_line >= end_line
-            if getline(cur_line) =~# '^=head'
-                let header_line = cur_line
-                break
-            endif
-            let cur_line -= 1
-        endwhile
-    endif
-    if header_line > 0
-        normal! m`
-        execute header_line
-        normal! zt
-        execute sub_line
-        normal! ^
-    else
-        normal! m`
-        execute sub_line
-        normal! ^zt
-    endif
-endfunction
-
-function! s:perl_buffer_subs()
-    let color = '38;5;' . synIDattr(synIDtrans(hlID('LineNr')), 'fg', 'cterm')
-    return map(filter(map(getline(1, "$"),
-                \ 'printf(" \x1b[%sm%4d\x1b[m \t%s", color, v:key + 1, v:val)'),
-                \ 'v:val =~ "\\t\\s*\\(\\*\\s*[A-Za-z_]\\+\\s*=[^>]\\|sub\\s\\+[A-Za-z_]\\)"'),
-                \ 'substitute(v:val, "sub\\s\\+\\(.*\\)\\s*{.*$", "\\1", "")')
-endfunction
-
-function! PerlSubs()
-    call fzf#run({
-                \ 'source':  s:perl_buffer_subs(),
-                \ 'sink': function('s:perl_buffer_sub_handler'),
-                \ 'options': '+m --tiebreak=index --prompt "Subs> " --ansi --reverse --extended --nth=2.. --tabstop=1',
-                \ 'left': '20%'
-                \ })
-endfunction
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -333,6 +269,11 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview({ 'options': '--reverse' }, 'up:60%')
   \           : fzf#vim#with_preview({ 'options': '--reverse' }, 'right:50%:hidden', '?'),
   \   <bang>0)
+
+command! -nargs=0 PerlOpen call fzf#run({
+            \ 'source': 'perlmods',
+            \ 'sink': function('ft#perl#PerlOpen')
+            \ })
 
 " }}}
 
@@ -396,44 +337,5 @@ let g:airline_right_sep = ''
 " }}}
 
 " File-specific settings and mappings {{{
-
-" Perl {{{
-
-function! PerlOpenModuleUnderCursor()
-    let oldiskeyword = &iskeyword
-    try
-        setl iskeyword=@,48-57,_,:
-        let currentIdent = substitute(expand('<cword>'), "\\C::\\([a-z_][^:]*\\|[A-Z_][A-Z_]\\+\\)$", "", "")
-        " let currentIdent = substitute(expand('<cword>'), "C::DEFAULT", "", "")
-        echo currentIdent
-    finally
-        let &iskeyword = oldiskeyword
-    endtry
-    call PerlOpen(currentIdent)
-endfunction
-
-" Syntax highlight subroutine signatures
-let perl_sub_signatures = 1
-
-augroup mbudde_perl
-autocmd!
-
-autocmd FileType perl setlocal foldmethod=indent
-
-autocmd FileType perl,html.epl vnoremap <buffer> <Leader>pt :!perltidy<CR>
-autocmd FileType perl nnoremap <buffer> <Leader>pt :%!perltidy<CR>
-autocmd FileType perl,html.epl nnoremap <buffer> gp :call PerlOpenModuleUnderCursor()<CR>
-" Custom surround -
-autocmd FileType *.epl let b:surround_45 = "<% \r %>"
-" Custom surround =
-autocmd FileType *.epl let b:surround_61 = "<%= \r %>"
-
-
-autocmd FileType html.epl vnoremap <buffer> <Leader>pg xi<%= __('<C-r>"') %><Esc>
-autocmd FileType html.epl nnoremap <buffer> <Leader>pg ^v$hxa%= __('<C-r>"')<Esc>
-
-augroup END
-
-" }}}
 
 " }}}
