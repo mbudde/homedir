@@ -62,6 +62,8 @@ set foldcolumn=0
 set foldmethod=syntax
 set foldnestmax=1
 
+set signcolumn=yes
+
 " Functionality
 set ignorecase smartcase
 set nojoinspaces
@@ -114,6 +116,7 @@ autocmd TermOpen * nnoremap <buffer> Q q
 autocmd TermOpen * setlocal errorformat+=%f:%l:%m,%f:%m,%f
 autocmd TermOpen * setlocal errorformat+=%f:%m
 autocmd TermOpen * setlocal errorformat+=%f
+autocmd TermOpen * setlocal signcolumn=no
 
 " Esc is mapped to "exit terminal mode" but fzf terminals I want Esc to exit fzf
 autocmd TermOpen *bin/fzf* tnoremap <buffer> <Esc> <Esc>
@@ -345,9 +348,6 @@ let g:NERDCustomDelimiters = {
 
 " }}}
 
-" Git Gutter {{{
-let g:gitgutter_sign_column_always = 1
-" }}}
 
 " Multiple cursors {{{
 let g:multi_cursor_exit_from_insert_mode = 0
