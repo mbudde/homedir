@@ -9,6 +9,7 @@ fi
 . ~/.bash_functions
 
 add_path ~/usr/bin
+add_path ~/.local/bin
 source_if_exists ~/etc/profile
 
 # If not running interactively, don't do anything
