@@ -114,13 +114,17 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
-autocmd TermOpen * nnoremap <buffer> gf :e <cfile><CR>
-autocmd TermOpen * nnoremap <buffer> q aq
-autocmd TermOpen * nnoremap <buffer> Q q
-autocmd TermOpen * setlocal errorformat+=%f:%l:%m,%f:%m,%f
-autocmd TermOpen * setlocal errorformat+=%f:%m
-autocmd TermOpen * setlocal errorformat+=%f
-autocmd TermOpen * setlocal signcolumn=no
+function s:SetupTerm()
+    nnoremap <buffer> gf :e <cfile><CR>
+    nnoremap <buffer> q aq
+    nnoremap <buffer> Q q
+    nnoremap <buffer> <Enter> a<CR>
+    setlocal errorformat+=%f:%l:%m,%f:%m,%f
+    setlocal errorformat+=%f:%m
+    setlocal errorformat+=%f
+    setlocal signcolumn=no
+endfunction
+autocmd TermOpen * call s:SetupTerm()
 
 " scrolloff is a global setting :(
 autocmd BufEnter * set scrolloff=5
