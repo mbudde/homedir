@@ -308,7 +308,9 @@ let test#strategy = "neoterm"
 nnoremap <silent> <Leader>TT :TestLast<CR>
 nnoremap <silent> <leader>Ts :TestSuite<CR>
 nnoremap <silent> <leader>Tf :TestFile<CR>
+nnoremap <silent> <leader>TF :TestFile -v<CR>
 nnoremap <silent> <leader>Tn :TestNearest<CR>
+nnoremap <silent> <leader>TN :TestNearest -v<CR>
 nnoremap <silent> <leader>Tv :TestVisit<CR>
 
 " }}}
