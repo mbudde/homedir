@@ -51,7 +51,6 @@ set fillchars=
 set number
 set relativenumber
 set ruler
-set scrolloff=5
 set splitright
 set showcmd
 set lazyredraw
@@ -121,6 +120,10 @@ autocmd TermOpen * setlocal errorformat+=%f:%l:%m,%f:%m,%f
 autocmd TermOpen * setlocal errorformat+=%f:%m
 autocmd TermOpen * setlocal errorformat+=%f
 autocmd TermOpen * setlocal signcolumn=no
+
+" scrolloff is a global setting :(
+autocmd BufEnter * set scrolloff=5
+autocmd BufEnter term://* set scrolloff=0
 
 " Esc is mapped to "exit terminal mode" but fzf terminals I want Esc to exit fzf
 autocmd TermOpen *bin/fzf* tnoremap <buffer> <Esc> <Esc>
