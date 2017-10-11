@@ -32,6 +32,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ledger/vim-ledger'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
