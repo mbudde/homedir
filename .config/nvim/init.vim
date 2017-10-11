@@ -345,6 +345,24 @@ let g:airline_right_sep = ''
 
 " }}}
 
+" Fugitive {{{
+
+nnoremap <Leader>Ge :Gedit<CR>
+nnoremap <Leader>Gd :Gdiff<CR>
+nnoremap <Leader>Gs :Gstatus<CR>
+nnoremap <Leader>Gw :Gwrite<CR>
+nnoremap <Leader>Gl :Glog<space>
+nnoremap <Leader>Gb :Gblame<CR>
+
+function! GlogLines()
+    let [firstline, lastline] = sort([line("'<"), line("'>")], 'n')
+    execute "Glog -L" . l:firstline . "," . l:lastline . ":" . expand('%')
+endfunction
+
+vnoremap <silent> <Leader>Gb :<C-u>call GlogLines()<CR>
+
+" }}}
+
 " }}}
 
 " File-specific settings and mappings {{{
