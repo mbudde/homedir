@@ -6,3 +6,4 @@
 _build_
 a.out
 *.fdb_latexmk
+.*@neomake*
