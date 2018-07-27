@@ -1,6 +1,6 @@
 
-syntax on
-filetype plugin indent on
+" syntax on
+" filetype plugin indent on
 
 call plug#begin('~/.config/nvim/bundle')
 
@@ -22,17 +22,19 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-perl/vim-perl', { 'branch': 'no-method-highlighting' }
+Plug 'vim-perl/vim-perl', { 'branch': 'dev' }
 Plug 'othree/html5.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ledger/vim-ledger'
 Plug 'posva/vim-vue'
+Plug 'sjl/gundo.vim'
 
 call plug#end()
 
@@ -56,7 +58,7 @@ set splitright
 set showcmd
 set lazyredraw
 set mouse=a
-set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+set guicursor=n-v-c:block-Cursor-blinkon0,i-ci:ver25-Cursor,r-cr:hor20-Cursor
 
 set nofoldenable
 set foldcolumn=0
@@ -72,17 +74,21 @@ set wildignorecase
 set wildmode=longest:full,full
 set nowrap
 set formatoptions+=n " Format numbered lists
+set inccommand=nosplit
 
 let g:terminal_scrollback_buffer_size = 5000
 
 " Syntax highlight subroutine signatures
 let g:perl_sub_signatures = 1
 
+call neomake#quickfix#enable()
+
 " }}}
 
 " Colorscheme {{{
 
 set t_Co=256
+set termguicolors
 colorscheme wombat
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -114,7 +120,7 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
-function s:SetupTerm()
+function! s:SetupTerm()
     nnoremap <buffer> gf :e <cfile><CR>
     nnoremap <buffer> q aq
     nnoremap <buffer> Q q
@@ -132,6 +138,10 @@ autocmd BufEnter term://* set scrolloff=0
 
 " Esc is mapped to "exit terminal mode" but fzf terminals I want Esc to exit fzf
 autocmd TermOpen *bin/fzf* tnoremap <buffer> <Esc> <Esc>
+
+" Fugitive commands in terminal
+" https://github.com/tpope/vim-fugitive/pull/652#issuecomment-245124604
+autocmd TermOpen * call fugitive#detect(getcwd())
 
 autocmd BufWritePost *.{sh,pl} silent exe "!chmod +x %"
 
@@ -158,6 +168,22 @@ fun! Mkdirs(path)
 endfun
 command! -nargs=? Mkdirs call Mkdirs(<q-args>)
 
+function! SplitLine()
+    let lnum = line('.')
+    let currentline = getline(lnum)
+    let space = repeat(' ', indent(lnum))
+    let parts = split(currentline, ',\s*')
+    let first = remove(parts, 0)
+    call setline(lnum, first . ",")
+    for part in parts
+        call append(lnum, space . part . ",")
+        let lnum = lnum + 1
+    endfor
+    let c = col([lnum, '$'])
+    call cursor(lnum, c)
+endfunction
+command! SplitLine call SplitLine()
+
 " }}}
 
 " Mappings {{{
@@ -173,15 +199,14 @@ nmap <Leader>d :bp<CR>
 nmap <Leader>e :b #<CR>
 nmap <Leader>q :bd<CR>
 nmap <Leader>Q :bd!<CR>
-nmap <Leader>w :w<CR>:bd<CR>
-nmap <Leader>W :w<CR>:BD<CR>
+nmap <Leader>w :w<CR>:BD<CR>
 nmap <Leader>x :BD<CR>
 
 " Set visual selection to search pattern
 vnoremap <Leader>v y:setl hlsearch<CR>:let @/="\\<".@"."\\>"<CR>
-nmap <Leader>v viw<Leader>v
+nmap <Leader>v :setl hlsearch<CR>:let @/="\\<".expand("<cword>")."\\>"<CR>
 vnoremap <Leader>V y:setl hlsearch<CR>:let @/=@"<CR>
-nmap <Leader>V viw<Leader>V
+nmap <Leader>V :setl hlsearch<CR>:let @/=expand("<cword>")<CR>
 
 " maps for moving through tabs
 nmap <Leader>D gT
@@ -215,12 +240,12 @@ nmap <C-s> :w<CR>
 imap <C-s> <ESC>:w<CR>
 
 " Line swapping (http://vim.wikia.com/wiki/Moving_lines_up_or_down)
-nnoremap <A-j> :<C-u>execute 'move +' . v:count1<CR>
-nnoremap <A-k> :<C-u>execute 'move -1-' . v:count1<CR>
+nnoremap <silent> <A-j> :<C-u>execute 'move +' . v:count1<CR>==
+nnoremap <silent> <A-k> :<C-u>execute 'move -1-' . v:count1<CR>==
 inoremap <A-j> <Esc>:m+<CR>gi
 inoremap <A-k> <Esc>:m-2<CR>gi
-vnoremap <A-j> :m'>+<CR>gv
-vnoremap <A-k> :m-2<CR>gv
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
 
 " Swap text (http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines)
 vnoremap <C-X> <Esc>`.``gvP``P
@@ -228,6 +253,9 @@ vnoremap <C-X> <Esc>`.``gvP``P
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 tnoremap <S-Esc> <Esc>
+
+" Surround rest of paragraph with braces
+imap <C-B> <Esc>jV}geS}kJ
 
 " }}}
 
@@ -263,12 +291,14 @@ if system('git --version') =~ ' 1\.\([0-7]\|8\.[0-2]\)\.'
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(yellow)%h%C(reset)%d %s %C(black)%C(bold)%cr%C(reset)"'
 endif
 
-nnoremap æ :GitFiles<CR>
-nmap ø :Files %%<CR>
+nnoremap æ :RGFiles<CR>
+nmap ø :RGFiles -- %%<CR>
 nnoremap å :Buffers<CR>
-nnoremap Æ :Files<CR>
+nnoremap Æ :RGAllFiles<CR>
 nnoremap Å :BLines<CR>
 nnoremap <Leader>gt :Tags<CR>
+nnoremap <Leader>oj :JSFiles<CR>
+nnoremap <Leader>op :PFiles<CR>
 
 command! -nargs=0 Todo Rg (TODO|FIXME|XXX)\(mbu\)
 
@@ -278,6 +308,31 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview({ 'options': '--reverse' }, 'up:60%')
   \           : fzf#vim#with_preview({ 'options': '--reverse' }, 'right:50%:hidden', '?'),
   \   <bang>0)
+
+function! s:rgfiles(cmd, args)
+    let rgargs = []
+    let dir = ''
+    let next_is_dir = 0
+    for arg in a:args
+        if next_is_dir
+            let dir = arg
+            break
+        endif
+        if arg ==# '--'
+            let next_is_dir = 1
+        endif
+        call add(rgargs, shellescape(arg))
+    endfor
+    call fzf#vim#files(dir, {
+        \ 'source': a:cmd . ' ' . join(rgargs, ' '),
+        \ })
+endfunction
+
+
+command! -nargs=* -complete=dir RGFiles call s:rgfiles('rg --files --color=never', [<f-args>])
+command! -nargs=* -complete=dir RGAllFiles call s:rgfiles('rg --files --no-ignore --color=never', [<f-args>])
+command! -nargs=* -complete=dir PFiles call s:rgfiles('rg --type-add "mojo:*.ep" --type perl --type mojo --files --color=never', [<f-args>])
+command! -nargs=* -complete=dir JSFiles call s:rgfiles('rg --type js --files --color=never', [<f-args>])
 
 command! -nargs=0 PerlOpen call fzf#run({
             \ 'source': 'perlmods',
@@ -317,7 +372,7 @@ nnoremap <silent> <leader>Tv :TestVisit<CR>
 
 " Neoterm {{{
 
-let g:neoterm_position = 'vertical'
+let g:neoterm_default_mod = ':vertical'
 
 nnoremap <silent> <Leader>to :Topen<cr>
 nnoremap <silent> <Leader>tO :exe 'b '.g:neoterm.last().buffer_id<cr>
@@ -351,15 +406,16 @@ nnoremap <Leader>Ge :Gedit<CR>
 nnoremap <Leader>Gd :Gdiff<CR>
 nnoremap <Leader>Gs :Gstatus<CR>
 nnoremap <Leader>Gw :Gwrite<CR>
-nnoremap <Leader>Gl :Glog<space>
 nnoremap <Leader>Gb :Gblame<CR>
+nnoremap <Leader>Gl :Glog --reverse origin/master.. --<CR>
 
-function! GlogLines()
+function! GlogLines(args)
     let [firstline, lastline] = sort([line("'<"), line("'>")], 'n')
-    execute "Glog -L" . l:firstline . "," . l:lastline . ":" . expand('%')
+    execute "Glog -L" . l:firstline . "," . l:lastline . ":" . expand('%') . " " . a:args
 endfunction
 
-vnoremap <silent> <Leader>Gb :<C-u>call GlogLines()<CR>
+vnoremap <silent> <Leader>Gb :<C-u>call GlogLines("")<CR>
+vnoremap <silent> <Leader>GB :<C-u>call GlogLines("--")<CR>
 
 " }}}
 
