@@ -57,7 +57,7 @@ find_matching_files () {
 if [[ $noop && $staged ]]; then
     find_matching_files "$glob" "$find"
 elif [[ $noop ]]; then
-    git grep $grep_args "$find" -- "$glob"
+    git grep $grep_args "$find" -- "${glob:-.}"
 else
     for file in $(find_matching_files "$glob" "$find" -l); do
         echo $file
