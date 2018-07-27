@@ -12,6 +12,8 @@
 	wdi = diff --color-words
 	co = checkout
 	ci = commit
+	amend = commit --amend
+	recommit = commit --amend --reset-author
 	br = branch
 	h = help
 	rb = rebase
@@ -23,7 +25,7 @@
 	g = log --graph --oneline --decorate
 	graph = log --graph --oneline --all --decorate
 	graph-two = !git log --graph --oneline --decorate --date-order $1 ${2:-HEAD} ^$(git merge-base $1 ${2:-HEAD})^
-	incoming = !git log --graph --oneline --decorate --date-order --format='%C(yellow)%h %Creset%s %Cblue[%ar] %C(cyan)%ae %Cgreen%d' origin/master HEAD ^$(git merge-base origin/master HEAD)^
+	incoming = log --reverse HEAD..@{u}
 	linc = log ..origin/master
 	pusht = !git push && git push --tags
 	ppp = !git push || git pull && git push
@@ -33,7 +35,7 @@
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 	me = log --oneline --decorate --graph --date-order --format='%C(yellow)%h %Cblue%ci %Creset%s %Cblue[%ar] %Cgreen%d' --author='Michael Budde' master
 	vimgrep = "!f() { vim $(git grep -l \"$@\"); }; f"
-	conflicts = diff --name-only --diff-filter=U
+	conflicts = diff --name-status --diff-filter=U
 	land = "!f() { arc land --merge --hold \"$@\" && git checkout master && git merge --ff-only HEAD@{1}; }; f"
 [diff]
 	renames = copies
