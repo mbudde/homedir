@@ -1,4 +1,6 @@
-if [[ -d ~/.rustup ]]; then
+if which rustup &>/dev/null; then
+    eval "`rustup completions bash`"
+
     sysroot=$(rustc --print sysroot)
     dir=$sysroot/etc/bash_completion.d
     for f in $(ls $dir); do
