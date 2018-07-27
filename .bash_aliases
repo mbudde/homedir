@@ -51,3 +51,4 @@ alias dquilt='quilt --quiltrc=${HOME}/.quiltrc-dpkg'
 
 # typos
 alias carog=cargo
+alias gti=git
