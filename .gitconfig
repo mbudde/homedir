@@ -5,6 +5,7 @@
 	email = mbudde@gmail.com
 [core]
 	excludesfile = ~/.gitignore
+	quotepath = off
 [alias]
 	st = status -sb
 	di = diff
