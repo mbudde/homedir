@@ -30,22 +30,11 @@ alias tree="tree_pager"
 alias lmk="latexmk -pvc"
 
 # aptitude aliases
-alias apu='sudo aptitude update'
-alias apug='sudo aptitude safe-upgrade'
-alias apdg='sudo aptitude dist-upgrade'
-alias api='sudo aptitude install'
-alias apr='sudo aptitude remove'
-alias app='sudo aptitude purge'
-alias apbd='sudo aptitude build-dep'
-alias aps='aptitude search'
-alias apd='aptitude download'
-alias apsh='aptitude show'
-
-# apt-get aliases
-alias agi='sudo apt-get install'
-alias agr='sudo apt-get remove'
-alias agp='sudo apt-get remove --purge'
-
+alias i='sudo apt install'
+alias apu='sudo apt update'
+alias apuu='sudo apt update && sudo apt upgrade'
+alias aprm='sudo apt autoremove'
+alias apsh='apt show'
 
 alias dquilt='quilt --quiltrc=${HOME}/.quiltrc-dpkg'
 
