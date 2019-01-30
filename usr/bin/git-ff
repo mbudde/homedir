@@ -27,5 +27,5 @@ else
     echo -e "\033[1;33mBranch has diverged from upstream!\033[0m"
     echo
 
-    git log --decorate --oneline --graph HEAD @{upstream} ^$(git merge-base HEAD @{upstream})^
+    git log --decorate --oneline --graph HEAD @{upstream} $(git merge-base HEAD @{upstream})^!
 fi
