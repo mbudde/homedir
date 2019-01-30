@@ -75,6 +75,7 @@ set wildmode=longest:full,full
 set nowrap
 set formatoptions+=n " Format numbered lists
 set inccommand=nosplit
+set nostartofline
 
 let g:terminal_scrollback_buffer_size = 5000
 
