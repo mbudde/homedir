@@ -195,6 +195,7 @@ command! SplitLine call SplitLine()
 nnoremap <F2> :mksession! ~/.local/share/nvim/saved-session.vim<CR>
 nnoremap <F3> :source ~/.local/share/nvim/saved-session.vim<CR>
 nnoremap <F7> :%s/\s\+$//e<CR>``
+nnoremap <F8> :syn sync fromstart<CR>
 
 " maps for buffers
 nmap <Leader>f :bn<CR>
