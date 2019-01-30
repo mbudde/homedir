@@ -12,6 +12,7 @@
 	dic = diff --cached
 	wdi = diff --color-words
 	co = checkout
+	cb = !git branch --color=always | fzf --tac --ansi | sed 's/^\\*\\?\\s\\+//' | xargs -r -n1 git checkout
 	ci = commit
 	amend = commit --amend
 	recommit = commit --amend --reset-author
