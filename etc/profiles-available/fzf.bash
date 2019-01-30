@@ -2,7 +2,10 @@
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+mkdir -p ~/.local/share/fzf
+
 export FZF_DEFAULT_OPTS="
+    --history=$HOME/.local/share/fzf/history
     --bind 'alt-i:up'
     --bind 'alt-k:down'
     --bind 'alt-u:backward-word'
