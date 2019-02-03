@@ -17,6 +17,7 @@ Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vader.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kassio/neoterm'
 "Plug 'KurtPreston/JavaScript-Indent'
