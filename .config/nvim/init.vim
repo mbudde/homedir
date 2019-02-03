@@ -430,6 +430,12 @@ vnoremap <silent> <Leader>GB :<C-u>call GlogLines("--")<CR>
 
 " }}}
 
+" Neomake {{{
+
+autocmd! BufReadPost,BufWritePost * Neomake
+
+" }}}
+
 " }}}
 
 " File-specific settings and mappings {{{
