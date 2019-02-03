@@ -127,7 +127,7 @@ autocmd BufRead,BufNewFile *.txt*.ep setlocal filetype=text.epl
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
 autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") && ! &filetype == 'gitcommit' |
+    \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype !=? 'gitcommit' |
     \   exe "normal! g`\"" |
     \ endif
 
