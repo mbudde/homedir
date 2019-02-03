@@ -41,6 +41,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ledger/vim-ledger'
 Plug 'posva/vim-vue'
 Plug 'sjl/gundo.vim'
+Plug 'nathangrigg/vim-beancount'
 
 call plug#end()
 
