@@ -435,6 +435,10 @@ autocmd! BufReadPost,BufWritePost * Neomake
 
 " }}}
 
+" AutoPairs {{{
+let g:AutoPairsCenterLine = 0
+" }}}
+
 " }}}
 
 " File-specific settings and mappings {{{
