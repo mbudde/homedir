@@ -1,6 +1,4 @@
-
-" syntax on
-" filetype plugin indent on
+" Plugins {{{
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -46,9 +44,11 @@ Plug 'nathangrigg/vim-beancount'
 
 call plug#end()
 
-let mapleader = ','
+" }}}
 
 " Settings {{{
+
+let mapleader = ','
 
 " Tab/space
 set expandtab
@@ -350,8 +350,6 @@ command! -nargs=0 PerlOpen call fzf#run({
             \ 'source': 'perlmods',
             \ 'sink': function('ft#perl#PerlOpen')
             \ })
-
-" }}}
 
 " }}}
 
