@@ -303,11 +303,11 @@ if system('git --version') =~ ' 1\.\([0-7]\|8\.[0-2]\)\.'
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(yellow)%h%C(reset)%d %s %C(black)%C(bold)%cr%C(reset)"'
 endif
 
-nnoremap æ :RGFiles<CR>
-nmap ø :RGFiles -- %%<CR>
-nnoremap å :Buffers<CR>
-nnoremap Æ :RGAllFiles<CR>
-nnoremap Å :BLines<CR>
+nnoremap æ :RGFiles<CR><C-\><C-n>0i
+nmap ø :RGFiles -- %%<CR><C-\><C-n>0i
+nnoremap å :Buffers<CR><C-\><C-n>0i
+nnoremap Æ :RGAllFiles<CR><C-\><C-n>0i
+nnoremap Å :BLines<CR><C-\><C-n>0i
 nnoremap <Leader>gt :Tags<CR>
 nnoremap <Leader>oj :JSFiles<CR>
 nnoremap <Leader>op :PFiles<CR>
