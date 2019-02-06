@@ -298,10 +298,7 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " FZF {{{
-if system('git --version') =~ ' 1\.\([0-7]\|8\.[0-2]\)\.'
-    " %C(auto) feature was introduced in 1.8.3
-    let g:fzf_commits_log_options = '--graph --color=always --format="%C(yellow)%h%C(reset)%d %s %C(black)%C(bold)%cr%C(reset)"'
-endif
+let g:fzf_commits_log_options = '--color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%ae %cr"'
 
 nnoremap æ :RGFiles<CR><C-\><C-n>0i
 nmap ø :RGFiles -- %%<CR><C-\><C-n>0i
