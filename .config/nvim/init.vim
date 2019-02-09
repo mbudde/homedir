@@ -40,6 +40,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ledger/vim-ledger'
 Plug 'posva/vim-vue'
 Plug 'sjl/gundo.vim'
+Plug 'zxqfl/tabnine-vim'
 Plug 'nathangrigg/vim-beancount'
 
 call plug#end()
@@ -91,6 +92,8 @@ let g:terminal_scrollback_buffer_size = 5000
 let g:perl_sub_signatures = 1
 
 let g:perl_fold = 0
+
+let g:ycm_filetype_blacklist = {'beancount': 1}
 
 call neomake#quickfix#enable()
 
