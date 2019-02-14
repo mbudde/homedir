@@ -42,6 +42,7 @@ Plug 'posva/vim-vue'
 Plug 'sjl/gundo.vim'
 Plug 'zxqfl/tabnine-vim'
 Plug 'nathangrigg/vim-beancount'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
@@ -181,22 +182,6 @@ fun! Mkdirs(path)
     execute "!mkdir -p " . shellescape(path)
 endfun
 command! -nargs=? Mkdirs call Mkdirs(<q-args>)
-
-function! SplitLine()
-    let lnum = line('.')
-    let currentline = getline(lnum)
-    let space = repeat(' ', indent(lnum))
-    let parts = split(currentline, ',\s*')
-    let first = remove(parts, 0)
-    call setline(lnum, first . ",")
-    for part in parts
-        call append(lnum, space . part . ",")
-        let lnum = lnum + 1
-    endfor
-    let c = col([lnum, '$'])
-    call cursor(lnum, c)
-endfunction
-command! SplitLine call SplitLine()
 
 " }}}
 
