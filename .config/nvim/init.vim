@@ -218,10 +218,10 @@ nmap <Leader>w :w<CR>:BD<CR>
 nmap <Leader>x :BD<CR>
 
 " Set visual selection to search pattern
-vnoremap <Leader>v y:setl hlsearch<CR>:let @/="\\<".@"."\\>"<CR>
-nmap <Leader>v :setl hlsearch<CR>:let @/="\\<".expand("<cword>")."\\>"<CR>
-vnoremap <Leader>V y:setl hlsearch<CR>:let @/=@"<CR>
-nmap <Leader>V :setl hlsearch<CR>:let @/=expand("<cword>")<CR>
+vnoremap <Leader>v y:setl hlsearch<CR>:let @/='\V\<'.escape(@", '\').'\>'<CR>:echo @/<CR>
+nmap <Leader>v :setl hlsearch<CR>:let @/='\V\<'.escape(expand("<cword>"), '\').'\>'<CR>:echo @/<CR>
+vnoremap <Leader>V y:setl hlsearch<CR>:let @/='\V'.escape(@", '\')<CR>:echo @/<CR>
+nmap <Leader>V :setl hlsearch<CR>:let @/='\V'.escape(expand("<cword>"), '\')<CR>:echo @/<CR>
 
 " maps for moving through tabs
 nmap <Leader>D gT
