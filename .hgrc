@@ -11,4 +11,3 @@ transplant =
 shelve =
 rebase =
 hgext.bookmarks =
-hggit =
