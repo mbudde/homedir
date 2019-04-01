@@ -20,14 +20,19 @@ function! s:insert_transaction(result)
     endif
 
     let parts = split(a:result, ' ', 1)
-    let copy_start = parts[0]
-    call cursor(copy_start, 0)
-    let copy_end = search('^$') - 1
-    let lines = getline(copy_start, copy_end)
-    let first_line = substitute(lines[0], '^[^ ]\+', date, "")
-    call cursor(insert_lnr, 0)
-    call setline(insert_lnr, first_line)
-    call append(insert_lnr, lines[1:] + [""])
+    if parts[0] ==# '-1'
+        let parts[1] = date
+        call setline(insert_lnr, join(parts[1:], ' '))
+    else
+        let copy_start = parts[0]
+        call cursor(copy_start, 0)
+        let copy_end = search('^$') - 1
+        let lines = getline(copy_start, copy_end)
+        let first_line = substitute(lines[0], '^[^ ]\+', date, "")
+        call cursor(insert_lnr, 0)
+        call setline(insert_lnr, first_line)
+        call append(insert_lnr, lines[1:] + [""])
+    end
     normal f"l
 endfunction
 
@@ -37,7 +42,9 @@ function! s:transaction_lines()
     let fmtexpr = 'printf(linefmt, v:key + 1, v:val)'
     let query = '^\d\{4\}-\d\{2\}-\d\{2\}\s\+\*'
     let lines = map(lines, 'v:val =~ query ? '.fmtexpr.' : ""')
-    return reverse(filter(lines, 'len(v:val)'))
+    let lines = reverse(filter(lines, 'len(v:val)'))
+    call insert(lines, '-1 ' . strftime("%Y-%m-%d") . ' * ""')
+    return lines
 endfunction
 
 command! -nargs=0 CopyTransaction call fzf#run({
