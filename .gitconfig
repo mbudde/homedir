@@ -12,7 +12,7 @@
 	dic = diff --cached
 	wdi = diff --color-words
 	co = checkout
-	cb = !git branch --color=always | fzf --tac --ansi | sed 's/^\\*\\?\\s\\+//' | xargs -r -n1 git checkout
+	cb = "!f() { git branch --color=always | fzf --tac --ansi -q \"$1\" -1 | sed 's/^\\*\\?\\s\\+//' | xargs -r -n1 git checkout; }; f"
 	ci = commit
 	amend = commit --amend
 	recommit = commit --amend --reset-author
@@ -28,6 +28,7 @@
 	graph = log --graph --oneline --all --decorate
 	graph-two = !git log --graph --oneline --decorate --date-order $1 ${2:-HEAD} ^$(git merge-base $1 ${2:-HEAD})^
 	incoming = log --reverse HEAD..@{u}
+	outgoing = log --reverse @{u}..HEAD
 	linc = log ..origin/master
 	pusht = !git push && git push --tags
 	ppp = !git push || git pull && git push
@@ -35,10 +36,12 @@
 	fixup = !sh -c 'git commit --fixup=$(git find-commit) $@' -
 	squash = !sh -c 'git commit --squash=$(git find-commit) $@' -
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-	me = log --oneline --decorate --graph --date-order --format='%C(yellow)%h %Cblue%ci %Creset%s %Cblue[%ar] %Cgreen%d' --author='Michael Budde' master
+	me = log --oneline --decorate --graph --date-order --format='%C(yellow)%h %Cblue%ci %Creset%s %Cblue[%ar] %Cgreen%d' --author='Michael Budde'
 	vimgrep = "!f() { vim $(git grep -l \"$@\"); }; f"
 	conflicts = diff --name-status --diff-filter=U
 	land = "!f() { arc land --merge --hold \"$@\" && git checkout master && git merge --ff-only HEAD@{1}; }; f"
+	arc-amend = "!f() { git amend --edit -m \"$(arc amend --show --revision $1 | grep -v Summary; git log -1 --format=format:%B | sed 's/^/# /g')\"; }; f"
+	arc-add-rev = "!f() { git amend -m \"$(git log -1 --format=format:%B%n; arc amend --show --revision $1 | grep Revision:)\"; }; f"
 [diff]
 	renames = copies
 [push]
