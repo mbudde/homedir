@@ -8,8 +8,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'airblade/vim-gitgutter'
-Plug 'danro/rename.vim'
+"Plug 'airblade/vim-gitgutter'
 Plug 'guns/xterm-color-table.vim'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -19,7 +18,7 @@ Plug 'junegunn/vader.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kassio/neoterm'
 "Plug 'KurtPreston/JavaScript-Indent'
-Plug 'mbudde/mojo.vim', { 'branch': 'syntax-brackets' } " Plug 'yko/mojo.vim'
+Plug 'yko/mojo.vim'
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rust-lang/rust.vim'
@@ -40,9 +39,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ledger/vim-ledger'
 Plug 'posva/vim-vue'
 Plug 'sjl/gundo.vim'
-Plug 'zxqfl/tabnine-vim'
+" Plug 'zxqfl/tabnine-vim'
 Plug 'nathangrigg/vim-beancount'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-AdvancedSorters'
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 
@@ -104,9 +106,9 @@ call neomake#quickfix#enable()
 
 set t_Co=256
 set termguicolors
-colorscheme wombat
+colorscheme dull2
 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " }}}
 
@@ -154,10 +156,6 @@ autocmd BufEnter term://* set scrolloff=0
 " Esc is mapped to "exit terminal mode" but fzf terminals I want Esc to exit fzf
 autocmd TermOpen *bin/fzf* tnoremap <buffer> <Esc> <Esc>
 
-" Fugitive commands in terminal
-" https://github.com/tpope/vim-fugitive/pull/652#issuecomment-245124604
-autocmd TermOpen * call fugitive#detect(getcwd())
-
 autocmd BufWritePost *.{sh,pl} silent exe "!chmod +x %"
 
 augroup END
@@ -176,12 +174,6 @@ cabbr <expr> %% expand('%:p:h')
 " }}}
 
 " Commands {{{
-
-fun! Mkdirs(path)
-    let path = strlen(a:path) ? a:path : expand("%:p:h")
-    execute "!mkdir -p " . shellescape(path)
-endfun
-command! -nargs=? Mkdirs call Mkdirs(<q-args>)
 
 " }}}
 
@@ -213,6 +205,15 @@ nmap <Leader>D gT
 nmap <Leader>F gt
 nmap <M-h> gT
 nmap <M-l> gt
+nmap <M-1> :1tabnext<CR>
+nmap <M-2> :2tabnext<CR>
+nmap <M-3> :3tabnext<CR>
+nmap <M-4> :4tabnext<CR>
+nmap <M-5> :5tabnext<CR>
+nmap <M-6> :6tabnext<CR>
+nmap <M-7> :7tabnext<CR>
+nmap <M-8> :8tabnext<CR>
+nmap <M-9> :9tabnext<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -223,7 +224,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 
 
-imap kj <Esc>
+"imap kj <Esc>
 
 " Yank filename under cursor
 nmap <expr> <silent> yf ':let @'.v:register.' = expand("<cfile>")<CR>'
@@ -286,6 +287,7 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " FZF {{{
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.6, 'yoffset': 1 } }
 let g:fzf_commits_log_options = '--color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%ae %cr"'
 
 nnoremap æ :RGFiles<CR><C-\><C-n>0i
@@ -301,7 +303,7 @@ command! -nargs=0 Todo Rg (TODO|FIXME|XXX)\(mbu\)
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.join(map([<f-args>], 'shellescape(v:val)'), ' '), 1,
+  \   'rg --column --line-number --no-heading --color=always '.join(map([<f-args>], 'shellescape(v:val)'), ' ') . ' || true', 1,
   \   <bang>0 ? fzf#vim#with_preview({ 'options': '--reverse' }, 'up:60%')
   \           : fzf#vim#with_preview({ 'options': '--reverse' }, 'right:50%:hidden', '?'),
   \   <bang>0)
@@ -368,20 +370,32 @@ nnoremap <silent> <leader>Tv :TestVisit<CR>
 " Neoterm {{{
 
 let g:neoterm_default_mod = ':vertical'
+let g:neoterm_autoscroll = 1
+
+function! s:neoterm_open_in_window()
+    let l:instance = g:neoterm.last()
+    if empty(l:instance)
+        terminal
+        call neoterm#new({'from_buffer': 1})
+    else
+        exec 'b ' . l:instance.buffer_id
+    endif
+endfunction
 
 nnoremap <silent> <Leader>to :Topen<cr>
-nnoremap <silent> <Leader>tO :exe 'b '.g:neoterm.last().buffer_id<cr>
-nnoremap <silent> <Leader>tn :Tnew<cr>
+nnoremap <silent> <Leader>tO :call <SID>neoterm_open_in_window()<cr>
 " hide/close terminal
-nnoremap <silent> <Leader>th :call neoterm#close()<cr>
+nnoremap <silent> <Leader>th :call neoterm#close({})<cr>
 " clear terminal
-nnoremap <silent> <Leader>tl :call neoterm#clear()<cr>
+nnoremap <silent> <Leader>tl :call neoterm#clear({})<cr>
 " kills the current job (send a ^C)
-nnoremap <silent> <Leader>tc :call neoterm#kill()<cr>
+nnoremap <silent> <Leader>tc :call neoterm#kill({})<cr>
 
 nnoremap <silent> <Leader>ts :TREPLSendLine<cr>
 vnoremap <silent> <Leader>ts :TREPLSendLine<cr>
 nnoremap <silent> <Leader>tf :TREPLSendFile<cr>
+
+nnoremap <silent> <Leader>te :call neoterm#normal('G')<cr>
 
 " }}}
 
