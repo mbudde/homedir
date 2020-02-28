@@ -118,8 +118,12 @@ prompt_command () {
 
     # Set terminal title
     echo -ne "]0;${cwd}"
+
+    # Update history file immediately (instead of waiting till session ends)
+    history -a
+    # history -n
 }
 
 if echo $PROMPT_COMMAND | grep -v prompt_command >/dev/null ; then
-    export PROMPT_COMMAND="prompt_command ; ${PROMPT_COMMAND:-:}"
+    PROMPT_COMMAND="prompt_command ; ${PROMPT_COMMAND:-:}"
 fi
