@@ -9,7 +9,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "wombat"
+let colors_name = "dull2"
 
 let g:terminal_color_0 = "#2E3436"
 let g:terminal_color_1 = "#CC0000"
@@ -52,14 +52,19 @@ hi! link TabLineFill Normal
 hi Search                           ctermfg=202     ctermbg=236     gui=none    guifg=#ff5f00   guibg=#303030
 hi IncSearch        cterm=none      ctermfg=233     ctermbg=214     gui=none    guifg=#121212   guibg=#ffaf00
 
-hi Comment          cterm=none      ctermfg=244                     gui=none    guifg=#808080
-hi Constant         cterm=none      ctermfg=73                      gui=none    guifg=#5fafaf
-hi Identifier       cterm=none      ctermfg=81                      gui=none    guifg=#5fdfff
-hi Function         cterm=none      ctermfg=13                      gui=none    guifg=#ad7fa8
-hi Type             cterm=none      ctermfg=221                     gui=none    guifg=#ffdf5f
-hi Statement        cterm=none      ctermfg=108                     gui=none    guifg=#87af87
-hi PreProc          cterm=none      ctermfg=203                     gui=none    guifg=#ff5f5f
-hi Special                          ctermfg=171                     gui=none    guifg=#df5fff
+hi Comment          cterm=none      ctermfg=244                     gui=none    guifg=#aaaaaa
+hi Constant         cterm=none      ctermfg=73                      gui=none    guifg=#dddddd
+hi String                                                           gui=none    guifg=#add8b4
+hi Character                                                        gui=none    guifg=#add8b4
+hi Number                                                           gui=none    guifg=#97b9d8
+hi Float                                                            gui=none    guifg=#97b9d8
+hi Identifier       cterm=none      ctermfg=81                      gui=none    guifg=#dddddd
+hi Function         cterm=none      ctermfg=13                      gui=none    guifg=#c397d8
+hi Type             cterm=none      ctermfg=221                     gui=none    guifg=#dddddd
+hi Statement        cterm=bold      ctermfg=108                     gui=bold    guifg=#dddddd
+hi Operator         cterm=bold      ctermfg=108                     gui=none    guifg=#dddddd
+hi PreProc          cterm=none      ctermfg=203                     gui=bold    guifg=#ffffff
+hi Special                          ctermfg=171                     gui=none    guifg=#dddddd
 
 "guibg=#2e3d0f   #3d5214  guifg=
 hi DiffAdd                                          ctermbg=22                                  guibg=#0f3d0f
@@ -80,11 +85,41 @@ hi podVerbatimLine                  ctermfg=252                                 
 
 hi link perlPOD Comment
 hi link perlSubName Function
-hi link perlVarPlain Type
+hi link perlVarPlain Identifier
 hi link perlVarPlain2 Identifier
+hi link perlBraces Special
+hi link perlMatchStartEnd String
+hi link perlSpecialMatch String
+hi link perlSpecialString String
+hi link perlControl Conditional
+
+hi link javascriptBraces Special
+hi link javascriptFunction Keyword
+hi link javascriptNumber Number
+hi link javaScriptBoolean Keyword
+
+hi link cssBraces Special
+
+hi link sassAmpersand Keyword
+
+hi link htmlTag Special
+hi link htmlH1 String
+hi link htmlH2 String
+hi link htmlH3 String
+hi link htmlH4 String
+hi link htmlH5 String
+hi link htmlH6 String
+
+hi link MojoStart Function
+hi link MojoSingleStart Function
+hi link MojoEnd Function
 
 hi NeomakeWarning   cterm=underline ctermfg=220                                 guifg=#ffdf00
 hi link NeomakeWarningSign NeomakeWarning
+hi link NeomakeVirtualtextMessage Comment
+hi link NeomakeVirtualtextWarning Comment
+hi link NeomakeVirtualtextInfo Comment
+hi link NeomakeVirtualtextError Comment
 
 hi ConflictMarker                                                               guifg=#43d0ce   guibg=#104140
 
