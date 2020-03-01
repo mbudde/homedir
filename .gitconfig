@@ -2,7 +2,7 @@
 # vim: set noexpandtab:
 [user]
 	name = Michael Budde
-	email = mbudde@gmail.com
+	email = git@mbudde.dk
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = off
