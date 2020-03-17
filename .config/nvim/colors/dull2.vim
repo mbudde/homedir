@@ -42,12 +42,12 @@ hi Folded                           ctermfg=241     ctermbg=235                 
 hi FoldColumn                                       ctermbg=234                 guifg=#248f8b   guibg=#262626
 hi TabLine          cterm=none      ctermfg=250     ctermbg=236     gui=none    guifg=#bcbcbc   guibg=#303030
 hi TabLineSel       cterm=bold      ctermfg=255     ctermbg=240     gui=bold    guifg=#eeeeee   guibg=#585858
+hi TabLineFill                                                                  guifg=#303030
 hi Pmenu                            ctermfg=251     ctermbg=233                 guifg=#c6c6c6   guibg=#121212
 hi PmenuSel                         ctermfg=253     ctermbg=52                  guifg=#dadada   guibg=#5f0000
 hi MatchParen                                       ctermbg=125                                 guibg=#af005f
 hi Conceal                          ctermfg=none    ctermbg=none
 hi NonText                          ctermfg=236     ctermbg=233                 guifg=#303030   guibg=#121212
-hi! link TabLineFill Normal
 
 hi Search                           ctermfg=202     ctermbg=236     gui=none    guifg=#ff5f00   guibg=#303030
 hi IncSearch        cterm=none      ctermfg=233     ctermbg=214     gui=none    guifg=#121212   guibg=#ffaf00
