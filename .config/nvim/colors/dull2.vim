@@ -79,6 +79,7 @@ hi! link GitGutterChange DiffChange
 hi! link GitGutterDelete DiffDelete
 
 hi podCmdText                       ctermfg=70                                  guifg=#5faf00
+hi podCommand                       ctermfg=70                      gui=bold    guifg=#aaaaaa
 hi podSpecial                       ctermfg=252                                 guifg=#d0d0d0
 hi podFormat                        ctermfg=252                                 guifg=#d0d0d0
 hi podVerbatimLine                  ctermfg=252                                 guifg=#d0d0d0
