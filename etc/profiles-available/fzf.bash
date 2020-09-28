@@ -18,5 +18,6 @@ export FZF_DEFAULT_OPTS="
     --bind 'alt-l:forward-char'
     --bind 'ctrl-s:toggle-sort'
     --bind 'alt-u:preview-page-up'
-    --bind 'alt-d:preview-page-down'"
+    --bind 'alt-d:preview-page-down'
+    --bind 'ctrl-space:jump'"
 
