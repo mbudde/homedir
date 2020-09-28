@@ -23,6 +23,7 @@ set completion-prefix-display-length 5
 set show-all-if-ambiguous off
 set show-all-if-unmodified on
 set colored-completion-prefix on
+set mark-symlinked-directories on
 
 
 "\ej": backward-char
