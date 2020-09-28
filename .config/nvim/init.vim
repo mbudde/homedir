@@ -23,7 +23,8 @@ Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
@@ -70,7 +71,7 @@ set splitright
 set showcmd
 set lazyredraw
 set mouse=a
-set guicursor=n-v-c:block-Cursor-blinkon0,i-ci:ver25-Cursor,r-cr:hor20-Cursor
+set guicursor=n-v-c:block-Cursor-blinkon0,i-ci:ver25-iCursor,r-cr:hor20-Cursor
 
 set nofoldenable
 set foldcolumn=0
@@ -376,20 +377,22 @@ function! s:neoterm_open_in_window()
     let l:instance = g:neoterm.last()
     if empty(l:instance)
         terminal
-        call neoterm#new({'from_buffer': 1})
+        call neoterm#new({'from_event': 1})
     else
         exec 'b ' . l:instance.buffer_id
     endif
 endfunction
 
 nnoremap <silent> <Leader>to :Topen<cr>
+nnoremap <silent> <Leader>tn :Tnext<cr>
+nnoremap <silent> <Leader>tp :Tprevious<cr>
 nnoremap <silent> <Leader>tO :call <SID>neoterm_open_in_window()<cr>
 " hide/close terminal
-nnoremap <silent> <Leader>th :call neoterm#close({})<cr>
+nnoremap <silent> <Leader>th :Tclose<cr>
 " clear terminal
-nnoremap <silent> <Leader>tl :call neoterm#clear({})<cr>
+nnoremap <silent> <Leader>tl :Tclear<cr>
 " kills the current job (send a ^C)
-nnoremap <silent> <Leader>tc :call neoterm#kill({})<cr>
+nnoremap <silent> <Leader>tc :Tkill<cr>
 
 nnoremap <silent> <Leader>ts :TREPLSendLine<cr>
 vnoremap <silent> <Leader>ts :TREPLSendLine<cr>
@@ -403,7 +406,7 @@ nnoremap <silent> <Leader>te :call neoterm#normal('G')<cr>
 
 let g:airline_theme = 'bubblegum'
 let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
