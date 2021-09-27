@@ -41,11 +41,12 @@ Plug 'ledger/vim-ledger'
 Plug 'posva/vim-vue'
 Plug 'sjl/gundo.vim'
 " Plug 'zxqfl/tabnine-vim'
-Plug 'nathangrigg/vim-beancount'
+Plug 'mbudde/vim-beancount'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-AdvancedSorters'
 Plug 'mhinz/vim-signify'
+Plug 'mbudde/bean-copy-txn', { 'do': './install.sh --build' }
 
 call plug#end()
 
@@ -377,7 +378,7 @@ function! s:neoterm_open_in_window()
     let l:instance = g:neoterm.last()
     if empty(l:instance)
         terminal
-        call neoterm#new({'from_event': 1})
+        call neoterm#new({'from_session': 1})
     else
         exec 'b ' . l:instance.buffer_id
     endif
