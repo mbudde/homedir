@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PROFILES=$HOME/etc/profiles-available
 PROFILE_D=$HOME/etc/profile.d
@@ -29,6 +29,7 @@ if [ -e $PROFILE_D/$profile ]; then
         echo "$PROFILE_D/$profile is not a symbolic link - will not remove"
     fi
 else
+    mkdir -p "$PROFILE_D"
     cd $PROFILE_D
     ln -s $PROFILES/$profile
 fi
